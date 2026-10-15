@@ -12,6 +12,19 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
     <script src="/js/auth.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
@@ -34,11 +47,13 @@
 
       <div class="user-actions">
         <div class="search-box">
+          <label for="searchInput" class="sr-only">Buscar en la carta</label>
           <input
             type="text"
             id="searchInput"
             placeholder="Buscar en la carta..."
             class="search-input"
+            aria-label="Buscar en la carta"
           />
         </div>
 
