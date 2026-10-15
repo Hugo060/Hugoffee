@@ -7,7 +7,7 @@
       "subcategoria": "caliente",
       "badge": "ORGÁNICO",
       "subtitulo": "Tueste medio y equilibrado",
-      "descripcion": "Notas de cacao y avellana",
+      "descripcion": "Notas de chocolate y avellana",
       "precio": 3.80
     },
     {
@@ -51,13 +51,23 @@
       "precio": 2.80
     },
     {
+      "id": "infusion-manzanilla-menta",
+      "nombre": "Infusión de Manzanilla y Menta",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "NATURAL",
+      "subtitulo": "Mezcla digestiva de plantas biológicas",
+      "descripcion": "Aroma fresco y relajante",
+      "precio": 2.60
+    },
+    {
       "id": "frappuccino-chocolate",
       "nombre": "Frappuccino Chocolate",
       "categoria": "bebida",
       "subcategoria": "frio",
       "badge": "ESPECIAL",
       "subtitulo": "Batido helado con sirope y nata",
-      "descripcion": "Topping de virutas de cacao",
+      "descripcion": "Topping de virutas de chocolate",
       "precio": 5.20
     },
     {
@@ -85,14 +95,24 @@
       "nombre": "Agua Mineral Fría",
       "categoria": "bebida",
       "subcategoria": "frio",
-      "badge": "ESSENTIAL",
-      "subtitulo": "Botella de agua mineral natural 50cl",
+      "badge": "ESENCIAL",
+      "subtitulo": "Botella de agua mineral natural 50 cl",
       "descripcion": "Servida muy fría para acompañar tu café",
       "precio": 1.80
     },
     {
-      "id": "napolitana-cacao",
-      "nombre": "Napolitana de Cacao",
+      "id": "zumo-naranja-natural",
+      "nombre": "Zumo de Naranja Natural",
+      "categoria": "bebida",
+      "subcategoria": "frio",
+      "badge": "RECIÉN EXPRIMIDO",
+      "subtitulo": "100% fruta natural",
+      "descripcion": "Rico en vitamina C y recién exprimido",
+      "precio": 3.00
+    },
+    {
+      "id": "napolitana-chocolate",
+      "nombre": "Napolitana de Chocolate",
       "categoria": "comida",
       "subcategoria": "dulce",
       "badge": "HORNEADO",
@@ -107,7 +127,7 @@
       "subcategoria": "dulce",
       "badge": "ARTESANAL",
       "subtitulo": "Bizcocho denso e intenso",
-      "descripcion": "Nueces crujientes y cacao puro",
+      "descripcion": "Nueces crujientes y chocolate puro",
       "precio": 3.50
     },
     {
@@ -121,8 +141,8 @@
       "precio": 2.40
     },
     {
-      "id": "tarta-queso",
-      "nombre": "Tarta de Queso La Viña",
+      "id": "tarta-queso-lavina",
+      "nombre": "Tarta de Queso Tradicional",
       "categoria": "comida",
       "subcategoria": "dulce",
       "badge": "TOP VENTAS",
@@ -131,8 +151,38 @@
       "precio": 4.50
     },
     {
+      "id": "tarta-queso-pistacho",
+      "nombre": "Tarta de Queso y Pistacho",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "ESPECIAL",
+      "subtitulo": "Base cremosa con crema de pistacho puro",
+      "descripcion": "Topping de pistacho picado crujiente",
+      "precio": 4.90
+    },
+    {
+      "id": "tarta-queso-lotus",
+      "nombre": "Tarta de Queso y Lotus",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "NUEVO",
+      "subtitulo": "Con crema y galleta Lotus Speculoos",
+      "descripcion": "Intenso sabor a galleta caramelizada",
+      "precio": 4.80
+    },
+        {
+      "id": "tarta-queso-oreo",
+      "nombre": "Tarta de Queso y Oreo",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "NUEVO",
+      "subtitulo": "Con crema y galleta Oreo",
+      "descripcion": "Intenso sabor a galleta Oreo",
+      "precio": 4.80
+    },
+    {
       "id": "carrot-cake",
-      "nombre": "Carrot Cake",
+      "nombre": "Tarta de Zanahoria (Carrot Cake)",
       "categoria": "comida",
       "subcategoria": "dulce",
       "badge": "ARTESANAL",
@@ -159,6 +209,26 @@
       "subtitulo": "Receta estilo americano",
       "descripcion": "Crujiente por fuera y tierna por dentro",
       "precio": 2.50
+    },
+    {
+      "id": "palmera-chocolate",
+      "nombre": "Palmera de Chocolate Artesanal",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "HORNEADO",
+      "subtitulo": "Hojaldre crujiente bañado en chocolate",
+      "descripcion": "Sabor intenso con cobertura suave de chocolate",
+      "precio": 2.70
+    },
+    {
+      "id": "palmera-oreo",
+      "nombre": "Palmera de Oreo",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "TOP VENTAS",
+      "subtitulo": "Hojaldre con crema de leche y galleta Oreo",
+      "descripcion": "Cobertura de chocolate blanco y trozos de galleta",
+      "precio": 2.90
     },
     {
       "id": "sandwich-mixto",
@@ -231,6 +301,16 @@
       "precio": 3.20
     },
     {
+      "id": "montadito-jamon-iberico",
+      "nombre": "Montadito de Jamón Ibérico",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "IBÉRICO",
+      "subtitulo": "Pan rústico con aceite de oliva virgen extra",
+      "descripcion": "Jamón ibérico de cebo con tomate restregado",
+      "precio": 4.20
+    },
+    {
       "id": "granos-colombia-suave",
       "nombre": "Café Colombia Suave 250g",
       "categoria": "granos",
@@ -261,6 +341,16 @@
       "precio": 11.90
     },
     {
+      "id": "granos-guatemala-volcanico",
+      "nombre": "Café Guatemala Volcánico 250g",
+      "categoria": "granos",
+      "subcategoria": "origen",
+      "badge": "ORIGEN",
+      "subtitulo": "Cultivado en suelos volcánicos de Antigua",
+      "descripcion": "Cuerpo completo con notas especiadas y chocolate",
+      "precio": 13.90
+    },
+    {
       "id": "granos-mezcla-casa",
       "nombre": "Mezcla de la Casa 250g",
       "categoria": "granos",
@@ -277,7 +367,7 @@
       "subcategoria": "mezcla",
       "badge": "CREMOSO",
       "subtitulo": "Selección para cafetera italiana y espresso",
-      "descripcion": "Gran crema, aroma intenso y notas de cacao",
+      "descripcion": "Gran crema, aroma intenso y notas de chocolate",
       "precio": 11.50
     },
     {
@@ -285,7 +375,7 @@
       "nombre": "Mezcla Desayuno Suave 250g",
       "categoria": "granos",
       "subcategoria": "mezcla",
-      "badge": "ELEGANT",
+      "badge": "ELEGANTE",
       "subtitulo": "Combinación ligera de granos centroamericanos",
       "descripcion": "Sabor amable, ideal para tomar con leche",
       "precio": 10.50
@@ -295,7 +385,7 @@
       "nombre": "Descafeinado Natural 250g",
       "categoria": "granos",
       "subcategoria": "descafeinado",
-      "badge": "SIN CAFÉÍNA",
+      "badge": "SIN CAFEÍNA",
       "subtitulo": "Proceso al agua sin químicos",
       "descripcion": "Todo el sabor del café sin perder cuerpo",
       "precio": 12.90
