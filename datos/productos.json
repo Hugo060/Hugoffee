@@ -1,0 +1,314 @@
+{
+  "productos": [
+    {
+      "id": "espresso-doble",
+      "nombre": "Espresso doble",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "ORGÁNICO",
+      "subtitulo": "Tueste medio y equilibrado",
+      "descripcion": "Notas de cacao y avellana",
+      "precio": 3.80
+    },
+    {
+      "id": "cafe-solo",
+      "nombre": "Café Solo",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "CLÁSICO",
+      "subtitulo": "Extracción limpia e intensa",
+      "descripcion": "Sabor puro y cuerpo completo",
+      "precio": 2.20
+    },
+    {
+      "id": "cafe-con-leche",
+      "nombre": "Café con leche",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "RECOMENDADO",
+      "subtitulo": "Espuma cremosa y suave",
+      "descripcion": "Sabor reconfortante",
+      "precio": 4.50
+    },
+    {
+      "id": "cafe-bombon",
+      "nombre": "Café Bombón",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "DULCE",
+      "subtitulo": "Espresso con leche condensada",
+      "descripcion": "Capa cremosa y dulzura intensa",
+      "precio": 3.20
+    },
+    {
+      "id": "macchiato",
+      "nombre": "Macchiato",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "",
+      "subtitulo": "Espresso cortado con leche",
+      "descripcion": "Intenso con toque suave",
+      "precio": 2.80
+    },
+    {
+      "id": "frappuccino-chocolate",
+      "nombre": "Frappuccino Chocolate",
+      "categoria": "bebida",
+      "subcategoria": "frio",
+      "badge": "ESPECIAL",
+      "subtitulo": "Batido helado con sirope y nata",
+      "descripcion": "Topping de virutas de cacao",
+      "precio": 5.20
+    },
+    {
+      "id": "frappuccino-galleta",
+      "nombre": "Frappuccino Galleta",
+      "categoria": "bebida",
+      "subcategoria": "frio",
+      "badge": "TOP VENTAS",
+      "subtitulo": "Base helada de galleta artesanal",
+      "descripcion": "Crujiente de trozos de galleta",
+      "precio": 5.50
+    },
+    {
+      "id": "iced-latte-caramel",
+      "nombre": "Iced Latte Caramel",
+      "categoria": "bebida",
+      "subcategoria": "frio",
+      "badge": "REFRESCANTE",
+      "subtitulo": "Espresso frío con leche y caramelo",
+      "descripcion": "Servido con abundante hielo",
+      "precio": 4.60
+    },
+    {
+      "id": "agua-fria",
+      "nombre": "Agua Mineral Fría",
+      "categoria": "bebida",
+      "subcategoria": "frio",
+      "badge": "ESSENTIAL",
+      "subtitulo": "Botella de agua mineral natural 50cl",
+      "descripcion": "Servida muy fría para acompañar tu café",
+      "precio": 1.80
+    },
+    {
+      "id": "napolitana-cacao",
+      "nombre": "Napolitana de Cacao",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "HORNEADO",
+      "subtitulo": "Masa hojaldrada crujiente",
+      "descripcion": "Relleno fundente de chocolate",
+      "precio": 2.90
+    },
+    {
+      "id": "brownie-nueces",
+      "nombre": "Brownie con Nueces",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "ARTESANAL",
+      "subtitulo": "Bizcocho denso e intenso",
+      "descripcion": "Nueces crujientes y cacao puro",
+      "precio": 3.50
+    },
+    {
+      "id": "cruasan-mantequilla",
+      "nombre": "Cruasán de Mantequilla",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "RECOMENDADO",
+      "subtitulo": "Hojaldre tradicional horneado",
+      "descripcion": "Capa exterior dorada y crujiente",
+      "precio": 2.40
+    },
+    {
+      "id": "tarta-queso",
+      "nombre": "Tarta de Queso La Viña",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "TOP VENTAS",
+      "subtitulo": "Receta cremosa tostada al horno",
+      "descripcion": "Textura suave y dorada por fuera",
+      "precio": 4.50
+    },
+    {
+      "id": "carrot-cake",
+      "nombre": "Carrot Cake",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "ARTESANAL",
+      "subtitulo": "Bizcocho de zanahoria y especias",
+      "descripcion": "Cobertura cremosa de queso y nueces",
+      "precio": 4.20
+    },
+    {
+      "id": "donut-glaseado",
+      "nombre": "Donut Artesanal Glaseado",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "DULCE",
+      "subtitulo": "Masa tierna y esponjosa",
+      "descripcion": "Glaseado fino de azúcar artesanal",
+      "precio": 2.20
+    },
+    {
+      "id": "cookie-chocolate",
+      "nombre": "Cookie con Pepitas de Chocolate",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "HORNEADO",
+      "subtitulo": "Receta estilo americano",
+      "descripcion": "Crujiente por fuera y tierna por dentro",
+      "precio": 2.50
+    },
+    {
+      "id": "sandwich-mixto",
+      "nombre": "Sándwich Mixto",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "SALADO",
+      "subtitulo": "Pan tostado con mantequilla",
+      "descripcion": "Jamón cocido y queso fundido",
+      "precio": 4.80
+    },
+    {
+      "id": "tostada-aguacate",
+      "nombre": "Tostada de Aguacate",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "SALUDABLE",
+      "subtitulo": "Pan de masa madre tostado",
+      "descripcion": "Aguacate fresco y semillas",
+      "precio": 5.10
+    },
+    {
+      "id": "bocata-lomo",
+      "nombre": "Bocata de Lomo",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "CLÁSICO",
+      "subtitulo": "Pan crujiente recién horneado",
+      "descripcion": "Lomo de cerdo a la plancha recién hecho",
+      "precio": 5.20
+    },
+    {
+      "id": "bocata-bacon-queso",
+      "nombre": "Bocata de Bacon y Queso",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "TOP VENTAS",
+      "subtitulo": "Pan rústico calentito",
+      "descripcion": "Tiras de bacon crujiente con queso fundido",
+      "precio": 5.50
+    },
+    {
+      "id": "serranito",
+      "nombre": "Serranito Tradicional",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "ESPECIALIDAD",
+      "subtitulo": "Pan de mollete tostado",
+      "descripcion": "Lomo, jamón serrano y pimiento verde frito",
+      "precio": 5.80
+    },
+    {
+      "id": "bocata-lomo-pimiento",
+      "nombre": "Bocata de Lomo con Pimientos",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "CLÁSICO",
+      "subtitulo": "Pan baguette crujiente",
+      "descripcion": "Lomo a la plancha con pimiento verde asado",
+      "precio": 5.60
+    },
+    {
+      "id": "pincho-tortilla-patata",
+      "nombre": "Pincho de Tortilla de Patata",
+      "categoria": "comida",
+      "subcategoria": "salado",
+      "badge": "RECOMENDADO",
+      "subtitulo": "Receta casera jugosa",
+      "descripcion": "Servido con rebanada de pan de masa madre",
+      "precio": 3.20
+    },
+    {
+      "id": "granos-colombia-suave",
+      "nombre": "Café Colombia Suave 250g",
+      "categoria": "granos",
+      "subcategoria": "origen",
+      "badge": "ORIGEN",
+      "subtitulo": "Grano 100% Arábica de montaña",
+      "descripcion": "Notas dulces de caramelo y frutos rojos",
+      "precio": 12.50
+    },
+    {
+      "id": "granos-etiopia-floral",
+      "nombre": "Café Etiopía Floral 250g",
+      "categoria": "granos",
+      "subcategoria": "origen",
+      "badge": "ESPECIAL",
+      "subtitulo": "Cultivado a gran altitud",
+      "descripcion": "Sabor ligero con toques cítricos y florales",
+      "precio": 14.80
+    },
+    {
+      "id": "granos-brasil-intenso",
+      "nombre": "Café Brasil Intenso 250g",
+      "categoria": "granos",
+      "subcategoria": "origen",
+      "badge": "CUERPO DENSO",
+      "subtitulo": "Tueste medio-oscuro tradicional",
+      "descripcion": "Sabor potente a chocolate negro y avellanas",
+      "precio": 11.90
+    },
+    {
+      "id": "granos-mezcla-casa",
+      "nombre": "Mezcla de la Casa 250g",
+      "categoria": "granos",
+      "subcategoria": "mezcla",
+      "badge": "TOP VENTAS",
+      "subtitulo": "Nuestra receta especial para diario",
+      "descripcion": "Equilibrio perfecto entre dulzura y cuerpo",
+      "precio": 10.90
+    },
+    {
+      "id": "granos-mezcla-espresso",
+      "nombre": "Mezcla Especial Espresso 250g",
+      "categoria": "granos",
+      "subcategoria": "mezcla",
+      "badge": "CREMOSO",
+      "subtitulo": "Selección para cafetera italiana y espresso",
+      "descripcion": "Gran crema, aroma intenso y notas de cacao",
+      "precio": 11.50
+    },
+    {
+      "id": "granos-mezcla-desayuno",
+      "nombre": "Mezcla Desayuno Suave 250g",
+      "categoria": "granos",
+      "subcategoria": "mezcla",
+      "badge": "ELEGANT",
+      "subtitulo": "Combinación ligera de granos centroamericanos",
+      "descripcion": "Sabor amable, ideal para tomar con leche",
+      "precio": 10.50
+    },
+    {
+      "id": "granos-descafeinado-natural",
+      "nombre": "Descafeinado Natural 250g",
+      "categoria": "granos",
+      "subcategoria": "descafeinado",
+      "badge": "SIN CAFÉÍNA",
+      "subtitulo": "Proceso al agua sin químicos",
+      "descripcion": "Todo el sabor del café sin perder cuerpo",
+      "precio": 12.90
+    },
+    {
+      "id": "granos-descafeinado-intenso",
+      "nombre": "Descafeinado Tueste Intenso 250g",
+      "categoria": "granos",
+      "subcategoria": "descafeinado",
+      "badge": "SABOR PURO",
+      "subtitulo": "Proceso natural con tueste artesanal",
+      "descripcion": "Aroma profundo con notas de frutos secos",
+      "precio": 13.50
+    }
+  ]
+}

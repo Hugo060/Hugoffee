@@ -1,0 +1,62 @@
+.theme-toggle-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.theme-icon {
+  pointer-events: none;
+  transition: stroke 0.2s ease;
+}
+
+body.dark-mode {
+  --color-primary: #EFE6DD;
+  --color-primary-hover: #D1C7BD;
+  --color-secondary: #2B2118;
+  --color-base: #1A1410;
+  --color-accent: #9eb258;
+  --color-muted: #705d4f;
+  --color-text-body: #EFE6DD;
+  background-color: var(--color-base);
+  color: var(--color-text-body);
+}
+
+body.dark-mode .header {
+  background-color: var(--color-base);
+  border-bottom-color: var(--color-secondary);
+}
+
+body.dark-mode .cart-button svg,
+body.dark-mode .user-profile-button svg,
+body.dark-mode .theme-toggle-button svg {
+  stroke: var(--color-primary);
+}
+
+body.dark-mode .product-card,
+body.dark-mode .cart-drawer,
+body.dark-mode .user-dropdown,
+body.dark-mode .story-box,
+body.dark-mode .location-card,
+body.dark-mode .suggestions-card {
+  background-color: #241C16;
+  border-color: var(--color-muted);
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #2B2118;
+  color: #EFE6DD;
+  border-color: var(--color-muted);
+}

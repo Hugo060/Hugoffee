@@ -1,0 +1,23 @@
+{
+  "usuarios": [
+    {
+      "id": "usr_001",
+      "nombre": "admin",
+      "email": "admin@hugoffee.com",
+      "password": "admin1234",
+      "fecha_registro": "2026-01-15T10:30:00Z",
+      "compras_anteriores": [
+        {
+          "pedido_id": "ped_9821",
+          "fecha": "2026-03-10T09:15:00Z",
+          "total": 8.30,
+          "productos": [
+            { "id": "cafe-con-leche", "cantidad": 1, "precio": 4.50 },
+            { "id": "cruasan-mantequilla", "cantidad": 1, "precio": 2.40 },
+            { "id": "macchiato", "cantidad": 1, "precio": 1.40 }
+          ]
+        }
+      ]
+    }
+  ]
+}
