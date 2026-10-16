@@ -1299,6 +1299,33 @@ body.dark-mode textarea {
   outline: 3px solid var(--color-accent);
 }
 
+.product-card h3 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.product-card .product-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.product-card .product-notes {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #595959;
+  margin-bottom: var(--space-md);
+}
+
 @media (max-width: 576px) {
   .suggestions-card {
     padding: var(--space-lg) var(--space-md);
