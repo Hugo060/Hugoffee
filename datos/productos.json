@@ -1,14 +1,24 @@
 {
   "productos": [
     {
-      "id": "espresso-doble",
-      "nombre": "Espresso doble",
+      "id": "expresso-doble",
+      "nombre": "Expresso doble",
       "categoria": "bebida",
       "subcategoria": "caliente",
       "badge": "ORGÁNICO",
       "subtitulo": "Tueste medio y equilibrado",
       "descripcion": "Notas de chocolate y avellana",
-      "precio": 3.80
+      "precio": 3.8,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "https://www.cafescandelas.com/uploads/media_items/doble-espresso-500.500.500.s.jpg",
+      "reseñas": [
+        { "name": "María Gómez", "rating": 5, "comment": "Sabor increíble y muy buena calidad.", "date": "2026-10-25" },
+        { "name": "Carlos Ruiz", "rating": 4, "comment": "Muy rico, repetiré sin duda.", "date": "2026-10-28" },
+        { "name": "David S.", "rating": 5, "comment": "La dosis perfecta de energía por la mañana.", "date": "2026-10-29" },
+        { "name": "Elena V.", "rating": 5, "comment": "Se nota el tueste artesanal, excelente.", "date": "2026-10-31" },
+        { "name": "Marcos", "rating": 3, "comment": "Un poco fuerte para mi gusto, pero bien preparado.", "date": "2026-11-01" }
+      ]
     },
     {
       "id": "cafe-solo",
@@ -18,7 +28,16 @@
       "badge": "CLÁSICO",
       "subtitulo": "Extracción limpia e intensa",
       "descripcion": "Sabor puro y cuerpo completo",
-      "precio": 2.20
+      "precio": 2.2,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRziSwjtL8lLkT4X9lBbFIdUBz_x7kfib5X051rkePJcg&s=10",
+      "reseñas": [
+        { "name": "Pedro", "rating": 4, "comment": "Un clásico que nunca falla.", "date": "2026-09-15" },
+        { "name": "Ana L.", "rating": 5, "comment": "Intenso y muy aromático. El mejor de la zona.", "date": "2026-09-20" },
+        { "name": "Javier M.", "rating": 5, "comment": "Excelente extracción, nada de amargor.", "date": "2026-10-05" },
+        { "name": "Sofía T.", "rating": 4, "comment": "Muy buen café, lo pido a diario.", "date": "2026-10-18" }
+      ]
     },
     {
       "id": "cafe-con-leche",
@@ -28,7 +47,17 @@
       "badge": "RECOMENDADO",
       "subtitulo": "Espuma cremosa y suave",
       "descripcion": "Sabor reconfortante",
-      "precio": 4.50
+      "precio": 4.5,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR93VNcyqJ1zBlbSnJ70K3FmRRASWdSUvqBh28jTsbyyA&s=10",
+      "reseñas": [
+        { "name": "Lucía P.", "rating": 5, "comment": "La espuma es perfecta, súper cremoso.", "date": "2026-10-30" },
+        { "name": "Carmen", "rating": 4, "comment": "Muy rico, la leche a la temperatura ideal.", "date": "2026-10-15" },
+        { "name": "Antonio G.", "rating": 5, "comment": "Equilibrio perfecto entre café y leche.", "date": "2026-10-12" },
+        { "name": "Rosa M.", "rating": 5, "comment": "Mi desayuno favorito en Arnedo.", "date": "2026-09-25" },
+        { "name": "Iker", "rating": 3, "comment": "Bueno, aunque lo prefiero un poco más caliente.", "date": "2026-09-28" }
+      ]
     },
     {
       "id": "cafe-bombon",
@@ -36,9 +65,18 @@
       "categoria": "bebida",
       "subcategoria": "caliente",
       "badge": "DULCE",
-      "subtitulo": "Espresso con leche condensada",
+      "subtitulo": "Expresso con leche condensada",
       "descripcion": "Capa cremosa y dulzura intensa",
-      "precio": 3.20
+      "precio": 3.2,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1snrOluWS-1xvQdIFAdl_bNjFHG18-4LZvVZaYAbtKw&s=10",
+      "reseñas": [
+        { "name": "Laura", "rating": 5, "comment": "Súper dulce, como a mí me gusta.", "date": "2026-08-14" },
+        { "name": "Fernando", "rating": 4, "comment": "Muy bueno para la sobremesa.", "date": "2026-09-02" },
+        { "name": "Sara", "rating": 5, "comment": "La presentación en vaso de cristal es preciosa.", "date": "2026-10-01" },
+        { "name": "Luis", "rating": 4, "comment": "Denso y sabroso, un capricho.", "date": "2026-10-10" }
+      ]
     },
     {
       "id": "macchiato",
@@ -46,9 +84,18 @@
       "categoria": "bebida",
       "subcategoria": "caliente",
       "badge": "",
-      "subtitulo": "Espresso cortado con leche",
+      "subtitulo": "Expresso cortado con leche",
       "descripcion": "Intenso con toque suave",
-      "precio": 2.80
+      "precio": 2.8,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSri4GS0NwtJcb-ob6II3ilfViDk2S_WPsConDGNY_aHQ&s=10",
+      "reseñas": [
+        { "name": "Raúl C.", "rating": 5, "comment": "Toque justo de leche, espectacular.", "date": "2026-09-11" },
+        { "name": "Inés", "rating": 4, "comment": "Muy bueno, un clásico bien ejecutado.", "date": "2026-10-04" },
+        { "name": "Víctor", "rating": 5, "comment": "Siempre perfecto.", "date": "2026-10-19" },
+        { "name": "Alba", "rating": 4, "comment": "Buen sabor, aunque la taza es pequeña.", "date": "2026-10-22" }
+      ]
     },
     {
       "id": "infusion-manzanilla-menta",
@@ -58,7 +105,16 @@
       "badge": "NATURAL",
       "subtitulo": "Mezcla digestiva de plantas biológicas",
       "descripcion": "Aroma fresco y relajante",
-      "precio": 2.60
+      "precio": 2.6,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkRk7GSobO4ducMHgqQPnEESvExG5yEjWUuz35tWa0A&s=10",
+      "reseñas": [
+        { "name": "María", "rating": 5, "comment": "Súper relajante, ideal para media tarde.", "date": "2026-07-20" },
+        { "name": "Juan", "rating": 4, "comment": "Buen sabor, se notan las hierbas naturales.", "date": "2026-08-05" },
+        { "name": "Teresa", "rating": 5, "comment": "Me encantó el toque a menta, muy fresco.", "date": "2026-09-12" },
+        { "name": "Pablo", "rating": 3, "comment": "Normal, una infusión correcta.", "date": "2026-10-20" }
+      ]
     },
     {
       "id": "frappuccino-chocolate",
@@ -68,7 +124,16 @@
       "badge": "ESPECIAL",
       "subtitulo": "Batido helado con sirope y nata",
       "descripcion": "Topping de virutas de chocolate",
-      "precio": 5.20
+      "precio": 5.2,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWre0nUCuAUU0FyeP3liPWx-22B0VVbMsge4FGq71WaQ&s=10",
+      "reseñas": [
+        { "name": "Mario", "rating": 5, "comment": "Es un vicio, riquísimo.", "date": "2026-06-15" },
+        { "name": "Sandra", "rating": 4, "comment": "Muy bueno para días de calor.", "date": "2026-07-10" },
+        { "name": "Héctor", "rating": 5, "comment": "La nata está espectacular, no es pesada.", "date": "2026-08-02" },
+        { "name": "Lorena", "rating": 5, "comment": "Me encanta, de los mejores que he probado.", "date": "2026-09-28" }
+      ]
     },
     {
       "id": "frappuccino-galleta",
@@ -78,7 +143,17 @@
       "badge": "TOP VENTAS",
       "subtitulo": "Base helada de galleta artesanal",
       "descripcion": "Crujiente de trozos de galleta",
-      "precio": 5.50
+      "precio": 5.5,
+      "permiteLeche": true,
+      "alergenos": [ "gluten", "lacteos" ],
+      "imagen": "https://tb-static.uber.com/prod/image-proc/processed_images/5283ffb081d757503c37c7414b616183/a19bb09692310dfd41e49a96c424b3a6.jpeg",
+      "reseñas": [
+        { "name": "Andrea V.", "rating": 5, "comment": "Mi favorito sin duda, los trocitos de galleta le dan un toque genial.", "date": "2026-11-01" },
+        { "name": "Javier T.", "rating": 2, "comment": "Demasiado dulce para mi gusto.", "date": "2026-11-02" },
+        { "name": "Lucía", "rating": 5, "comment": "Es un postre y una bebida a la vez, increíble.", "date": "2026-10-15" },
+        { "name": "Rubén", "rating": 4, "comment": "Muy refrescante y sabroso.", "date": "2026-10-10" },
+        { "name": "Patricia", "rating": 5, "comment": "Top ventas por algo, es una delicia.", "date": "2026-09-30" }
+      ]
     },
     {
       "id": "iced-latte-caramel",
@@ -86,9 +161,18 @@
       "categoria": "bebida",
       "subcategoria": "frio",
       "badge": "REFRESCANTE",
-      "subtitulo": "Espresso frío con leche y caramelo",
+      "subtitulo": "Expresso frío con leche y caramelo",
       "descripcion": "Servido con abundante hielo",
-      "precio": 4.60
+      "precio": 4.6,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEtzPSK-gL8QnP8JtDgdGhPX5F5vDK4ZsFmnnuCEEdOg&s=10",
+      "reseñas": [
+        { "name": "Carlos", "rating": 5, "comment": "Perfecto equilibrio de café y caramelo.", "date": "2026-07-22" },
+        { "name": "Beatriz", "rating": 4, "comment": "Muy refrescante.", "date": "2026-08-11" },
+        { "name": "Óscar", "rating": 5, "comment": "Mi salvación las tardes de verano.", "date": "2026-09-01" },
+        { "name": "Celia", "rating": 4, "comment": "Un poco de hielo de más, pero el sabor es genial.", "date": "2026-10-05" }
+      ]
     },
     {
       "id": "agua-fria",
@@ -98,7 +182,16 @@
       "badge": "ESENCIAL",
       "subtitulo": "Botella de agua mineral natural 50 cl",
       "descripcion": "Servida muy fría para acompañar tu café",
-      "precio": 1.80
+      "precio": 1.8,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThhJN97j_eQfeAe0ji0caUgx1kIKR3cehCEPAgFqMS3Q&s=10",
+      "reseñas": [
+        { "name": "Andrés", "rating": 5, "comment": "Agua fresca y en botella de cristal, genial.", "date": "2026-05-14" },
+        { "name": "Marta", "rating": 4, "comment": "Bien fría, como debe ser.", "date": "2026-06-25" },
+        { "name": "Luis", "rating": 3, "comment": "Un poco cara para ser agua.", "date": "2026-08-12" },
+        { "name": "Elena", "rating": 5, "comment": "Ideal para limpiar el paladar antes del expresso.", "date": "2026-09-18" }
+      ]
     },
     {
       "id": "zumo-naranja-natural",
@@ -108,7 +201,16 @@
       "badge": "RECIÉN EXPRIMIDO",
       "subtitulo": "100% fruta natural",
       "descripcion": "Rico en vitamina C y recién exprimido",
-      "precio": 3.00
+      "precio": 3.0,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo-lARb9uxYNqD8gcpel0c5Bn9G9rbv1mtU6lfjDHG4A&s=10",
+      "reseñas": [
+        { "name": "Diana", "rating": 5, "comment": "Se nota que es 100% natural, dulcísimo.", "date": "2026-10-10" },
+        { "name": "Sergio", "rating": 4, "comment": "Buena cantidad, recién hecho.", "date": "2026-10-15" },
+        { "name": "Clara", "rating": 5, "comment": "No falla con mi tostada mañanera.", "date": "2026-10-20" },
+        { "name": "Rubén", "rating": 4, "comment": "Llevaba poca pulpa, me gusta así.", "date": "2026-10-25" }
+      ]
     },
     {
       "id": "napolitana-chocolate",
@@ -118,7 +220,16 @@
       "badge": "HORNEADO",
       "subtitulo": "Masa hojaldrada crujiente",
       "descripcion": "Relleno fundente de chocolate",
-      "precio": 2.90
+      "precio": 2.9,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1-sMiYq_Ma_E-WVJcecoI--uM_qOt_FWJomF1JLlxrQ&s=10",
+      "reseñas": [
+        { "name": "Jorge", "rating": 5, "comment": "Crujiente por fuera y el chocolate fundido por dentro, de 10.", "date": "2026-09-05" },
+        { "name": "Marina", "rating": 4, "comment": "Muy rica, buen tamaño.", "date": "2026-09-18" },
+        { "name": "Isabel", "rating": 5, "comment": "La mejor de la zona, se nota que está recién horneada.", "date": "2026-10-02" },
+        { "name": "Félix", "rating": 5, "comment": "Exquisita.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "brownie-nueces",
@@ -128,7 +239,16 @@
       "badge": "ARTESANAL",
       "subtitulo": "Bizcocho denso e intenso",
       "descripcion": "Nueces crujientes y chocolate puro",
-      "precio": 3.50
+      "precio": 3.5,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos", "frutos_secos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT32n5n8kTt4kWktFFGYH1KdrhGch4oK_iADtUkNuNROw&s=10",
+      "reseñas": [
+        { "name": "Paula", "rating": 5, "comment": "Denso y muy achocolatado, como debe ser.", "date": "2026-08-11" },
+        { "name": "Tomás", "rating": 5, "comment": "Con un café solo es la pareja perfecta.", "date": "2026-09-02" },
+        { "name": "Begoña", "rating": 4, "comment": "Muy bueno, aunque empacha un poco.", "date": "2026-10-12" },
+        { "name": "Adrián", "rating": 5, "comment": "Textura perfecta, crujiente arriba y jugoso por dentro.", "date": "2026-10-30" }
+      ]
     },
     {
       "id": "cruasan-mantequilla",
@@ -138,7 +258,16 @@
       "badge": "RECOMENDADO",
       "subtitulo": "Hojaldre tradicional horneado",
       "descripcion": "Capa exterior dorada y crujiente",
-      "precio": 2.40
+      "precio": 2.4,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcXrMC6wUJ0eh-uCoTdgUkkTC-kp2YtPhhWlLXHnf0ew&s=10",
+      "reseñas": [
+        { "name": "Nuria", "rating": 5, "comment": "Se nota la mantequilla de calidad, buenísimo.", "date": "2026-09-10" },
+        { "name": "Pedro", "rating": 4, "comment": "Muy crujiente, bien alveolado.", "date": "2026-10-01" },
+        { "name": "Lorena", "rating": 5, "comment": "Mi desayuno de todos los viernes.", "date": "2026-10-15" },
+        { "name": "Alfonso", "rating": 5, "comment": "No he probado uno igual en el pueblo.", "date": "2026-10-25" }
+      ]
     },
     {
       "id": "tarta-queso-lavina",
@@ -148,7 +277,16 @@
       "badge": "TOP VENTAS",
       "subtitulo": "Receta cremosa tostada al horno",
       "descripcion": "Textura suave y dorada por fuera",
-      "precio": 4.50
+      "precio": 4.5,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTIn_AR8SVds20sml5nx9SwpyaKDChAnjShcti9qkpqg&s=10",
+      "reseñas": [
+        { "name": "Marta G.", "rating": 5, "comment": "La mejor tarta de queso que he comido en Arnedo.", "date": "2026-11-01" },
+        { "name": "Hugo", "rating": 5, "comment": "Espectacular. Muy cremosa.", "date": "2026-10-10" },
+        { "name": "Rocío", "rating": 4, "comment": "Riquísima, aunque a veces se les agota pronto.", "date": "2026-10-12" },
+        { "name": "Daniel", "rating": 5, "comment": "Se deshace en la boca, una maravilla.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "tarta-queso-pistacho",
@@ -158,7 +296,16 @@
       "badge": "ESPECIAL",
       "subtitulo": "Base cremosa con crema de pistacho puro",
       "descripcion": "Topping de pistacho picado crujiente",
-      "precio": 4.90
+      "precio": 4.9,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos", "frutos_secos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpe8OH0Xzs6rk5Rw97476P86JKHJHYvHVzys38VHdqbQ&s=10",
+      "reseñas": [
+        { "name": "Natalia", "rating": 5, "comment": "Increíble sabor a pistacho, nada artificial.", "date": "2026-09-05" },
+        { "name": "Juanjo", "rating": 4, "comment": "Muy curiosa la mezcla, está deliciosa.", "date": "2026-09-18" },
+        { "name": "Irene", "rating": 5, "comment": "Mi tarta favorita, el toque salado del pistacho es brutal.", "date": "2026-10-01" },
+        { "name": "Álex", "rating": 5, "comment": "Tenéis que probarla sí o sí.", "date": "2026-10-22" }
+      ]
     },
     {
       "id": "tarta-queso-lotus",
@@ -168,9 +315,18 @@
       "badge": "NUEVO",
       "subtitulo": "Con crema y galleta Lotus Speculoos",
       "descripcion": "Intenso sabor a galleta caramelizada",
-      "precio": 4.80
+      "precio": 4.8,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYW8fCVwAES65Yc8A_DdbmvaNWEGbe9y7jeLDyAosaxQ&s=10",
+      "reseñas": [
+        { "name": "Silvia", "rating": 5, "comment": "Si te gusta el Lotus, esto es el paraíso.", "date": "2026-10-15" },
+        { "name": "Marcos", "rating": 4, "comment": "Muy rica, pero llena muchísimo.", "date": "2026-10-18" },
+        { "name": "Rosa", "rating": 5, "comment": "Textura 10, sabor 10.", "date": "2026-10-25" },
+        { "name": "Javier", "rating": 5, "comment": "Puro espectáculo.", "date": "2026-11-01" }
+      ]
     },
-        {
+    {
       "id": "tarta-queso-oreo",
       "nombre": "Tarta de Queso y Oreo",
       "categoria": "comida",
@@ -178,7 +334,16 @@
       "badge": "NUEVO",
       "subtitulo": "Con crema y galleta Oreo",
       "descripcion": "Intenso sabor a galleta Oreo",
-      "precio": 4.80
+      "precio": 4.8,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpOgT6bExOYFlHoJEPyBgPDSNyutknGKo2le4bSB3vAw&s=10",
+      "reseñas": [
+        { "name": "Clara", "rating": 5, "comment": "A mis hijos les encantó.", "date": "2026-09-30" },
+        { "name": "Víctor", "rating": 4, "comment": "Buena, el toque de Oreo está muy logrado.", "date": "2026-10-10" },
+        { "name": "Teresa", "rating": 5, "comment": "Simplemente fantástica.", "date": "2026-10-20" },
+        { "name": "Luis", "rating": 5, "comment": "Mejor que la de muchos restaurantes.", "date": "2026-10-29" }
+      ]
     },
     {
       "id": "carrot-cake",
@@ -188,7 +353,16 @@
       "badge": "ARTESANAL",
       "subtitulo": "Bizcocho de zanahoria y especias",
       "descripcion": "Cobertura cremosa de queso y nueces",
-      "precio": 4.20
+      "precio": 4.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos", "frutos_secos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5q-YgZfWQ-mlfUWYkOb9CmnNAJIaWUtHuQk5W5Lz5FA&s=10",
+      "reseñas": [
+        { "name": "Alicia", "rating": 5, "comment": "El frosting está espectacular.", "date": "2026-08-14" },
+        { "name": "David", "rating": 4, "comment": "Muy esponjosa y con sabor a canela.", "date": "2026-09-02" },
+        { "name": "Elena", "rating": 5, "comment": "Jugosa y no excesivamente dulce.", "date": "2026-10-05" },
+        { "name": "Mario", "rating": 4, "comment": "De tamaño está muy bien.", "date": "2026-10-22" }
+      ]
     },
     {
       "id": "donut-glaseado",
@@ -198,7 +372,16 @@
       "badge": "DULCE",
       "subtitulo": "Masa tierna y esponjosa",
       "descripcion": "Glaseado fino de azúcar artesanal",
-      "precio": 2.20
+      "precio": 2.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsRnwMtFOKI3DBXh4RMMjoqYR0Kdlth8HatCE_9TzMKg&s=10",
+      "reseñas": [
+        { "name": "Felipe", "rating": 4, "comment": "Esponjoso y ligero.", "date": "2026-07-28" },
+        { "name": "Raquel", "rating": 5, "comment": "Nada que ver con los industriales, buenísimo.", "date": "2026-08-10" },
+        { "name": "Héctor", "rating": 5, "comment": "Perfecto para acompañar un americano.", "date": "2026-09-12" },
+        { "name": "Inés", "rating": 4, "comment": "Muy rico, glaseado en su punto.", "date": "2026-10-18" }
+      ]
     },
     {
       "id": "cookie-chocolate",
@@ -208,7 +391,16 @@
       "badge": "HORNEADO",
       "subtitulo": "Receta estilo americano",
       "descripcion": "Crujiente por fuera y tierna por dentro",
-      "precio": 2.50
+      "precio": 2.5,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeq5Gijfy83nGK0HV6r5nizHFSJb1KO4Sj98rOZw6JpQ&s=10",
+      "reseñas": [
+        { "name": "Bárbara", "rating": 5, "comment": "El interior está fundido, impresionante.", "date": "2026-09-20" },
+        { "name": "Óscar", "rating": 4, "comment": "Muy buena galleta, tamaño XXL.", "date": "2026-10-01" },
+        { "name": "Lucía", "rating": 5, "comment": "Se me hace agua la boca, las pepitas son de calidad.", "date": "2026-10-15" },
+        { "name": "Manuel", "rating": 4, "comment": "Un pelín crujiente de más, pero buen sabor.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "palmera-chocolate",
@@ -218,7 +410,16 @@
       "badge": "HORNEADO",
       "subtitulo": "Hojaldre crujiente bañado en chocolate",
       "descripcion": "Sabor intenso con cobertura suave de chocolate",
-      "precio": 2.70
+      "precio": 2.7,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRmnaANli1NUqNvBi9ifpUWR1HTOgPhFmvEaezBJRYnQ&s=10",
+      "reseñas": [
+        { "name": "Sonia", "rating": 5, "comment": "De las mejores palmeras que he comido.", "date": "2026-08-22" },
+        { "name": "Alberto", "rating": 5, "comment": "Hojaldre de diez y chocolate muy fino.", "date": "2026-09-08" },
+        { "name": "Lidia", "rating": 4, "comment": "Crujiente y rica.", "date": "2026-10-11" },
+        { "name": "José", "rating": 4, "comment": "Muy grande y el chocolate es negro.", "date": "2026-10-25" }
+      ]
     },
     {
       "id": "palmera-oreo",
@@ -228,7 +429,16 @@
       "badge": "TOP VENTAS",
       "subtitulo": "Hojaldre con crema de leche y galleta Oreo",
       "descripcion": "Cobertura de chocolate blanco y trozos de galleta",
-      "precio": 2.90
+      "precio": 2.9,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGTD9vuKF_ya6ER5eKm2e3iTO4EMe9x_Y81DRtKNbcgQ&s=10",
+      "reseñas": [
+        { "name": "Gema", "rating": 5, "comment": "Una perdición, súper original.", "date": "2026-09-15" },
+        { "name": "Raúl", "rating": 5, "comment": "Impresionante mezcla, la pediré más.", "date": "2026-10-02" },
+        { "name": "Carmen", "rating": 4, "comment": "Súper dulce, ideal para compartir.", "date": "2026-10-14" },
+        { "name": "Daniel", "rating": 5, "comment": "Me encantó la cobertura blanca.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "sandwich-mixto",
@@ -238,7 +448,16 @@
       "badge": "SALADO",
       "subtitulo": "Pan tostado con mantequilla",
       "descripcion": "Jamón cocido y queso fundido",
-      "precio": 4.80
+      "precio": 4.8,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_Qs_hDgM8z0VYyG8t_gdPW_eU6ab2zOxrfQ_29_BxEQ&s=10",
+      "reseñas": [
+        { "name": "Carlos", "rating": 4, "comment": "Un clásico que nunca falla, pan muy crujiente.", "date": "2026-09-10" },
+        { "name": "Ana", "rating": 5, "comment": "El queso está muy bien fundido.", "date": "2026-09-25" },
+        { "name": "Miguel", "rating": 4, "comment": "Buen sabor, saca de un apuro.", "date": "2026-10-05" },
+        { "name": "Julia", "rating": 5, "comment": "Sencillo pero delicioso.", "date": "2026-10-20" }
+      ]
     },
     {
       "id": "tostada-aguacate",
@@ -248,7 +467,16 @@
       "badge": "SALUDABLE",
       "subtitulo": "Pan de masa madre tostado",
       "descripcion": "Aguacate fresco y semillas",
-      "precio": 5.10
+      "precio": 5.1,
+      "permiteLeche": false,
+      "alergenos": [ "gluten" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8HcEo3o90F85Ijg7pQpc4FPY5Rkj8ToAMSHyl7b4hg&s=10",
+      "reseñas": [
+        { "name": "Lorena", "rating": 5, "comment": "El pan de masa madre es un acierto total.", "date": "2026-08-11" },
+        { "name": "Iker", "rating": 5, "comment": "Aguacate en su punto, aliño perfecto.", "date": "2026-09-02" },
+        { "name": "Bea", "rating": 4, "comment": "Muy sano y riquísimo.", "date": "2026-10-01" },
+        { "name": "Teresa", "rating": 4, "comment": "La porción de aguacate es generosa.", "date": "2026-10-18" }
+      ]
     },
     {
       "id": "bocata-lomo",
@@ -258,7 +486,16 @@
       "badge": "CLÁSICO",
       "subtitulo": "Pan crujiente recién horneado",
       "descripcion": "Lomo de cerdo a la plancha recién hecho",
-      "precio": 5.20
+      "precio": 5.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL89a0D9TKaWSaHsaXDL7rgCyOnDjBHawMgC8xkhMpgw&s=10",
+      "reseñas": [
+        { "name": "Eduardo", "rating": 4, "comment": "Contundente, te deja bien para toda la mañana.", "date": "2026-09-20" },
+        { "name": "Sandra", "rating": 5, "comment": "El lomo muy tierno y el pan crujiente.", "date": "2026-10-05" },
+        { "name": "Roberto", "rating": 5, "comment": "Para almorzar es lo mejor.", "date": "2026-10-15" },
+        { "name": "Luis", "rating": 4, "comment": "Muy bueno, aunque me gustaría con un poco de tomate.", "date": "2026-10-30" }
+      ]
     },
     {
       "id": "bocata-bacon-queso",
@@ -268,7 +505,16 @@
       "badge": "TOP VENTAS",
       "subtitulo": "Pan rústico calentito",
       "descripcion": "Tiras de bacon crujiente con queso fundido",
-      "precio": 5.50
+      "precio": 5.5,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS65dn3zeR1WHDBwYQP_D8YwDDRJtFCUsnN7lSE5ln3_Q&s=10",
+      "reseñas": [
+        { "name": "Marcos", "rating": 5, "comment": "El queso se deshace y el bacon súper crujiente.", "date": "2026-09-12" },
+        { "name": "Celia", "rating": 5, "comment": "Increíble. Top ventas merecido.", "date": "2026-09-25" },
+        { "name": "Juan", "rating": 4, "comment": "Muy sabroso.", "date": "2026-10-10" },
+        { "name": "Andrea", "rating": 5, "comment": "Bocata de 10.", "date": "2026-10-22" }
+      ]
     },
     {
       "id": "serranito",
@@ -278,7 +524,16 @@
       "badge": "ESPECIALIDAD",
       "subtitulo": "Pan de mollete tostado",
       "descripcion": "Lomo, jamón serrano y pimiento verde frito",
-      "precio": 5.80
+      "precio": 5.8,
+      "permiteLeche": false,
+      "alergenos": [ "gluten" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmd3sm0Zf9swvtjDvh0LxUzNgUS0biVJPS_gfiE3FLdw&s=10",
+      "reseñas": [
+        { "name": "Javier", "rating": 5, "comment": "Espectacular, el pimiento frito le da el toque.", "date": "2026-08-30" },
+        { "name": "Rosa", "rating": 5, "comment": "Mollete súper tierno, muy rico.", "date": "2026-09-18" },
+        { "name": "Mario", "rating": 4, "comment": "Bastante grande y sabroso.", "date": "2026-10-02" },
+        { "name": "Elena", "rating": 5, "comment": "Una maravilla de bocadillo.", "date": "2026-10-26" }
+      ]
     },
     {
       "id": "bocata-lomo-pimiento",
@@ -288,7 +543,16 @@
       "badge": "CLÁSICO",
       "subtitulo": "Pan baguette crujiente",
       "descripcion": "Lomo a la plancha con pimiento verde asado",
-      "precio": 5.60
+      "precio": 5.6,
+      "permiteLeche": false,
+      "alergenos": [ "gluten" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTt_2uQPlJvQtobJvIzPLDVDFjqLMW0pTfbz0nddBCjw&s=10",
+      "reseñas": [
+        { "name": "Andrés", "rating": 4, "comment": "Muy buen clásico, pan estupendo.", "date": "2026-09-15" },
+        { "name": "Sofía", "rating": 5, "comment": "Me encanta, el pimiento asado está buenísimo.", "date": "2026-10-04" },
+        { "name": "Víctor", "rating": 5, "comment": "Bocata de diez, no falla.", "date": "2026-10-16" },
+        { "name": "Paula", "rating": 4, "comment": "Lo pido siempre que vengo.", "date": "2026-10-31" }
+      ]
     },
     {
       "id": "pincho-tortilla-patata",
@@ -298,7 +562,16 @@
       "badge": "RECOMENDADO",
       "subtitulo": "Receta casera jugosa",
       "descripcion": "Servido con rebanada de pan de masa madre",
-      "precio": 3.20
+      "precio": 3.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "huevos" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJf6MEVa6aN7MjjsLL0abwN99Vly4fzl5QvYIW64GqmQ&s=10",
+      "reseñas": [
+        { "name": "Ismael", "rating": 5, "comment": "Súper jugosa, como la de mi abuela.", "date": "2026-08-20" },
+        { "name": "Laura", "rating": 5, "comment": "El pincho es grande y está exquisito.", "date": "2026-09-10" },
+        { "name": "Rubén", "rating": 4, "comment": "Muy rica, buen punto de sal.", "date": "2026-10-08" },
+        { "name": "Marta", "rating": 5, "comment": "Tortilla de 10.", "date": "2026-10-25" }
+      ]
     },
     {
       "id": "montadito-jamon-iberico",
@@ -308,7 +581,16 @@
       "badge": "IBÉRICO",
       "subtitulo": "Pan rústico con aceite de oliva virgen extra",
       "descripcion": "Jamón ibérico de cebo con tomate restregado",
-      "precio": 4.20
+      "precio": 4.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten" ],
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4n-C55rCACvmj9VOz2_mwlU4H3cYzUYomFZJRlp2u-Q&s",
+      "reseñas": [
+        { "name": "Antonio", "rating": 5, "comment": "El jamón es de muy buena calidad.", "date": "2026-09-02" },
+        { "name": "Begoña", "rating": 4, "comment": "Buenísimo, el chorrito de aceite se nota.", "date": "2026-09-18" },
+        { "name": "Cristina", "rating": 5, "comment": "Un capricho salado perfecto.", "date": "2026-10-06" },
+        { "name": "Manuel", "rating": 5, "comment": "Exquisito.", "date": "2026-10-22" }
+      ]
     },
     {
       "id": "granos-colombia-suave",
@@ -318,7 +600,16 @@
       "badge": "ORIGEN",
       "subtitulo": "Grano 100% Arábica de montaña",
       "descripcion": "Notas dulces de caramelo y frutos rojos",
-      "precio": 12.50
+      "precio": 12.5,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Café Colombia Suave.png",
+      "reseñas": [
+        { "name": "Héctor", "rating": 5, "comment": "Perfecto para filtro, notas afrutadas claras.", "date": "2026-08-15" },
+        { "name": "Susana", "rating": 4, "comment": "Muy suave y agradable.", "date": "2026-09-01" },
+        { "name": "Jordi", "rating": 5, "comment": "Café de altísima calidad.", "date": "2026-10-12" },
+        { "name": "Sara", "rating": 5, "comment": "El mejor que he probado para las mañanas.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "granos-etiopia-floral",
@@ -328,7 +619,16 @@
       "badge": "ESPECIAL",
       "subtitulo": "Cultivado a gran altitud",
       "descripcion": "Sabor ligero con toques cítricos y florales",
-      "precio": 14.80
+      "precio": 14.8,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Café Etiopá Floral.png",
+      "reseñas": [
+        { "name": "Diego", "rating": 5, "comment": "Es increíble el aroma floral que desprende.", "date": "2026-09-10" },
+        { "name": "Almudena", "rating": 4, "comment": "Muy peculiar, diferente al café comercial.", "date": "2026-09-25" },
+        { "name": "Pablo", "rating": 5, "comment": "Brillante acidez, excepcional.", "date": "2026-10-15" },
+        { "name": "Lidia", "rating": 5, "comment": "Un tesoro en taza.", "date": "2026-10-30" }
+      ]
     },
     {
       "id": "granos-brasil-intenso",
@@ -338,7 +638,16 @@
       "badge": "CUERPO DENSO",
       "subtitulo": "Tueste medio-oscuro tradicional",
       "descripcion": "Sabor potente a chocolate negro y avellanas",
-      "precio": 11.90
+      "precio": 11.9,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Café Brasil Intenso.png",
+      "reseñas": [
+        { "name": "Rubén", "rating": 5, "comment": "Ideal para cafetera italiana, mucho cuerpo.", "date": "2026-08-05" },
+        { "name": "Mónica", "rating": 4, "comment": "Sabor a chocolate muy marcado.", "date": "2026-09-14" },
+        { "name": "Jesús", "rating": 5, "comment": "Excelente relación calidad precio.", "date": "2026-10-08" },
+        { "name": "Blanca", "rating": 4, "comment": "Intenso y muy rico.", "date": "2026-10-21" }
+      ]
     },
     {
       "id": "granos-guatemala-volcanico",
@@ -348,7 +657,16 @@
       "badge": "ORIGEN",
       "subtitulo": "Cultivado en suelos volcánicos de Antigua",
       "descripcion": "Cuerpo completo con notas especiadas y chocolate",
-      "precio": 13.90
+      "precio": 13.9,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Café Guatemala Volcánico.png",
+      "reseñas": [
+        { "name": "Adrián", "rating": 5, "comment": "Increíble cuerpo, de mis favoritos.", "date": "2026-08-22" },
+        { "name": "Fátima", "rating": 5, "comment": "Aroma inconfundible, se nota el origen.", "date": "2026-09-10" },
+        { "name": "Lucas", "rating": 4, "comment": "Buen café, muy equilibrado.", "date": "2026-10-18" },
+        { "name": "Silvia", "rating": 5, "comment": "Un café de especialidad de 10.", "date": "2026-10-25" }
+      ]
     },
     {
       "id": "granos-mezcla-casa",
@@ -358,17 +676,35 @@
       "badge": "TOP VENTAS",
       "subtitulo": "Nuestra receta especial para diario",
       "descripcion": "Equilibrio perfecto entre dulzura y cuerpo",
-      "precio": 10.90
+      "precio": 10.9,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Mezcla de la Casa.png",
+      "reseñas": [
+        { "name": "Pepe", "rating": 5, "comment": "Lo compro todas las semanas.", "date": "2026-09-02" },
+        { "name": "Loreto", "rating": 4, "comment": "Muy bueno para tomar con leche.", "date": "2026-09-20" },
+        { "name": "Esteban", "rating": 5, "comment": "Sabor equilibrado, nunca falla.", "date": "2026-10-10" },
+        { "name": "Ana", "rating": 5, "comment": "El mejor café todoterreno.", "date": "2026-10-24" }
+      ]
     },
     {
-      "id": "granos-mezcla-espresso",
-      "nombre": "Mezcla Especial Espresso 250g",
+      "id": "granos-mezcla-expresso",
+      "nombre": "Mezcla Especial Expresso 250g",
       "categoria": "granos",
       "subcategoria": "mezcla",
       "badge": "CREMOSO",
-      "subtitulo": "Selección para cafetera italiana y espresso",
+      "subtitulo": "Selección para cafetera italiana y expresso",
       "descripcion": "Gran crema, aroma intenso y notas de chocolate",
-      "precio": 11.50
+      "precio": 11.5,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Mezcla Especia Expresso.png",
+      "reseñas": [
+        { "name": "Jorge", "rating": 5, "comment": "Saca una crema impresionante en mi máquina.", "date": "2026-08-30" },
+        { "name": "Marina", "rating": 4, "comment": "Intenso y poco ácido, muy bien.", "date": "2026-09-15" },
+        { "name": "Alberto", "rating": 5, "comment": "Café de cafetería pero en casa.", "date": "2026-10-05" },
+        { "name": "Celia", "rating": 5, "comment": "Perfecto.", "date": "2026-10-28" }
+      ]
     },
     {
       "id": "granos-mezcla-desayuno",
@@ -378,7 +714,16 @@
       "badge": "ELEGANTE",
       "subtitulo": "Combinación ligera de granos centroamericanos",
       "descripcion": "Sabor amable, ideal para tomar con leche",
-      "precio": 10.50
+      "precio": 10.5,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Mezcla Desayuno Suave.png",
+      "reseñas": [
+        { "name": "Rosa", "rating": 4, "comment": "Muy suave, no cae pesado.", "date": "2026-09-08" },
+        { "name": "Julio", "rating": 5, "comment": "Gran aroma, ideal a primera hora.", "date": "2026-09-22" },
+        { "name": "Mireia", "rating": 4, "comment": "Ligero y dulzón.", "date": "2026-10-11" },
+        { "name": "Fran", "rating": 5, "comment": "Relación calidad-precio inmejorable.", "date": "2026-10-27" }
+      ]
     },
     {
       "id": "granos-descafeinado-natural",
@@ -388,7 +733,16 @@
       "badge": "SIN CAFEÍNA",
       "subtitulo": "Proceso al agua sin químicos",
       "descripcion": "Todo el sabor del café sin perder cuerpo",
-      "precio": 12.90
+      "precio": 12.9,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Descafeinado Natural.png",
+      "reseñas": [
+        { "name": "Inmaculada", "rating": 5, "comment": "Por fin un descafeinado que sabe a café de verdad.", "date": "2026-08-25" },
+        { "name": "Pedro", "rating": 5, "comment": "El proceso al agua se nota, nada artificial.", "date": "2026-09-12" },
+        { "name": "Laura", "rating": 4, "comment": "Muy bueno para la noche.", "date": "2026-10-02" },
+        { "name": "Óscar", "rating": 5, "comment": "Excelente calidad.", "date": "2026-10-20" }
+      ]
     },
     {
       "id": "granos-descafeinado-intenso",
@@ -398,7 +752,171 @@
       "badge": "SABOR PURO",
       "subtitulo": "Proceso natural con tueste artesanal",
       "descripcion": "Aroma profundo con notas de frutos secos",
-      "precio": 13.50
+      "precio": 13.5,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Descafeinado Tueste Intenso.png",
+      "reseñas": [
+        { "name": "Alfonso", "rating": 5, "comment": "Tiene la fuerza de un café normal, brutal.", "date": "2026-09-05" },
+        { "name": "Nadia", "rating": 4, "comment": "Muy intenso y sin cafeína, perfecto.", "date": "2026-09-28" },
+        { "name": "Tomás", "rating": 5, "comment": "El tueste está clavadísimo.", "date": "2026-10-15" },
+        { "name": "Irene", "rating": 5, "comment": "Para los que amamos el café intenso sin alterar el sueño.", "date": "2026-10-31" }
+      ]
+    },
+    {
+      "id": "pumpkin-spice-latte",
+      "nombre": "Pumpkin Spice Latte",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "OTOÑO",
+      "subtitulo": "El clásico de la temporada",
+      "descripcion": "Expresso, leche al vapor, puré de calabaza, canela, nuez moscada y clavo.",
+      "precio": 4.9,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "Imagenes/Pumpkin Spice Latte.png",
+      "reseñas": [
+        { "name": "Julia M.", "rating": 5, "comment": "El mejor que he probado, sabe a otoño total.", "date": "2026-11-01" },
+        { "name": "Marcos", "rating": 4, "comment": "Muy rico, la mezcla de especias está perfecta.", "date": "2026-11-02" },
+        { "name": "Elena", "rating": 5, "comment": "Me encanta que lleve puré de calabaza real y no solo sirope.", "date": "2026-10-28" },
+        { "name": "Sonia", "rating": 4, "comment": "Un poco dulce de más para mí, pero muy bueno.", "date": "2026-10-30" },
+        { "name": "David", "rating": 5, "comment": "Imprescindible para estas fechas.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "chai-latte-arce",
+      "nombre": "Chai Latte con Arce",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "OTOÑO",
+      "subtitulo": "Té negro especiado y sirope puro",
+      "descripcion": "Nuestra mezcla Chai infusionada con sirope de arce natural y canela espolvoreada.",
+      "precio": 4.5,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "Imagenes/Chai Latte con Arce.png",
+      "reseñas": [
+        { "name": "Andrea", "rating": 5, "comment": "Súper reconfortante para las tardes frías.", "date": "2026-10-25" },
+        { "name": "Carlos", "rating": 5, "comment": "El toque del arce le da un sabor increíblemente especial.", "date": "2026-10-29" },
+        { "name": "Lucía", "rating": 4, "comment": "Muy aromático. Lo pido con leche de avena.", "date": "2026-11-01" },
+        { "name": "Tomás", "rating": 4, "comment": "Me gustó bastante, buena cantidad de especias.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "rollito-canela-pecanas",
+      "nombre": "Rollito de Canela y Pecanas",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "OTOÑO",
+      "subtitulo": "Masa brioche recién horneada",
+      "descripcion": "Cinnamon roll esponjoso con frosting de queso crema y nueces pecanas tostadas.",
+      "precio": 3.8,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos", "frutos_secos" ],
+      "imagen": "Imagenes/Rollito de Canela y Pecanas.png",
+      "reseñas": [
+        { "name": "Marta", "rating": 5, "comment": "Se deshace en la boca, las pecanas le dan el toque crujiente perfecto.", "date": "2026-10-26" },
+        { "name": "Iván", "rating": 5, "comment": "Espectacular. Si lo pides, que te lo calienten un poco.", "date": "2026-10-28" },
+        { "name": "Lorena", "rating": 4, "comment": "El frosting está de vicio.", "date": "2026-10-31" },
+        { "name": "Clara", "rating": 5, "comment": "El mejor dulce de toda la carta ahora mismo.", "date": "2026-11-01" },
+        { "name": "Javier", "rating": 4, "comment": "Muy bueno, tamaño ideal para merendar.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "tarta-calabaza-especiada",
+      "nombre": "Tarta de Calabaza (Pumpkin Pie)",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "OTOÑO",
+      "subtitulo": "Receta tradicional americana",
+      "descripcion": "Base crujiente de galleta y relleno suave de calabaza, jengibre y canela.",
+      "precio": 4.5,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "Imagenes/Tarta de Calabaza.png",
+      "reseñas": [
+        { "name": "Sofía", "rating": 5, "comment": "Textura súper sedosa, me ha encantado.", "date": "2026-10-22" },
+        { "name": "Daniel", "rating": 4, "comment": "Sabor muy auténtico, nada pesada.", "date": "2026-10-27" },
+        { "name": "Beatriz", "rating": 5, "comment": "La mezcla de especias es perfecta, no empalaga nada.", "date": "2026-10-29" },
+        { "name": "Héctor", "rating": 5, "comment": "Ojalá la dejaran todo el año en la carta.", "date": "2026-11-01" }
+      ]
+    },
+    {
+      "id": "moca-blanco-tostado",
+      "nombre": "Moca Blanco Tostado",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "OTOÑO",
+      "subtitulo": "Dulce y reconfortante",
+      "descripcion": "Expresso suave mezclado con chocolate blanco caramelizado y sirope de avellana tostada.",
+      "precio": 4.6,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos", "frutos_secos" ],
+      "imagen": "Imagenes/Moca Blanco Tostado.png",
+      "reseñas": [
+        { "name": "Patricia", "rating": 5, "comment": "El toque a avellana tostada es increíble.", "date": "2026-10-24" },
+        { "name": "Jorge M.", "rating": 4, "comment": "Muy dulce, genial para entrar en calor.", "date": "2026-10-29" },
+        { "name": "Laura", "rating": 5, "comment": "Me flipa el chocolate blanco, y con el café queda espectacular.", "date": "2026-11-01" },
+        { "name": "Sergio", "rating": 5, "comment": "El mejor moca que he probado aquí.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "bizcocho-manzana-canela",
+      "nombre": "Bizcocho de Manzana y Canela",
+      "categoria": "comida",
+      "subcategoria": "dulce",
+      "badge": "OTOÑO",
+      "subtitulo": "Esponjoso y casero",
+      "descripcion": "Receta tradicional con trozos de manzana asada, especies otoñales y crumble crujiente por encima.",
+      "precio": 3.2,
+      "permiteLeche": false,
+      "alergenos": [ "gluten", "lacteos", "huevos" ],
+      "imagen": "Imagenes/Bizcocho de Manzana y Canela.png",
+      "reseñas": [
+        { "name": "Carmen", "rating": 5, "comment": "Sabe al bizcocho que hacía mi abuela, jugoso y con mucha manzana.", "date": "2026-10-21" },
+        { "name": "Ismael", "rating": 4, "comment": "El crujiente de arriba le da un toque muy top.", "date": "2026-10-27" },
+        { "name": "Nuria", "rating": 5, "comment": "Perfecto para mojar en el café con leche.", "date": "2026-10-31" },
+        { "name": "Roberto", "rating": 5, "comment": "Riquísimo, ración muy generosa.", "date": "2026-11-01" },
+        { "name": "Alicia", "rating": 4, "comment": "Me encantó el sabor a canela.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "chocolate-taza-especiado",
+      "nombre": "Chocolate a la Taza Especiado",
+      "categoria": "bebida",
+      "subcategoria": "caliente",
+      "badge": "OTOÑO",
+      "subtitulo": "Intenso, espeso y aromático",
+      "descripcion": "Cacao puro fundido lentamente con un toque de cardamomo, anís estrellado y canela.",
+      "precio": 4.2,
+      "permiteLeche": true,
+      "alergenos": [ "lacteos" ],
+      "imagen": "Imagenes/Chocolate Taza Especiado.png",
+      "reseñas": [
+        { "name": "Eduardo", "rating": 5, "comment": "Espeso como debe ser un buen chocolate. Las especias le dan un rollo muy exótico.", "date": "2026-10-26" },
+        { "name": "Marina", "rating": 5, "comment": "Te quita el frío de golpe, buenísimo.", "date": "2026-10-28" },
+        { "name": "Félix", "rating": 4, "comment": "Muy intenso de sabor, casi como un postre.", "date": "2026-10-30" },
+        { "name": "Teresa", "rating": 5, "comment": "Puro vicio para las tardes de lluvia.", "date": "2026-11-02" }
+      ]
+    },
+    {
+      "id": "granos-reserva-otono",
+      "nombre": "Café Edición Limitada Otoño 250g",
+      "categoria": "granos",
+      "subcategoria": "origen",
+      "badge": "OTOÑO",
+      "subtitulo": "Tueste especial de temporada",
+      "descripcion": "Grano de especialidad con notas profundas a calabaza asada, canela, clavo y un toque de cacao.",
+      "precio": 14.5,
+      "permiteLeche": false,
+      "alergenos": [],
+      "imagen": "Imagenes/Mezcla de la Casa.png",
+      "reseñas": [
+        { "name": "Gonzalo M.", "rating": 5, "comment": "Una maravilla para preparar en cafetera de émbolo en casa.", "date": "2026-10-20" },
+        { "name": "Beatriz V.", "rating": 5, "comment": "El aroma que deja en toda la cocina al molerlo es puro otoño.", "date": "2026-10-25" },
+        { "name": "Daniel P.", "rating": 4, "comment": "Muy aromático, equilibrado y con cuerpo.", "date": "2026-10-29" },
+        { "name": "Clara S.", "rating": 5, "comment": "Ojalá lo vendieran todo el año, está delicioso.", "date": "2026-11-01" }
+      ]
     }
   ]
 }

@@ -3,7 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Menú Completo - Hugoffee</title>
+
+    <meta
+      name="description"
+      content="Carta completa de Hugoffee en Arnedo: café de especialidad, bebidas frías, repostería artesanal y tostadas saladas."
+    />
+    <meta
+      name="keywords"
+      content="carta cafetería Arnedo, menú café especialidad Arnedo, granos de café de origen, frappuccinos Arnedo, repostería artesanal"
+    />
+    <meta property="og:title" content="Menú Completo - Hugoffee Arnedo" />
+    <meta
+      property="og:description"
+      content="Descubre nuestra selección de cafés de especialidad, bebidas frías y repostería artesanal en Arnedo."
+    />
+    <meta property="og:type" content="restaurant.menu" />
+    <meta property="og:locale" content="es_ES" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Menu",
+        "name": "Menú Hugoffee",
+        "description": "Carta de cafés de especialidad, repostería artesanal y opciones saladas.",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Bebida",
+            "description": "Cafés de especialidad, calientes y fríos."
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Comida",
+            "description": "Repostería artesanal dulce y tostadas saladas."
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Granos de Café",
+            "description": "Granos de origen, mezclas y descafeinado."
+          }
+        ]
+      }
+    </script>
+    
+    <script src="/js/reseñas.js" defer></script>
+
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -153,6 +199,7 @@
               <span id="userNameDisplay">Hola, Usuario</span>
             </div>
             <div class="user-dropdown-divider"></div>
+            <a href="favoritos.html" class="dropdown-item">Favoritos ❤️</a>
             <a href="compras.html" class="dropdown-item">Compras anteriores</a>
             <button id="logoutBtn" class="dropdown-item logout">
               Cerrar Sesión
@@ -285,7 +332,7 @@
           <span>Total:</span>
           <span id="cartTotal">0,00 €</span>
         </div>
-        <button class="btn-primary cart-checkout-btn">Tramitar Pedido</button>
+        <a href="compra.html" class="btn-primary cart-checkout-btn" style="text-align: center; display: block; text-decoration: none;">Tramitar Pedido</a>
       </div>
     </aside>
 
@@ -302,10 +349,10 @@
         <div class="footer-col">
           <h5>Enlaces</h5>
           <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="menu.html">Menú</a></li>
-            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
-            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="/index.html">Inicio</a></li>
+            <li><a href="/menu.html">Menú</a></li>
+            <li><a href="/index.html#nosotros">Sobre Nosotros</a></li>
+            <li><a href="/index.html#contacto">Contacto</a></li>
           </ul>
         </div>
 

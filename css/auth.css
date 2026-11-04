@@ -17,12 +17,14 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .auth-container {
     width: 100%;
     max-width: 420px;
-    padding: 20px;
+    padding: 0;
 }
 
 .auth-card {
@@ -30,6 +32,8 @@ body {
     padding: 32px 28px;
     border-radius: var(--border-radius);
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .auth-header {
@@ -84,6 +88,8 @@ body {
     justify-content: space-between;
     margin-bottom: 20px;
     font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .checkbox-container {
@@ -191,4 +197,10 @@ body {
 
 .dropdown-item.logout:hover {
     background-color: #fdf2f2;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 24px 16px;
+    }
 }

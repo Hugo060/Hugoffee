@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Finaliza tu pedido en Hugoffee." />
+    <title>Tramitar Pedido - Hugoffee</title>
+    <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/modoOscuro.js" defer></script>
+    <script src="/js/compra.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo-container">
+        <a href="index.html" class="logo-link">
+          <img src="/Imagenes/logo.jpg" alt="Logo Hugoffee" class="logo-icon" />
+          <span class="brand-name">Hugoffee</span>
+        </a>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="user-actions">
+        <button
+          class="theme-toggle-button"
+          id="themeToggleBtn"
+          aria-label="Cambiar modo oscuro/claro"
+          title="Cambiar tema"
+        >
+          <svg
+            id="moonIcon"
+            class="theme-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4B3621"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg
+            id="sunIcon"
+            class="theme-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4B3621"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="display: none"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="menu-page">
+      <div class="menu-hero">
+        <h1>Finalizar Pedido</h1>
+        <p>Completa tus datos de envío y pago para confirmar tu compra en Hugoffee.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-xl); width: 100%; max-width: 1000px; align-items: start;">
+        <div class="story-box">
+          <h3>Datos de Entrega</h3>
+          <form id="checkoutForm" class="suggestion-form" style="margin-top: var(--space-md);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--color-base); border: 1.5px solid var(--color-muted); border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 15px; color: var(--color-primary);">
+                <input type="radio" name="tipoEntrega" value="recoger" checked style="accent-color: var(--color-accent); width: 18px; height: 18px;" />
+                <span>Recoger en tienda <small style="display: block; font-weight: 400; font-size: 12px; color: var(--color-accent);">Gratis</small></span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--color-base); border: 1.5px solid var(--color-muted); border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 15px; color: var(--color-primary);">
+                <input type="radio" name="tipoEntrega" value="domicilio" style="accent-color: var(--color-accent); width: 18px; height: 18px;" />
+                <span>Llevar a casa <small style="display: block; font-weight: 400; font-size: 12px; color: var(--color-accent);">+2,00 € (Gratis a partir de 20 €)</small></span>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <input type="text" id="nombreEnvio" placeholder="Nombre completo" required />
+              <input type="text" id="telefonoEnvio" placeholder="Teléfono de contacto" required />
+            </div>
+
+            <div class="form-row" id="direccionRow" style="display: none;">
+              <input type="text" id="direccionEnvio" placeholder="Dirección de entrega (ej. Paseo Constitución, Arnedo)" />
+            </div>
+
+            <div id="programacionContainer">
+              <div class="form-row" style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="tipoProgramacion" style="font-size: 14px; font-weight: 600; color: var(--color-primary);">¿Cuándo quieres tu pedido?</label>
+                <select id="tipoProgramacion">
+                  <option value="ahora">Lo antes posible (aprox. 20-30 min)</option>
+                  <option value="programar">Programar para una hora específica</option>
+                </select>
+              </div>
+
+              <div class="form-row" id="horaProgramadaRow" style="display: none;">
+                <label for="horaPedido" style="font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; color: var(--color-primary);">Selecciona la hora (Horario comercial: 08:00 a 21:00)</label>
+                <select id="horaPedido">
+                  <option value="" disabled selected>Selecciona una hora...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <textarea id="notasEnvio" rows="2" placeholder="Notas adicionales para el repartidor o la cafetería (opcional)"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: var(--space-sm);">Confirmar y Pagar</button>
+          </form>
+        </div>
+
+        <div class="story-box">
+          <h3>Resumen del Carrito</h3>
+          <div id="checkoutSummaryItems" style="margin: var(--space-md) 0; max-height: 250px; overflow-y: auto;">
+          </div>
+          <div style="border-top: 1px solid var(--color-muted); padding-top: var(--space-sm); display: flex; justify-content: space-between; font-size: 18px; font-weight: 700;">
+            <span>Total a pagar:</span>
+            <span id="checkoutTotal" style="color: var(--color-accent);">0,00 €</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-columns">
+        <div class="footer-col brand-col">
+          <h4>Hugoffee</h4>
+          <p>Café cercano, identidad serena.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Enlaces</h5>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menú</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <p>Paseo Constitución, Arnedo</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Hugoffee - Todos los derechos reservados</p>
+      </div>
+    </footer>
+  </body>
+</html>
