@@ -457,9 +457,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="product-image-container" style="width: 100%; height: 180px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #f5f0eb;">
               <img src="${product.imagen || "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80"}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
-          <h4>${product.nombre}</h4>
-          <h5>${product.subtitulo}</h5>
-          <h6>${product.descripcion}</h6>
+          <!-- CAMBIAMOS LOS NIVELES DE ENCABEZADO A H3, H4, H5 -->
+          <h3>${product.nombre}</h3>
+          <h4>${product.subtitulo}</h4>
+          <h5>${product.descripcion}</h5>
           ${renderAllergens(product.alergenos)}
           <div class="card-footer">
               <p class="product-price">${product.precio.toFixed(2).replace(".", ",")} €</p>
@@ -474,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           ${
             reviewCount > 0
-              ? `<div class="card-rating" style="margin-top: 8px; font-size: 0.85rem; color: #666; text-align: center;"><span style="color: #f59e0b;">★</span> ${avgRating} (${reviewCount} opiniones)</div>`
+              ? `<div class="card-rating" style="margin-top: 8px; font-size: 0.85rem; color: #666; text-align: center; cursor: pointer;" data-name="${product.nombre}"><span style="color: #f59e0b;">★</span> ${avgRating} (${reviewCount} opiniones)</div>`
               : ""
           }
       `;
@@ -562,9 +563,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="product-image-container" style="width: 100%; height: 180px; overflow: hidden; border-radius: 8px; margin-bottom: 12px; background: #f5f0eb;">
                 <img src="${product.imagen || "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80"}" alt="${product.nombre}" style="width: 100%; height: 100%; object-fit: cover;" />
             </div>
-            <h4>${product.nombre}</h4>
-            <h5>${product.subtitulo}</h5>
-            <h6>${product.descripcion}</h6>
+            <!-- CAMBIAMOS LOS NIVELES DE ENCABEZADO A H3, H4, H5 -->
+            <h3>${product.nombre}</h3>
+            <h4>${product.subtitulo}</h4>
+            <h5>${product.descripcion}</h5>
             ${renderAllergens(product.alergenos)}
             <div class="card-footer">
                 <p class="product-price">${product.precio.toFixed(2).replace(".", ",")} €</p>
