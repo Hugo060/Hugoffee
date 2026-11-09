@@ -12,7 +12,10 @@
       name="keywords"
       content="cafetería de especialidad Arnedo, buen café Arnedo, donde tomar café Arnedo, desayunos Arnedo, repostería artesanal La Rioja, café de origen"
     />
-    <meta property="og:title" content="Hugoffee - Cafetería de Especialidad en Arnedo" />
+    <meta
+      property="og:title"
+      content="Hugoffee - Cafetería de Especialidad en Arnedo"
+    />
     <meta
       property="og:description"
       content="Café de origen, tueste artesanal y repostería recién horneada en el Paseo Constitución de Arnedo."
@@ -20,33 +23,9 @@
     <meta property="og:type" content="restaurant" />
     <meta property="og:locale" content="es_ES" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "CafeOrCoffeeShop",
-        "name": "Hugoffee",
-        "image": "https://hugoffee.com/Imagenes/logo.jpg",
-        "description": "Cafetería de especialidad en Arnedo con cafés de origen y repostería artesanal.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Paseo Constitución",
-          "addressLocality": "Arnedo",
-          "addressRegion": "La Rioja",
-          "postalCode": "26580",
-          "addressCountry": "ES"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 42.223247,
-          "longitude": -2.102634
-        },
-        "servesCuisine": ["Coffee", "Bakery", "Desayunos"],
-        "priceRange": "€"
-      }
-    </script>
-
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/modoOscuro.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -57,6 +36,7 @@
     <script src="/js/main.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
     <script src="/js/reseñas.js" defer></script>
+    <script src="/js/seo.js" defer></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -64,7 +44,7 @@
     <header class="header">
       <div class="logo-container">
         <a href="index.html" class="logo-link">
-          <img src="/Imagenes/logo.jpg" alt="Logo Hugoffee" class="logo-icon" />
+          <img src="/Imagenes/logo.jpg" id="logo" alt="Logo Hugoffee" class="logo-icon" />
           <span class="brand-name">Hugoffee</span>
         </a>
       </div>
@@ -186,14 +166,23 @@
     <main id="main-content" tabindex="-1">
       <section class="hero-section">
         <div class="hero-carousel">
-          <div class="hero-slide active" style="background-image: url('Imagenes/carrusel1.png');"></div>
-          <div class="hero-slide" style="background-image: url('Imagenes/carrusel2.png');"></div>
-          <div class="hero-slide" style="background-image: url('Imagenes/carrusel3.png');"></div>
+          <div
+            class="hero-slide active"
+            style="background-image: url(&quot;Imagenes/carrusel1.png&quot;)"
+          ></div>
+          <div
+            class="hero-slide"
+            style="background-image: url(&quot;https://nomadcoffee.es/cdn/shop/files/E.SA.BRIS_4.webp?v=1790938101&quot;)"
+          ></div>
+          <div
+            class="hero-slide"
+            style="background-image: url(&quot;Imagenes/carrusel3.png&quot;)"
+          ></div>
         </div>
 
         <div class="hero-content">
-          <h1 style="color: var(--color-primary);">HUGOFFEE</h1>
-          <p class="hero-subtitle" style="color: var(--color-primary);">
+          <h1 style="color: var(--color-primary)">HUGOFFEE</h1>
+          <p class="hero-subtitle" style="color: var(--color-primary)">
             Trabajamos con café de origen y recetas sencillas para que cada taza
             y cada bocado conserven su personalidad. Una experiencia honesta,
             cálida y fácil de disfrutar.
@@ -214,7 +203,8 @@
       <section class="specialties-section" id="menu">
         <h2>Especialidades de Otoño</h2>
         <p class="section-subtitle">
-          Ediciones limitadas. Sabores cálidos de temporada con calabaza, canela y nuez pecana.
+          Ediciones limitadas. Sabores cálidos de temporada con calabaza, canela
+          y nuez pecana.
         </p>
 
         <div class="carousel-container">
@@ -227,7 +217,6 @@
           </button>
 
           <div class="carousel-grid" id="carouselGrid">
-             <!-- Se llena automáticamente con JS según los productos de OTOÑO -->
           </div>
 
           <button
@@ -240,7 +229,6 @@
         </div>
 
         <div class="carousel-dots" id="carouselDots">
-          <!-- Los puntos (dots) se generan dinámicamente en JS en base a los productos cargados -->
         </div>
       </section>
 
@@ -423,7 +411,12 @@
           <span>Total:</span>
           <span id="cartTotal">0,00 €</span>
         </div>
-        <a href="compra.html" class="btn-primary cart-checkout-btn" style="text-align: center; display: block; text-decoration: none;">Tramitar Pedido</a>
+        <a
+          href="compra.html"
+          class="btn-primary cart-checkout-btn"
+          style="text-align: center; display: block; text-decoration: none"
+          >Tramitar Pedido</a
+        >
       </div>
     </aside>
 
@@ -467,7 +460,7 @@
       <div class="footer-bottom">
         <p>
           © 2026 Hugoffee - Todos los derechos reservados |
-          <a href="#privacidad">Política de Privacidad</a>
+          <a href="#" id="privacyPolicyBtn">Política de Privacidad</a>
         </p>
       </div>
     </footer>

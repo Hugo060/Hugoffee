@@ -399,6 +399,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function getScrollStep() {
+    const card = carouselGrid.querySelector(".product-card");
+    if (!card) return 300;
+    const style = window.getComputedStyle(carouselGrid);
+    const gap = parseFloat(style.gap) || 20;
+    return card.offsetWidth + gap;
+  }
+
+  function updateDotsVisibility() {
+    if (!carouselGrid || !carouselDotsContainer) return;
+    const step = getScrollStep();
+    const maxScroll = carouselGrid.scrollWidth - carouselGrid.clientWidth;
+    const maxIndex = Math.round(maxScroll / step);
+    
+    const dots = carouselDotsContainer.querySelectorAll(".dot");
+    dots.forEach((dot, idx) => {
+      dot.style.display = idx <= maxIndex ? "inline-block" : "none";
+    });
+  }
+
   function renderOtonoCarousel() {
     if (!carouselGrid || allProducts.length === 0) return;
 
@@ -472,28 +492,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const newDots = carouselDotsContainer.querySelectorAll(".dot");
       newDots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
-          const card = carouselGrid.querySelector(".product-card");
-          if (!card) return;
-          const style = window.getComputedStyle(carouselGrid);
-          const gap = parseFloat(style.gap) || 20;
-          const cardWidth = card.offsetWidth + gap;
-          carouselGrid.scrollTo({ left: cardWidth * index, behavior: "smooth" });
+          const step = getScrollStep();
+          carouselGrid.scrollTo({ left: step * index, behavior: "smooth" });
         });
       });
     }
 
     attachGlobalEvents();
+    
+    setTimeout(updateDotsVisibility, 100);
   }
 
   if (carouselGrid) {
-    const getScrollStep = () => {
-      const card = carouselGrid.querySelector(".product-card");
-      if (!card) return 300;
-      const style = window.getComputedStyle(carouselGrid);
-      const gap = parseFloat(style.gap) || 20;
-      return card.offsetWidth + gap;
-    };
-
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
         carouselGrid.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
@@ -518,6 +528,8 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.classList.toggle("active", idx === activeIndex);
       });
     });
+    
+    window.addEventListener("resize", updateDotsVisibility);
   }
 
   function renderProducts(products) {
@@ -784,6 +796,52 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         suggestionMessage.style.display = "none";
       }, 5000);
+    });
+  }
+
+  const privacyBtn = document.getElementById('privacyPolicyBtn');
+  
+  if (!document.getElementById('privacyModal')) {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'privacyModal';
+    modalOverlay.className = 'privacy-modal-overlay';
+    modalOverlay.innerHTML = `
+      <div class="privacy-modal-content">
+        <button id="closePrivacyModalX" class="privacy-close-x">✕</button>
+        <h3>Política de Privacidad</h3>
+        <p>En <strong>Hugoffee</strong> nos tomamos muy en serio la privacidad de tus datos. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestra plataforma web.</p>
+        <h4>1. Información que recopilamos</h4>
+        <p>Recopilamos datos básicos de registro (nombre, correo electrónico) y datos de tus pedidos e historial de compras para facilitarte una mejor experiencia en nuestra cafetería en Arnedo.</p>
+        <h4>2. Uso de los datos</h4>
+        <p>Tus datos son empleados exclusivamente para procesar tus pedidos de café y repostería, gestionar tus favoritos y enviarte notificaciones sobre el estado de tus compras.</p>
+        <h4>3. Seguridad y Almacenamiento</h4>
+        <p>Toda la información local se almacena de forma segura en tu navegador mediante estándares protegidos. No compartimos tus datos con terceros con fines comerciales.</p>
+        <button id="closePrivacyModalBtn" class="btn-primary" style="width: 100%; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Entendido</button>
+      </div>
+    `;
+    document.body.appendChild(modalOverlay);
+  }
+
+  const privacyModal = document.getElementById('privacyModal');
+  const closePrivacyX = document.getElementById('closePrivacyModalX');
+  const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
+
+  if (privacyBtn) {
+    privacyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyModal.classList.add('active');
+    });
+  }
+
+  const hidePrivacyModal = () => {
+    privacyModal.classList.remove('active');
+  };
+
+  if (closePrivacyX) closePrivacyX.addEventListener('click', hidePrivacyModal);
+  if (closePrivacyBtn) closePrivacyBtn.addEventListener('click', hidePrivacyModal);
+  if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) hidePrivacyModal();
     });
   }
 

@@ -60,3 +60,29 @@ body.dark-mode textarea {
   color: #EFE6DD;
   border-color: var(--color-muted);
 }
+
+body.dark-mode .user-dropdown-header {
+  color: #EFE6DD;
+}
+
+body.dark-mode .user-dropdown-divider {
+  background-color: var(--color-muted);
+}
+
+body.dark-mode .dropdown-item {
+  color: #EFE6DD;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #2B2118;
+  color: var(--color-primary-hover);
+}
+
+body.dark-mode .dropdown-item.logout {
+  color: #ff6b6b;
+}
+
+body.dark-mode .dropdown-item.logout:hover {
+  background-color: #3b1e1e;
+  color: #ff8787;
+}

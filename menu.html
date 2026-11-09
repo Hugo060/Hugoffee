@@ -22,64 +22,26 @@
     <meta property="og:type" content="restaurant.menu" />
     <meta property="og:locale" content="es_ES" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Menu",
-        "name": "Menú Hugoffee",
-        "description": "Carta de cafés de especialidad, repostería artesanal y opciones saladas.",
-        "hasMenuSection": [
-          {
-            "@type": "MenuSection",
-            "name": "Bebida",
-            "description": "Cafés de especialidad, calientes y fríos."
-          },
-          {
-            "@type": "MenuSection",
-            "name": "Comida",
-            "description": "Repostería artesanal dulce y tostadas saladas."
-          },
-          {
-            "@type": "MenuSection",
-            "name": "Granos de Café",
-            "description": "Granos de origen, mezclas y descafeinado."
-          }
-        ]
-      }
-    </script>
-    
-    <script src="/js/reseñas.js" defer></script>
-
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/modoOscuro.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-    </style>
     <script src="/js/auth.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
+    <script src="/js/seo.js" defer></script>
+    <script src="/js/reseñas.js" defer></script>
   </head>
   <body>
     <header class="header">
       <div class="logo-container">
         <a href="index.html" class="logo-link">
-          <img src="/Imagenes/logo.jpg" alt="Logo Hugoffee" class="logo-icon" />
+          <img src="/Imagenes/logo.jpg" id="logo" alt="Logo Hugoffee" class="logo-icon" />
           <span class="brand-name">Hugoffee</span>
         </a>
       </div>
@@ -134,7 +96,7 @@
             stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
-            style="display: none;"
+            style="display: none"
           >
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -270,7 +232,9 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path>
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"
+            ></path>
             <path d="M12 2c4 4 4 16 0 20"></path>
           </svg>
           <span>Granos de Café</span>
@@ -300,12 +264,8 @@
           <button class="sub-cat-btn active" data-subcategory="todos">
             Todos los granos
           </button>
-          <button class="sub-cat-btn" data-subcategory="origen">
-            Origen
-          </button>
-          <button class="sub-cat-btn" data-subcategory="mezcla">
-            Mezcla
-          </button>
+          <button class="sub-cat-btn" data-subcategory="origen">Origen</button>
+          <button class="sub-cat-btn" data-subcategory="mezcla">Mezcla</button>
           <button class="sub-cat-btn" data-subcategory="descafeinado">
             Descafeinado
           </button>
@@ -332,7 +292,12 @@
           <span>Total:</span>
           <span id="cartTotal">0,00 €</span>
         </div>
-        <a href="compra.html" class="btn-primary cart-checkout-btn" style="text-align: center; display: block; text-decoration: none;">Tramitar Pedido</a>
+        <a
+          href="compra.html"
+          class="btn-primary cart-checkout-btn"
+          style="text-align: center; display: block; text-decoration: none"
+          >Tramitar Pedido</a
+        >
       </div>
     </aside>
 
@@ -376,7 +341,7 @@
       <div class="footer-bottom">
         <p>
           © 2026 Hugoffee - Todos los derechos reservados |
-          <a href="#privacidad">Política de Privacidad</a>
+          <a href="#" id="privacyPolicyBtn">Política de Privacidad</a>
         </p>
       </div>
     </footer>

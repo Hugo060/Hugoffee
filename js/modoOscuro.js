@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const logo = document.getElementById('logo');
   const moonIcon = document.getElementById('moonIcon');
   const sunIcon = document.getElementById('sunIcon');
 
@@ -9,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isDark) {
       moonIcon.style.display = 'none';
       sunIcon.style.display = 'block';
+      logo.src = '/Imagenes/logoOscuro.jpg';
     } else {
       moonIcon.style.display = 'block';
       sunIcon.style.display = 'none';
+      logo.src = '/Imagenes/logo.jpg';
     }
   };
 
