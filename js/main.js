@@ -12,9 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkoutBtn = document.querySelector(".cart-checkout-btn");
   const sortProductsSelect = document.getElementById("sortProductsSelect");
   const excludedAllergens = document.querySelectorAll(".filter-allergen");
-  const resetAdvancedFiltersBtn = document.getElementById("resetAdvancedFilters");
+  const resetAdvancedFiltersBtn = document.getElementById(
+    "resetAdvancedFilters",
+  );
   const filterResultsCount = document.getElementById("filterResultsCount");
-
 
   const cartButton =
     document.getElementById("cartButton") ||
@@ -51,14 +52,30 @@ document.addEventListener("DOMContentLoaded", () => {
       if (dots.length > 0) {
         dots.forEach((dot, i) => {
           dot.classList.toggle("active", i === index);
+          dot.setAttribute("aria-current", String(i === index));
         });
       }
     }
 
+    let carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setInterval(() => {
+      if (carouselPaused || document.hidden) return;
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }, 5000);
+    const heroSection = document.querySelector(".hero-section");
+    if (heroSection) {
+      heroSection.addEventListener("mouseenter", () => { carouselPaused = true; });
+      heroSection.addEventListener("mouseleave", () => {
+        carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      });
+      heroSection.addEventListener("focusin", () => { carouselPaused = true; });
+      heroSection.addEventListener("focusout", (event) => {
+        if (!heroSection.contains(event.relatedTarget)) {
+          carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+      });
+    }
 
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
@@ -99,9 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.transform = "scale(0.85)";
     modal.style.transition = "transform 0.25s ease";
 
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "customAlertTitle");
     modal.innerHTML = `
-      <button id="closeModalX" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer; color: var(--color-primary, #4B3621); opacity: 0.7;">✕</button>
-      <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 20px; font-weight: 700; padding-right: 20px;">${title}</h3>
+      <button id="closeModalX" type="button" aria-label="Cerrar aviso" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer; color: var(--color-primary, #4B3621); opacity: 0.7;">✕</button>
+      <h3 id="customAlertTitle" style="margin-top: 0; margin-bottom: 12px; font-size: 20px; font-weight: 700; padding-right: 20px;">${title}</h3>
       <p style="font-size: 14px; line-height: 1.5; color: var(--color-muted, #555); margin-bottom: 20px;">${message}</p>
       <button id="closeModalBtn" class="btn-primary" style="width: 100%; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Entendido</button>
     `;
@@ -117,13 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = () => {
       overlay.style.opacity = "0";
       modal.style.transform = "scale(0.85)";
-      setTimeout(() => overlay.remove(), 250);
+      setTimeout(() => {
+        overlay.remove();
+        if (previouslyFocused && previouslyFocused.isConnected) previouslyFocused.focus();
+      }, 250);
     };
 
+    const previouslyFocused = document.activeElement;
+    modal.querySelector("#closeModalX").focus();
     modal.querySelector("#closeModalX").addEventListener("click", closeModal);
     modal.querySelector("#closeModalBtn").addEventListener("click", closeModal);
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) closeModal();
+    });
+    overlay.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
     });
   }
 
@@ -207,7 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Meta visual de compra: no es un mínimo obligatorio ni una promoción.
   const CART_GOAL = 20;
-  const formatCartEuro = (value) => `${Number(value).toFixed(2).replace(".", ",")} €`;
+  const formatCartEuro = (value) =>
+    `${Number(value).toFixed(2).replace(".", ",")} €`;
 
   function buildCartExtras() {
     if (!cartDrawer) return;
@@ -226,7 +255,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const recommendations = document.createElement("section");
       recommendations.id = "cartSmartRecommendations";
       recommendations.className = "cart-smart-recommendations";
-      recommendations.setAttribute("aria-label", "Productos para acompañar tu pedido");
+      recommendations.setAttribute(
+        "aria-label",
+        "Productos para acompañar tu pedido",
+      );
       if (cartItemsContainer) cartItemsContainer.after(recommendations);
       else return;
     }
@@ -242,14 +274,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     const selectedIds = new Set(items.map((item) => item.id));
-    const cartHasDrinks = items.some((item) => allProducts.some((p) => p.id === item.id && p.categoria === "bebida"));
+    const cartHasDrinks = items.some((item) =>
+      allProducts.some((p) => p.id === item.id && p.categoria === "bebida"),
+    );
     const preferredCategory = cartHasDrinks ? "comida" : "bebida";
-    const possible = allProducts.filter((p) =>
-      !selectedIds.has(p.id) && Number.isFinite(Number(p.precio)) && Number(p.precio) > 0
+    const possible = allProducts.filter(
+      (p) =>
+        !selectedIds.has(p.id) &&
+        Number.isFinite(Number(p.precio)) &&
+        Number(p.precio) > 0,
     );
     const suggestions = [
       ...possible.filter((p) => p.categoria === preferredCategory),
-      ...possible.filter((p) => p.categoria !== preferredCategory)
+      ...possible.filter((p) => p.categoria !== preferredCategory),
     ].slice(0, 2);
     if (!suggestions.length) {
       container.hidden = true;
@@ -260,7 +297,9 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = `
       <h4 class="cart-smart-heading">Combina tu pedido</h4>
       <p class="cart-smart-explainer">Quizá te apetezca acompañarlo con…</p>
-      <div class="cart-smart-list">${suggestions.map((p) => `
+      <div class="cart-smart-list">${suggestions
+        .map(
+          (p) => `
         <article class="cart-smart-suggestion">
           <img src="${escapeProductHtml(p.imagen || "")}" alt="${escapeProductHtml(p.nombre)}" loading="lazy" />
           <div class="cart-smart-suggestion-info">
@@ -270,7 +309,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <button type="button" class="cart-smart-add" data-id="${escapeProductHtml(p.id)}"
             data-title="${escapeProductHtml(p.nombre)}" data-price="${Number(p.precio)}"
             data-permite-leche="${p.permiteLeche === true}" aria-label="Añadir ${escapeProductHtml(p.nombre)} al carrito">Añadir</button>
-        </article>`).join("")}</div>`;
+        </article>`,
+        )
+        .join("")}</div>`;
   }
 
   function updateCartGoal(total) {
@@ -284,9 +325,10 @@ document.addEventListener("DOMContentLoaded", () => {
     goal.hidden = false;
     const progress = Math.min(100, Math.round((total / CART_GOAL) * 100));
     const remaining = Math.max(0, CART_GOAL - total);
-    const message = remaining > 0
-      ? `Te faltan <strong>${formatCartEuro(remaining)}</strong> para llegar a tu objetivo.`
-      : `¡Has alcanzado tu objetivo de ${formatCartEuro(CART_GOAL)}!`;
+    const message =
+      remaining > 0
+        ? `Te faltan <strong>${formatCartEuro(remaining)}</strong> para llegar a tu objetivo.`
+        : `¡Has alcanzado tu objetivo de ${formatCartEuro(CART_GOAL)}!`;
     goal.innerHTML = `
       <div class="cart-smart-goal-label"><span>Objetivo de compra</span><strong>${formatCartEuro(CART_GOAL)}</strong></div>
       <div class="cart-smart-progress" role="progressbar" aria-label="Progreso del objetivo de compra" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress}">
@@ -303,7 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (button) handleAddToCart(button);
     });
   }
-
 
   function updateCartUI() {
     cart = getSavedCart();
@@ -390,14 +431,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const toggleCart = () => {
     if (cartDrawer && cartOverlay) {
-      cartDrawer.classList.toggle("active");
-      cartOverlay.classList.toggle("active");
+      const opening = !cartDrawer.classList.contains("active");
+      cartDrawer.classList.toggle("active", opening);
+      cartOverlay.classList.toggle("active", opening);
+      cartDrawer.setAttribute("aria-hidden", String(!opening));
+      if (cartButton) cartButton.setAttribute("aria-expanded", String(opening));
+      if (opening) {
+        const close = cartDrawer.querySelector("#closeCart");
+        if (close) close.focus();
+      } else if (cartButton) {
+        cartButton.focus();
+      }
     }
   };
 
   if (cartButton) cartButton.addEventListener("click", toggleCart);
   if (closeCartBtn) closeCartBtn.addEventListener("click", toggleCart);
   if (cartOverlay) cartOverlay.addEventListener("click", toggleCart);
+  if (cartDrawer) {
+    cartDrawer.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && cartDrawer.classList.contains("active")) {
+        event.preventDefault();
+        toggleCart();
+      }
+    });
+  }
 
   function handleAddToCart(btn) {
     const id = btn.getAttribute("data-id");
@@ -472,9 +530,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".product-image-container img").forEach((img) => {
       if (img.dataset.errorHandlerAdded) return;
       img.dataset.errorHandlerAdded = "true";
-      img.addEventListener("error", () => {
-        img.parentElement.classList.add("image-error");
-      }, { once: true });
+      img.addEventListener(
+        "error",
+        () => {
+          img.parentElement.classList.add("image-error");
+        },
+        { once: true },
+      );
       if (img.complete && img.naturalWidth === 0) {
         img.parentElement.classList.add("image-error");
       }
@@ -492,19 +554,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   function escapeProductHtml(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (character) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;",
-    })[character]);
+    return String(value ?? "").replace(
+      /[&<>"']/g,
+      (character) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[character],
+    );
   }
 
   function productDetailImageUrl(value) {
-    const fallback = "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80";
+    const fallback =
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80";
     try {
       const url = new URL(value || fallback, document.baseURI);
       return ["http:", "https:"].includes(url.protocol) ? url.href : fallback;
@@ -514,9 +580,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function productDetailDate(value) {
-    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return "";
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value))
+      return "";
     const date = new Date(`${value}T12:00:00`);
-    return Number.isNaN(date.getTime()) ? "" : date.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+    return Number.isNaN(date.getTime())
+      ? ""
+      : date.toLocaleDateString("es-ES", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
   }
 
   function getProductReviews(product) {
@@ -535,7 +608,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const own = safeRead(ownKey);
     // La versión antigua de reseñas.js guardaba una copia de las reseñas del JSON
     // junto con las enviadas por el visitante. No añadimos esa copia dos veces.
-    const key = (review) => [review.name, review.rating, review.comment, review.date].join("|");
+    const key = (review) =>
+      [review.name, review.rating, review.comment, review.date].join("|");
     const baseKeys = new Set(base.map(key));
     const extra = [...legacy.filter((r) => !baseKeys.has(key(r))), ...own];
     const seen = new Set();
@@ -556,23 +630,39 @@ document.addEventListener("DOMContentLoaded", () => {
     if (existing) existing.remove();
 
     const reviews = getProductReviews(product);
-    const totalRating = reviews.reduce((sum, item) => sum + (Number(item.rating) || 0), 0);
-    const average = reviews.length ? (totalRating / reviews.length).toFixed(1).replace(".", ",") : null;
+    const totalRating = reviews.reduce(
+      (sum, item) => sum + (Number(item.rating) || 0),
+      0,
+    );
+    const average = reviews.length
+      ? (totalRating / reviews.length).toFixed(1).replace(".", ",")
+      : null;
     const favorite = getSavedFavs().includes(product.nombre);
-    const labels = { gluten: "Gluten", lacteos: "Lácteos", frutos_secos: "Frutos secos", huevos: "Huevos" };
+    const labels = {
+      gluten: "Gluten",
+      lacteos: "Lácteos",
+      frutos_secos: "Frutos secos",
+      huevos: "Huevos",
+    };
     const allergens = Array.isArray(product.alergenos) ? product.alergenos : [];
     const ingredientText = Array.isArray(product.ingredientes)
       ? product.ingredientes.join(", ")
-      : typeof product.ingredientes === "string" ? product.ingredientes : "";
+      : typeof product.ingredientes === "string"
+        ? product.ingredientes
+        : "";
     const ratingsText = average
       ? `<div class="product-detail-rating" aria-label="Valoración media de ${average} sobre 5, basada en ${reviews.length} opiniones"><span aria-hidden="true">★</span> <strong>${average}/5</strong><span>${reviews.length} ${reviews.length === 1 ? "opinión" : "opiniones"}</span></div>`
       : `<p class="product-detail-no-reviews">Todavía no hay opiniones.</p>`;
 
     const reviewsHtml = reviews.length
-      ? reviews.map((review) => {
-          const score = Math.max(0, Math.min(5, Math.round(Number(review.rating) || 0)));
-          const date = productDetailDate(review.date);
-          return `<article class="product-detail-review">
+      ? reviews
+          .map((review) => {
+            const score = Math.max(
+              0,
+              Math.min(5, Math.round(Number(review.rating) || 0)),
+            );
+            const date = productDetailDate(review.date);
+            return `<article class="product-detail-review">
             <div class="product-detail-review-heading">
               <strong>${escapeProductHtml(review.name || "Cliente")}</strong>
               <span class="product-detail-stars" aria-label="${score} de 5 estrellas">${"★".repeat(score)}<span class="product-detail-stars-empty">${"☆".repeat(5 - score)}</span></span>
@@ -580,7 +670,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ${date ? `<time class="product-detail-review-date" datetime="${escapeProductHtml(review.date)}">${escapeProductHtml(date)}</time>` : ""}
             <p>${escapeProductHtml(review.comment || "")}</p>
           </article>`;
-        }).join("")
+          })
+          .join("")
       : `<p class="product-detail-no-reviews">Sé el primero en opinar sobre este producto.</p>`;
 
     const overlay = document.createElement("div");
@@ -625,11 +716,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <form class="product-detail-review-form" id="productDetailReviewForm">
             <h3>Escribe tu valoración</h3>
             <div class="product-detail-review-fields">
-              <label>Nombre y apellido
-                <input name="author" type="text" autocomplete="name" maxlength="80" placeholder="Tu nombre y apellido" required />
+              <label for="reviewAuthor">Nombre y apellido
+                <input id="reviewAuthor" name="author" type="text" autocomplete="name" maxlength="80" placeholder="Tu nombre y apellido" aria-describedby="reviewFeedback" required />
               </label>
-              <label>Tu puntuación
-                <select name="rating" required>
+              <label for="reviewRating">Tu puntuación
+                <select id="reviewRating" name="rating" aria-describedby="reviewFeedback" required>
                   <option value="" selected disabled>Elige las estrellas</option>
                   <option value="5">★★★★★ (5)</option>
                   <option value="4">★★★★☆ (4)</option>
@@ -639,12 +730,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 </select>
               </label>
             </div>
-            <label>Tu opinión
-              <textarea name="comment" rows="3" maxlength="1000" placeholder="Cuéntanos qué te ha parecido..." required></textarea>
+            <label for="reviewComment">Tu opinión
+              <textarea id="reviewComment" name="comment" rows="3" maxlength="1000" placeholder="Cuéntanos qué te ha parecido..." aria-describedby="reviewFeedback" required></textarea>
             </label>
             <button class="product-detail-add" type="submit">Publicar valoración</button>
             <p class="product-detail-review-help">Tu opinión se guarda en este navegador.</p>
-            <p class="product-detail-review-feedback" role="status" aria-live="polite"></p>
+            <p id="reviewFeedback" class="product-detail-review-feedback" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>`;
@@ -655,8 +746,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const dialog = overlay.querySelector(".product-detail-dialog");
     const closeButton = overlay.querySelector(".product-detail-close");
     const image = overlay.querySelector(".product-detail-photo img");
-    image.addEventListener("error", () => image.parentElement.classList.add("image-error"), { once: true });
-    if (image.complete && image.naturalWidth === 0) image.parentElement.classList.add("image-error");
+    image.addEventListener(
+      "error",
+      () => image.parentElement.classList.add("image-error"),
+      { once: true },
+    );
+    if (image.complete && image.naturalWidth === 0)
+      image.parentElement.classList.add("image-error");
 
     const closeDetails = () => {
       document.removeEventListener("keydown", handleModalKeys);
@@ -671,14 +767,22 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDetails();
       }
       if (event.key === "Tab") {
-        const buttons = [...dialog.querySelectorAll('button:not([disabled])')];
+        const buttons = [...dialog.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])")];
         if (!buttons.length) return;
         const first = buttons[0];
         const last = buttons[buttons.length - 1];
-        if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+        if (
+          event.shiftKey &&
+          (document.activeElement === first ||
+            !dialog.contains(document.activeElement))
+        ) {
           event.preventDefault();
           last.focus();
-        } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+        } else if (
+          !event.shiftKey &&
+          (document.activeElement === last ||
+            !dialog.contains(document.activeElement))
+        ) {
           event.preventDefault();
           first.focus();
         }
@@ -686,7 +790,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     overlay.addEventListener("click", (event) => {
-      if (event.target === overlay || event.target.closest(".product-detail-close")) {
+      if (
+        event.target === overlay ||
+        event.target.closest(".product-detail-close")
+      ) {
         closeDetails();
         return;
       }
@@ -701,7 +808,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const nowFavorite = getSavedFavs().includes(product.nombre);
         favoriteButton.classList.toggle("active", nowFavorite);
         favoriteButton.setAttribute("aria-pressed", String(nowFavorite));
-        favoriteButton.setAttribute("aria-label", nowFavorite ? "Quitar de favoritos" : "Añadir a favoritos");
+        favoriteButton.setAttribute(
+          "aria-label",
+          nowFavorite ? "Quitar de favoritos" : "Añadir a favoritos",
+        );
       }
     });
 
@@ -711,13 +821,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = reviewForm.elements.author.value.trim().replace(/\s+/g, " ");
       const rating = Number(reviewForm.elements.rating.value);
       const comment = reviewForm.elements.comment.value.trim();
-      const feedback = reviewForm.querySelector(".product-detail-review-feedback");
+      const feedback = reviewForm.querySelector(
+        ".product-detail-review-feedback",
+      );
+      reviewForm.elements.author.removeAttribute("aria-invalid");
+      reviewForm.elements.rating.removeAttribute("aria-invalid");
+      reviewForm.elements.comment.removeAttribute("aria-invalid");
       if (name.split(" ").length < 2) {
         feedback.textContent = "Escribe tu nombre y al menos un apellido.";
+        reviewForm.elements.author.setAttribute("aria-invalid", "true");
+        reviewForm.elements.author.focus();
         return;
       }
       if (!Number.isInteger(rating) || rating < 1 || rating > 5 || !comment) {
-        feedback.textContent = "Selecciona una puntuación y escribe tu opinión.";
+        feedback.textContent =
+          "Selecciona una puntuación y escribe tu opinión.";
+        const invalidField = !Number.isInteger(rating) || rating < 1 || rating > 5
+          ? reviewForm.elements.rating : reviewForm.elements.comment;
+        invalidField.setAttribute("aria-invalid", "true");
+        invalidField.focus();
         return;
       }
       const key = `hugoffee_user_reviews_${product.id}`;
@@ -725,9 +847,21 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const stored = JSON.parse(localStorage.getItem(key));
         if (Array.isArray(stored)) saved = stored;
-        localStorage.setItem(key, JSON.stringify([{ name, rating, comment, date: new Date().toISOString().slice(0, 10) }, ...saved]));
+        localStorage.setItem(
+          key,
+          JSON.stringify([
+            {
+              name,
+              rating,
+              comment,
+              date: new Date().toISOString().slice(0, 10),
+            },
+            ...saved,
+          ]),
+        );
       } catch (error) {
-        feedback.textContent = "No se ha podido guardar la opinión en este navegador.";
+        feedback.textContent =
+          "No se ha podido guardar la opinión en este navegador.";
         return;
       }
       // Actualizar las tarjetas y la ficha sin cambiar los demás controles.
@@ -735,8 +869,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (productsGrid) filterProducts();
       closeDetails();
       openProductDetails(product.id, trigger);
-      const heading = document.querySelector("#productDetailOverlay .product-detail-reviews h3");
-      if (heading) heading.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      const heading = document.querySelector(
+        "#productDetailOverlay .product-detail-reviews h3",
+      );
+      if (heading)
+        heading.scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
 
     document.addEventListener("keydown", handleModalKeys);
@@ -753,7 +890,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const section = document.getElementById("cafe-del-mes");
     if (!section) return;
 
-    const product = allProducts.find((item) => item.id === "pumpkin-spice-latte");
+    const product = allProducts.find(
+      (item) => item.id === "pumpkin-spice-latte",
+    );
     if (!product) {
       section.hidden = true;
       return;
@@ -762,12 +901,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const image = document.getElementById("coffeeMonthImage");
     const button = document.getElementById("coffeeMonthButton");
     document.getElementById("coffeeMonthName").textContent = product.nombre;
-    document.getElementById("coffeeMonthDescription").textContent = product.descripcion || product.subtitulo || "";
-    document.getElementById("coffeeMonthPrice").textContent = Number(product.precio).toFixed(2).replace(".", ",") + " €";
+    document.getElementById("coffeeMonthDescription").textContent =
+      product.descripcion || product.subtitulo || "";
+    document.getElementById("coffeeMonthPrice").textContent =
+      Number(product.precio).toFixed(2).replace(".", ",") + " €";
     button.dataset.productId = product.id;
     image.alt = product.nombre;
     image.src = productDetailImageUrl(product.imagen);
-    image.addEventListener("error", () => section.classList.add("coffee-month-image-error"), { once: true });
+    image.addEventListener(
+      "error",
+      () => section.classList.add("coffee-month-image-error"),
+      { once: true },
+    );
     section.hidden = false;
   }
 
@@ -777,9 +922,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) {
         response = await fetch("/datos/productos.json");
       }
-      if (!response.ok) throw new Error(`No se pudo cargar el catálogo (${response.status})`);
+      if (!response.ok)
+        throw new Error(`No se pudo cargar el catálogo (${response.status})`);
       const data = await response.json();
-      if (!Array.isArray(data.productos)) throw new Error("El catálogo no contiene una lista de productos");
+      if (!Array.isArray(data.productos))
+        throw new Error("El catálogo no contiene una lista de productos");
       allProducts = data.productos;
       updateCartSuggestions();
       renderCoffeeOfTheMonth();
@@ -829,9 +976,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCardRating(product) {
     const reviews = getProductReviews(product);
-    const valid = reviews.filter((review) => Number.isFinite(Number(review.rating)) && Number(review.rating) >= 1 && Number(review.rating) <= 5);
+    const valid = reviews.filter(
+      (review) =>
+        Number.isFinite(Number(review.rating)) &&
+        Number(review.rating) >= 1 &&
+        Number(review.rating) <= 5,
+    );
     if (!valid.length) return "";
-    const average = valid.reduce((sum, review) => sum + Number(review.rating), 0) / valid.length;
+    const average =
+      valid.reduce((sum, review) => sum + Number(review.rating), 0) /
+      valid.length;
     const formatted = average.toFixed(1).replace(".", ",");
     const count = valid.length;
     return `<button type="button" class="card-rating product-details-open" data-product-id="${escapeProductHtml(product.id)}" aria-label="Ver ${count} ${count === 1 ? "opinión" : "opiniones"} de ${escapeProductHtml(product.nombre)}: ${formatted} sobre 5"><span class="card-rating-star" aria-hidden="true">★</span> ${formatted} (${count} ${count === 1 ? "opinión" : "opiniones"})</button>`;
@@ -893,8 +1047,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (carouselDotsContainer) {
       carouselDotsContainer.innerHTML = "";
       productosOtono.forEach((_, index) => {
-        const dot = document.createElement("span");
+        const dot = document.createElement("button");
+        dot.type = "button";
         dot.className = index === 0 ? "dot active" : "dot";
+        dot.setAttribute("aria-label", `Mostrar producto de otoño ${index + 1}`);
+        dot.setAttribute("aria-current", String(index === 0));
         carouselDotsContainer.appendChild(dot);
       });
 
@@ -935,6 +1092,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       activeDots.forEach((dot, idx) => {
         dot.classList.toggle("active", idx === activeIndex);
+        dot.setAttribute("aria-current", String(idx === activeIndex));
       });
     });
 
@@ -947,7 +1105,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const query = searchInput ? searchInput.value.trim() : "";
     if (products.length === 0) {
-      if (query || currentMainCategory || (sortProductsSelect && sortProductsSelect.value !== "default") || Array.from(excludedAllergens).some((input) => input.checked)) {
+      if (
+        query ||
+        currentMainCategory ||
+        (sortProductsSelect && sortProductsSelect.value !== "default") ||
+        Array.from(excludedAllergens).some((input) => input.checked)
+      ) {
         productsGrid.innerHTML =
           '<p class="no-products">No se encontraron productos.</p>';
       }
@@ -1043,9 +1206,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function productRating(product) {
     const reviews = getProductReviews(product);
-    const valid = reviews.filter((review) => Number.isFinite(Number(review.rating)));
+    const valid = reviews.filter((review) =>
+      Number.isFinite(Number(review.rating)),
+    );
     if (!valid.length) return null;
-    return valid.reduce((sum, review) => sum + Number(review.rating), 0) / valid.length;
+    return (
+      valid.reduce((sum, review) => sum + Number(review.rating), 0) /
+      valid.length
+    );
   }
 
   function filterProducts() {
@@ -1057,9 +1225,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter((input) => input.checked)
       .map((input) => input.value);
     const hasAdvancedFilters = sort !== "default" || excluded.length > 0;
-    const isBrowsing = Boolean(query || currentMainCategory || hasAdvancedFilters);
+    const isBrowsing = Boolean(
+      query || currentMainCategory || hasAdvancedFilters,
+    );
 
-    if (resetAdvancedFiltersBtn) resetAdvancedFiltersBtn.disabled = !hasAdvancedFilters;
+    if (resetAdvancedFiltersBtn)
+      resetAdvancedFiltersBtn.disabled = !hasAdvancedFilters;
     if (filterResultsCount) {
       filterResultsCount.hidden = !isBrowsing;
       if (!isBrowsing) filterResultsCount.textContent = "";
@@ -1082,10 +1253,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchesCategory =
         !currentMainCategory || product.categoria === currentMainCategory;
       const matchesSubcategory =
-        currentSubcategory === "todos" || product.subcategoria === currentSubcategory;
-      const allergens = Array.isArray(product.alergenos) ? product.alergenos : [];
-      const matchesAllergens = excluded.every((allergen) => !allergens.includes(allergen));
-      return matchesSearch && matchesCategory && matchesSubcategory && matchesAllergens;
+        currentSubcategory === "todos" ||
+        product.subcategoria === currentSubcategory;
+      const allergens = Array.isArray(product.alergenos)
+        ? product.alergenos
+        : [];
+      const matchesAllergens = excluded.every(
+        (allergen) => !allergens.includes(allergen),
+      );
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesSubcategory &&
+        matchesAllergens
+      );
     });
 
     if (sort === "price-asc") {
@@ -1093,7 +1274,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (sort === "price-desc") {
       filtered.sort((a, b) => Number(b.precio) - Number(a.precio));
     } else if (sort === "rating-desc") {
-      filtered.sort((a, b) => (productRating(b) ?? -1) - (productRating(a) ?? -1));
+      filtered.sort(
+        (a, b) => (productRating(b) ?? -1) - (productRating(a) ?? -1),
+      );
     } else if (sort === "name-asc") {
       filtered.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
     }
@@ -1105,12 +1288,17 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProducts(filtered);
   }
 
-  if (sortProductsSelect) sortProductsSelect.addEventListener("change", filterProducts);
-  excludedAllergens.forEach((input) => input.addEventListener("change", filterProducts));
+  if (sortProductsSelect)
+    sortProductsSelect.addEventListener("change", filterProducts);
+  excludedAllergens.forEach((input) =>
+    input.addEventListener("change", filterProducts),
+  );
   if (resetAdvancedFiltersBtn) {
     resetAdvancedFiltersBtn.addEventListener("click", () => {
       if (sortProductsSelect) sortProductsSelect.value = "default";
-      excludedAllergens.forEach((input) => { input.checked = false; });
+      excludedAllergens.forEach((input) => {
+        input.checked = false;
+      });
       filterProducts();
     });
   }
@@ -1188,7 +1376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!cart || cart.length === 0) {
         showCustomModal(
           "Tu carrito está vacío",
-          "Añade algún producto al carrito antes de tramitar tu pedido."
+          "Añade algún producto al carrito antes de tramitar tu pedido.",
         );
         return;
       }
@@ -1202,11 +1390,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const unselectedMilkItem = cart.find(item => item.permiteLeche && !item.tipoLeche);
+      const unselectedMilkItem = cart.find(
+        (item) => item.permiteLeche && !item.tipoLeche,
+      );
       if (unselectedMilkItem) {
         showCustomModal(
           "Selecciona el tipo de leche",
-          "Por favor, selecciona un tipo de leche para todos los cafés del carrito antes de tramitar el pedido."
+          "Por favor, selecciona un tipo de leche para todos los cafés del carrito antes de tramitar el pedido.",
         );
         return;
       }
@@ -1219,6 +1409,9 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestionForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      suggestionCategory.removeAttribute("aria-invalid");
+      suggestionText.removeAttribute("aria-invalid");
+      suggestionMessage.style.display = "";
       const category = suggestionCategory.value;
       const text = suggestionText.value.trim();
       const email = suggestionEmail.value.trim();
@@ -1227,6 +1420,8 @@ document.addEventListener("DOMContentLoaded", () => {
         suggestionMessage.textContent =
           "Por favor, selecciona una categoría para tu sugerencia.";
         suggestionMessage.className = "suggestion-message error";
+        suggestionCategory.setAttribute("aria-invalid", "true");
+        suggestionCategory.focus();
         return;
       }
 
@@ -1234,6 +1429,8 @@ document.addEventListener("DOMContentLoaded", () => {
         suggestionMessage.textContent =
           "Por favor, escribe el contenido de tu sugerencia.";
         suggestionMessage.className = "suggestion-message error";
+        suggestionText.setAttribute("aria-invalid", "true");
+        suggestionText.focus();
         return;
       }
 
@@ -1259,9 +1456,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       suggestionForm.reset();
 
-      setTimeout(() => {
-        suggestionMessage.style.display = "none";
-      }, 5000);
+      suggestionMessage.style.display = "block";
     });
   }
 

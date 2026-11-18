@@ -1,30 +1,171 @@
-
-.hugoffee-faq{padding:72px 24px 82px;background:var(--color-base);color:var(--color-primary)}
-.hugoffee-faq-head{text-align:center;margin:0 auto 34px;max-width:720px}
-.hugoffee-faq-head h2{font-family:var(--font-heading);margin:8px 0 10px}
-.hugoffee-faq-head p{color:var(--color-muted);margin:0}
-.hugoffee-faq-eyebrow{display:inline-block;color:var(--color-accent);font-size:12px;font-weight:700;letter-spacing:1.5px}
-.hugoffee-faq-list{max-width:860px;margin:0 auto;display:grid;gap:12px}
-.hugoffee-faq-item{border:1px solid #e7dbcf;border-radius:14px;background:var(--color-base);overflow:hidden;transition:border-color .2s,box-shadow .2s}
-.hugoffee-faq-item[open]{border-color:var(--color-accent);box-shadow:0 8px 25px rgba(75,54,33,.06)}
-.hugoffee-faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;padding:20px 24px;font-family:var(--font-heading);font-size:15px;font-weight:700;line-height:1.5;color:var(--color-primary)}
-.hugoffee-faq-item summary::-webkit-details-marker{display:none}
-.hugoffee-faq-item summary:focus-visible{outline:3px solid var(--color-accent);outline-offset:-3px}
-.hugoffee-faq-item summary:hover{background:color-mix(in srgb,var(--color-accent) 5%,var(--color-base))}
-.hugoffee-faq-symbol{display:block;position:relative;width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--color-secondary)}
-.hugoffee-faq-symbol::before,.hugoffee-faq-symbol::after{content:"";position:absolute;top:11px;left:7px;width:10px;height:2px;background:var(--color-primary);transition:transform .2s}
-.hugoffee-faq-symbol::after{transform:rotate(90deg)}
-.hugoffee-faq-item[open] .hugoffee-faq-symbol::after{transform:rotate(0)}
-.hugoffee-faq-answer{padding:0 24px 22px;color:var(--color-text-body);line-height:1.75;font-size:14px}
-.hugoffee-order-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-.btn-ticket-order{border:1px solid var(--color-accent);border-radius:8px;background:var(--color-base);color:var(--color-accent);padding:9px 15px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;transition:background .2s,color .2s}
-.btn-ticket-order:hover{background:var(--color-accent);color:#fff}
-.btn-ticket-order:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
-body.dark-mode .hugoffee-faq-item{background:#241c16;border-color:#705d4f}
-body.dark-mode .hugoffee-faq-item[open]{border-color:#9eb258}
-body.dark-mode .hugoffee-faq-answer{color:#efe6dd}
-body.dark-mode .hugoffee-faq-head p{color:#d1c7bd}
-body.dark-mode .hugoffee-faq-symbol{background:#2b2118}
-body.dark-mode .btn-ticket-order{background:#241c16;color:#9eb258;border-color:#9eb258}
-body.dark-mode .btn-ticket-order:hover{background:#536224;color:#fff}
-@media(max-width:580px){.hugoffee-faq{padding:50px 16px}.hugoffee-faq-item summary{padding:17px 16px;font-size:14px}.hugoffee-faq-answer{padding:0 16px 18px}.hugoffee-order-actions{justify-content:stretch}.hugoffee-order-actions button{flex:1 1 auto}}
+.hugoffee-faq {
+  padding: 72px 24px 82px;
+  background: var(--color-base);
+  color: var(--color-primary);
+}
+.hugoffee-faq-head {
+  text-align: center;
+  margin: 0 auto 34px;
+  max-width: 720px;
+}
+.hugoffee-faq-head h2 {
+  font-family: var(--font-heading);
+  margin: 8px 0 10px;
+}
+.hugoffee-faq-head p {
+  color: var(--color-muted);
+  margin: 0;
+}
+.hugoffee-faq-eyebrow {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.hugoffee-faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+.hugoffee-faq-item {
+  border: 1px solid #e7dbcf;
+  border-radius: 14px;
+  background: var(--color-base);
+  overflow: hidden;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.hugoffee-faq-item[open] {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 25px rgba(75, 54, 33, 0.06);
+}
+.hugoffee-faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  padding: 20px 24px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-primary);
+}
+.hugoffee-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.hugoffee-faq-item summary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
+}
+.hugoffee-faq-item summary:hover {
+  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-base));
+}
+.hugoffee-faq-symbol {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--color-secondary);
+}
+.hugoffee-faq-symbol::before,
+.hugoffee-faq-symbol::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 7px;
+  width: 10px;
+  height: 2px;
+  background: var(--color-primary);
+  transition: transform 0.2s;
+}
+.hugoffee-faq-symbol::after {
+  transform: rotate(90deg);
+}
+.hugoffee-faq-item[open] .hugoffee-faq-symbol::after {
+  transform: rotate(0);
+}
+.hugoffee-faq-answer {
+  padding: 0 24px 22px;
+  color: var(--color-text-body);
+  line-height: 1.75;
+  font-size: 14px;
+}
+.hugoffee-order-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.btn-ticket-order {
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: var(--color-base);
+  color: var(--color-accent);
+  padding: 9px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.btn-ticket-order:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-ticket-order:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+body.dark-mode .hugoffee-faq-item {
+  background: #241c16;
+  border-color: #705d4f;
+}
+body.dark-mode .hugoffee-faq-item[open] {
+  border-color: #9eb258;
+}
+body.dark-mode .hugoffee-faq-answer {
+  color: #efe6dd;
+}
+body.dark-mode .hugoffee-faq-head p {
+  color: #d1c7bd;
+}
+body.dark-mode .hugoffee-faq-symbol {
+  background: #2b2118;
+}
+body.dark-mode .btn-ticket-order {
+  background: #241c16;
+  color: #9eb258;
+  border-color: #9eb258;
+}
+body.dark-mode .btn-ticket-order:hover {
+  background: #536224;
+  color: #fff;
+}
+@media (max-width: 580px) {
+  .hugoffee-faq {
+    padding: 50px 16px;
+  }
+  .hugoffee-faq-item summary {
+    padding: 17px 16px;
+    font-size: 14px;
+  }
+  .hugoffee-faq-answer {
+    padding: 0 16px 18px;
+  }
+  .hugoffee-order-actions {
+    justify-content: stretch;
+  }
+  .hugoffee-order-actions button {
+    flex: 1 1 auto;
+  }
+}

@@ -21,13 +21,13 @@
 }
 
 body.dark-mode {
-  --color-primary: #EFE6DD;
-  --color-primary-hover: #D1C7BD;
-  --color-secondary: #2B2118;
-  --color-base: #1A1410;
+  --color-primary: #efe6dd;
+  --color-primary-hover: #d1c7bd;
+  --color-secondary: #2b2118;
+  --color-base: #1a1410;
   --color-accent: #9eb258;
   --color-muted: #705d4f;
-  --color-text-body: #EFE6DD;
+  --color-text-body: #efe6dd;
   background-color: var(--color-base);
   color: var(--color-text-body);
 }
@@ -49,20 +49,20 @@ body.dark-mode .user-dropdown,
 body.dark-mode .story-box,
 body.dark-mode .location-card,
 body.dark-mode .suggestions-card {
-  background-color: #241C16;
+  background-color: #241c16;
   border-color: var(--color-muted);
 }
 
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode textarea {
-  background-color: #2B2118;
-  color: #EFE6DD;
+  background-color: #2b2118;
+  color: #efe6dd;
   border-color: var(--color-muted);
 }
 
 body.dark-mode .user-dropdown-header {
-  color: #EFE6DD;
+  color: #efe6dd;
 }
 
 body.dark-mode .user-dropdown-divider {
@@ -70,11 +70,11 @@ body.dark-mode .user-dropdown-divider {
 }
 
 body.dark-mode .dropdown-item {
-  color: #EFE6DD;
+  color: #efe6dd;
 }
 
 body.dark-mode .dropdown-item:hover {
-  background-color: #2B2118;
+  background-color: #2b2118;
   color: var(--color-primary-hover);
 }
 
@@ -90,12 +90,12 @@ body.dark-mode .dropdown-item.logout:hover {
 body.dark-mode .product-card h4,
 body.dark-mode .product-card h5,
 body.dark-mode .product-card h6 {
-  color: #EFE6DD !important; 
+  color: #efe6dd !important;
 }
 
 body.dark-mode .card-rating,
 body.dark-mode .card-rating span {
-  color: #D1C7BD !important; 
+  color: #d1c7bd !important;
 }
 
 body.dark-mode .btn-delete-order {

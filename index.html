@@ -50,7 +50,7 @@
         </a>
       </div>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navegación principal">
         <a href="index.html" class="active">Inicio</a>
         <a href="menu.html">Menú</a>
         <a href="index.html#nosotros">Nosotros</a>
@@ -108,6 +108,8 @@
           class="cart-button"
           id="cartButton"
           aria-label="Carrito de compras"
+          aria-controls="cartDrawer"
+          aria-expanded="false"
         >
           <svg
             width="24"
@@ -195,10 +197,10 @@
           </div>
         </div>
 
-        <div class="hero-carousel-dots">
-          <span class="hero-dot active"></span>
-          <span class="hero-dot"></span>
-          <span class="hero-dot"></span>
+        <div class="hero-carousel-dots" role="group" aria-label="Elegir imagen de portada">
+          <button type="button" class="hero-dot active" aria-label="Ver imagen 1" aria-current="true"></button>
+          <button type="button" class="hero-dot" aria-label="Ver imagen 2" aria-current="false"></button>
+          <button type="button" class="hero-dot" aria-label="Ver imagen 3" aria-current="false"></button>
         </div>
       </section>
 
@@ -238,7 +240,7 @@
         <div class="coffee-month-shell">
           <div class="coffee-month-photo">
             <span class="coffee-month-photo-label">La recomendación de Hugoffee</span>
-            <img id="coffeeMonthImage" alt="" loading="lazy" decoding="async" />
+            <img id="coffeeMonthImage" alt="Producto recomendado del mes" loading="lazy" decoding="async" />
           </div>
           <div class="coffee-month-copy">
             <span class="coffee-month-eyebrow">☕ NUESTRA ELECCIÓN · NOVIEMBRE</span>
@@ -366,13 +368,14 @@
             para nuestra web. ¡Leemos todas tus ideas!
           </p>
 
-          <form id="suggestionForm" class="suggestion-form">
+          <form id="suggestionForm" class="suggestion-form" aria-label="Enviar una sugerencia">
             <div class="form-row">
               <label for="suggestionCategory" class="sr-only"
                 >Categoría de sugerencia</label
               >
               <select
                 id="suggestionCategory"
+                aria-describedby="suggestionMessage"
                 required
                 aria-label="Categoría de sugerencia"
               >
@@ -402,6 +405,7 @@
               >
               <textarea
                 id="suggestionText"
+                aria-describedby="suggestionMessage"
                 rows="3"
                 placeholder="Cuéntanos tu idea aquí con detalle..."
                 required
@@ -426,6 +430,7 @@
             <p
               id="suggestionMessage"
               class="suggestion-message"
+              role="status"
               aria-live="polite"
             ></p>
           </form>
@@ -471,9 +476,10 @@
     </main>
 
     <div id="cartOverlay" class="cart-overlay"></div>
-    <aside id="cartDrawer" class="cart-drawer">
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrito de compras" aria-hidden="true">
       <div class="cart-header">
         <h3>Tu Carrito</h3>
+        <button type="button" class="cart-close-accessible" id="closeCart" aria-label="Cerrar el carrito">Cerrar</button>
       </div>
       <div id="cartItems" class="cart-body">
         <div class="cart-empty-container">
@@ -513,9 +519,7 @@
         <div class="footer-col">
           <h5>Síguenos</h5>
           <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+            <p>Próximamente en redes sociales.</p>
           </div>
         </div>
         <div class="footer-col" id="contacto">
