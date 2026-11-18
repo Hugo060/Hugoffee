@@ -13,22 +13,23 @@
     <script src="/js/modoOscuro.js" defer></script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <header class="header">
       <div class="logo-container">
-        <a href="index.html" class="logo-link">
+        <a href="index.html" class="logo-link" aria-label="Hugoffee: ir a la página de inicio">
           <img src="/Imagenes/logo.jpg" id="logo" alt="Logo Hugoffee" class="logo-icon" />
           <span class="brand-name">Hugoffee</span>
         </a>
       </div>
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navegación principal">
         <a href="index.html">Inicio</a>
         <a href="menu.html">Menú</a>
       </nav>
       <div class="user-actions">
-        <button class="theme-toggle-button" id="themeToggleBtn" aria-label="Cambiar modo oscuro/claro"><svg id="moonIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg id="sunIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display: none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+        <button class="theme-toggle-button" id="themeToggleBtn" aria-label="Cambiar modo oscuro/claro"><svg aria-hidden="true" focusable="false" id="moonIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg aria-hidden="true" focusable="false" id="sunIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display: none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
       </div>
     </header>
-    <main class="menu-page">
+    <main id="main-content" tabindex="-1" class="menu-page">
       <div class="story-box" style="width: 100%; max-width: 800px; margin: 0 auto; text-align: left;">
         <h2>Política de Privacidad</h2>
         <p>De conformidad con el Reglamento (UE) 2016/679 General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales, te informamos de lo siguiente:</p>
@@ -63,9 +64,7 @@
         <div class="footer-col">
           <h5>Síguenos</h5>
           <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+            <p>Próximamente en redes sociales.</p>
           </div>
         </div>
         <div class="footer-col">

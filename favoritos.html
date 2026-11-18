@@ -20,15 +20,16 @@
     <script src="/js/favoritos.js" defer></script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <header class="header">
       <div class="logo-container">
-        <a href="index.html" class="logo-link">
+        <a href="index.html" class="logo-link" aria-label="Hugoffee: ir a la página de inicio">
           <img src="/Imagenes/logo.jpg" id="logo" alt="Logo Hugoffee" class="logo-icon" />
           <span class="brand-name">Hugoffee</span>
         </a>
       </div>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navegación principal">
         <a href="index.html">Inicio</a>
         <a href="menu.html">Menú</a>
         <a href="index.html#nosotros">Nosotros</a>
@@ -42,7 +43,7 @@
           aria-label="Cambiar modo oscuro/claro"
           title="Cambiar tema"
         >
-          <svg
+          <svg aria-hidden="true" focusable="false"
             id="moonIcon"
             class="theme-icon"
             width="22"
@@ -56,7 +57,7 @@
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
-          <svg
+          <svg aria-hidden="true" focusable="false"
             id="sunIcon"
             class="theme-icon"
             width="22"
@@ -85,8 +86,10 @@
           class="cart-button"
           id="cartButton"
           aria-label="Carrito de compras"
+          aria-controls="cartDrawer"
+          aria-expanded="false"
         >
-          <svg
+          <svg aria-hidden="true" focusable="false"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -107,12 +110,12 @@
 
         <div class="user-menu-container">
           <button
-            id="userBtn"
+            id="userBtn" aria-controls="userDropdown" aria-expanded="false"
             class="user-profile-button"
             aria-label="Cuenta de usuario"
             title="Cuenta de usuario"
           >
-            <svg
+            <svg aria-hidden="true" focusable="false"
               width="22"
               height="22"
               viewBox="0 0 24 24"
@@ -142,7 +145,7 @@
       </div>
     </header>
 
-    <main class="menu-page">
+    <main id="main-content" tabindex="-1" class="menu-page">
       <div class="menu-hero">
         <h1>Mis Favoritos</h1>
         <p>Tus elecciones guardadas para pedir de forma rápida cuando quieras.</p>
@@ -155,11 +158,12 @@
     </main>
 
     <div id="cartOverlay" class="cart-overlay"></div>
-    <aside id="cartDrawer" class="cart-drawer">
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle" aria-hidden="true" inert>
       <div class="cart-header">
-        <h3>Tu Carrito</h3>
+        <h3 id="cartDrawerTitle">Tu Carrito</h3>
+        <button type="button" id="closeCart" class="cart-close-accessible" aria-label="Cerrar el carrito">Cerrar</button>
       </div>
-      <div id="cartItems" class="cart-body">
+      <div id="cartItems" class="cart-body" aria-live="polite">
         <div class="cart-empty-container">
           <p class="cart-empty">Tu carrito está vacío</p>
         </div>
@@ -191,9 +195,7 @@
         <div class="footer-col">
           <h5>Síguenos</h5>
           <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+            <p>Próximamente en redes sociales.</p>
           </div>
         </div>
         <div class="footer-col">

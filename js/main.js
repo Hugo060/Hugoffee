@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.setAttribute("aria-labelledby", "customAlertTitle");
     modal.innerHTML = `
       <button id="closeModalX" type="button" aria-label="Cerrar aviso" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer; color: var(--color-primary, #4B3621); opacity: 0.7;">✕</button>
-      <h3 id="customAlertTitle" style="margin-top: 0; margin-bottom: 12px; font-size: 20px; font-weight: 700; padding-right: 20px;">${title}</h3>
-      <p style="font-size: 14px; line-height: 1.5; color: var(--color-muted, #555); margin-bottom: 20px;">${message}</p>
+      <h3 id="customAlertTitle" style="margin-top: 0; margin-bottom: 12px; font-size: 20px; font-weight: 700; padding-right: 20px;">${escapeProductHtml(title)}</h3>
+      <p style="font-size: 14px; line-height: 1.5; color: var(--color-muted, #555); margin-bottom: 20px;">${escapeProductHtml(message)}</p>
       <button id="closeModalBtn" class="btn-primary" style="width: 100%; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Entendido</button>
     `;
 
@@ -151,7 +151,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target === overlay) closeModal();
     });
     overlay.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeModal();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+      }
+      if (event.key === "Tab") {
+        const controls = [...modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled])')];
+        if (!controls.length) return;
+        if (event.shiftKey && document.activeElement === controls[0]) {
+          event.preventDefault();
+          controls[controls.length - 1].focus();
+        } else if (!event.shiftKey && document.activeElement === controls[controls.length - 1]) {
+          event.preventDefault();
+          controls[0].focus();
+        }
+      }
     });
   }
 
@@ -382,8 +396,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const milkOptionsHtml = item.permiteLeche
           ? `
             <div style="margin-top: 6px;">
-                <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 2px;">Tipo de leche:</label>
-                <select class="cart-milk-select" aria-label="Seleccionar tipo de leche" data-id="${item.id}" style="padding: 4px 8px; font-size: 12px; border-radius: 6px; border: 1px solid ${!item.tipoLeche ? "#c92a2a" : "var(--color-muted)"}; background: var(--color-base); color: var(--color-primary);">
+                <label for="milk-${escapeProductHtml(item.id)}" style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 2px;">Tipo de leche para ${escapeProductHtml(item.title)}:</label>
+                <select id="milk-${escapeProductHtml(item.id)}" class="cart-milk-select" aria-label="Tipo de leche para ${escapeProductHtml(item.title)}" data-id="${escapeProductHtml(item.id)}" style="padding: 4px 8px; font-size: 12px; border-radius: 6px; border: 1px solid ${!item.tipoLeche ? "#c92a2a" : "var(--color-muted)"}; background: var(--color-base); color: var(--color-primary);">
                     <option value="" disabled ${!item.tipoLeche ? "selected" : ""}>Selecciona tipo de leche...</option>
                     <option value="Entera" ${item.tipoLeche === "Entera" ? "selected" : ""}>Leche Entera</option>
                     <option value="Semidesnatada" ${item.tipoLeche === "Semidesnatada" ? "selected" : ""}>Leche Semidesnatada</option>
@@ -410,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <button class="cart-qty-btn increase" type="button" aria-label="Añadir una unidad de ${item.title}" data-id="${item.id}">+</button>
                                 </div>
                                 <button class="cart-delete-btn" type="button" aria-label="Eliminar ${item.title} del carrito" data-id="${item.id}">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="3 6 5 6 21 6"></polyline>
                                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                     </svg>
@@ -435,6 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cartDrawer.classList.toggle("active", opening);
       cartOverlay.classList.toggle("active", opening);
       cartDrawer.setAttribute("aria-hidden", String(!opening));
+      cartDrawer.toggleAttribute("inert", !opening);
       if (cartButton) cartButton.setAttribute("aria-expanded", String(opening));
       if (opening) {
         const close = cartDrawer.querySelector("#closeCart");
@@ -450,9 +465,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cartOverlay) cartOverlay.addEventListener("click", toggleCart);
   if (cartDrawer) {
     cartDrawer.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && cartDrawer.classList.contains("active")) {
+      if (!cartDrawer.classList.contains("active")) return;
+      if (event.key === "Escape") {
         event.preventDefault();
         toggleCart();
+      }
+      if (event.key === "Tab") {
+        const controls = [...cartDrawer.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])')].filter(el => !el.hidden && el.getClientRects().length);
+        if (!controls.length) return;
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
   }
@@ -518,11 +547,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!name) return;
 
       const isFav = favorites.includes(name);
-      if (isFav) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
+      btn.classList.toggle("active", isFav);
+      btn.setAttribute("aria-pressed", String(isFav));
+      btn.setAttribute("aria-label", `${isFav ? "Quitar de favoritos" : "Añadir a favoritos"}: ${name}`);
     });
   }
 
@@ -682,7 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="product-detail-topbar">
           <span>HUGOFFEE <span aria-hidden="true">·</span> NUESTRA CARTA</span>
           <button type="button" class="product-detail-close" aria-label="Cerrar detalles del producto" title="Cerrar">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
         <div class="product-detail-layout">
@@ -705,7 +732,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <strong class="product-detail-price">${Number(product.precio).toFixed(2).replace(".", ",")} €</strong>
               <button type="button" class="product-detail-add" data-id="${escapeProductHtml(product.id)}" data-title="${escapeProductHtml(product.nombre)}" data-price="${Number(product.precio)}" data-permite-leche="${!!product.permiteLeche}">Añadir al carrito</button>
               <button type="button" class="product-detail-favorite ${favorite ? "active" : ""}" data-name="${escapeProductHtml(product.nombre)}" aria-pressed="${favorite}" aria-label="${favorite ? "Quitar de favoritos" : "Añadir a favoritos"}">
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <svg aria-hidden="true" focusable="false" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
           </div>
@@ -716,10 +743,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <form class="product-detail-review-form" id="productDetailReviewForm">
             <h3>Escribe tu valoración</h3>
             <div class="product-detail-review-fields">
-              <label for="reviewAuthor">Nombre y apellido
+              <label for="reviewAuthor">Nombre y apellido (obligatorio)
                 <input id="reviewAuthor" name="author" type="text" autocomplete="name" maxlength="80" placeholder="Tu nombre y apellido" aria-describedby="reviewFeedback" required />
               </label>
-              <label for="reviewRating">Tu puntuación
+              <label for="reviewRating">Tu puntuación (obligatorio)
                 <select id="reviewRating" name="rating" aria-describedby="reviewFeedback" required>
                   <option value="" selected disabled>Elige las estrellas</option>
                   <option value="5">★★★★★ (5)</option>
@@ -730,11 +757,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </select>
               </label>
             </div>
-            <label for="reviewComment">Tu opinión
+            <label for="reviewComment">Tu opinión (obligatorio)
               <textarea id="reviewComment" name="comment" rows="3" maxlength="1000" placeholder="Cuéntanos qué te ha parecido..." aria-describedby="reviewFeedback" required></textarea>
             </label>
             <button class="product-detail-add" type="submit">Publicar valoración</button>
-            <p class="product-detail-review-help">Tu opinión se guarda en este navegador.</p>
+            <p class="product-detail-review-help">Escribe tu nombre y al menos un apellido. Tu opinión se guarda en este navegador.</p>
             <p id="reviewFeedback" class="product-detail-review-feedback" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -797,7 +824,7 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDetails();
         return;
       }
-      const addButton = event.target.closest(".product-detail-add");
+      const addButton = event.target.closest(".product-detail-purchase .product-detail-add");
       if (addButton) {
         handleAddToCart(addButton);
         return;
@@ -1025,15 +1052,15 @@ document.addEventListener("DOMContentLoaded", () => {
               <button type="button" class="product-details-open product-details-image-button" data-product-id="${escapeProductHtml(product.id)}" aria-label="Ver detalles de ${escapeProductHtml(product.nombre)}" title="Ver detalles de ${escapeProductHtml(product.nombre)}"><span>Ver detalles</span></button>
           </div>
           <h3><button type="button" class="product-details-open product-details-title-button" data-product-id="${escapeProductHtml(product.id)}">${escapeProductHtml(product.nombre)}</button></h3>
-          <h4>${product.subtitulo}</h4>
-          <h5>${product.descripcion}</h5>
+          <p class="product-card-subtitle">${escapeProductHtml(product.subtitulo || "")}</p>
+          <p class="product-card-description">${escapeProductHtml(product.descripcion || "")}</p>
           ${renderAllergens(product.alergenos)}
           <div class="card-footer">
               <p class="product-price">${product.precio.toFixed(2).replace(".", ",")} €</p>
               <div class="card-actions">                    
-                  <button class="btn-add" data-id="${product.id}" data-title="${product.nombre}" data-price="${product.precio}" ${permiteLecheAttr}>Añadir</button>
-                  <button class="btn-fav ${isFav ? "active" : ""}" aria-label="Añadir a favoritos" data-name="${product.nombre}">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <button type="button" class="btn-add" data-id="${product.id}" data-title="${product.nombre}" data-price="${product.precio}" ${permiteLecheAttr}>Añadir</button>
+                  <button type="button" class="btn-fav ${isFav ? "active" : ""}" aria-label="${isFav ? "Quitar de favoritos" : "Añadir a favoritos"}: ${escapeProductHtml(product.nombre)}" aria-pressed="${isFav}" data-name="${escapeProductHtml(product.nombre)}">
+                      <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
                       </svg>
                   </button>
@@ -1138,15 +1165,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button type="button" class="product-details-open product-details-image-button" data-product-id="${escapeProductHtml(product.id)}" aria-label="Ver detalles de ${escapeProductHtml(product.nombre)}" title="Ver detalles de ${escapeProductHtml(product.nombre)}"><span>Ver detalles</span></button>
             </div>
             <h3><button type="button" class="product-details-open product-details-title-button" data-product-id="${escapeProductHtml(product.id)}">${escapeProductHtml(product.nombre)}</button></h3>
-            <h4>${product.subtitulo}</h4>
-            <h5>${product.descripcion}</h5>
+            <p class="product-card-subtitle">${escapeProductHtml(product.subtitulo || "")}</p>
+            <p class="product-card-description">${escapeProductHtml(product.descripcion || "")}</p>
             ${renderAllergens(product.alergenos)}
             <div class="card-footer">
                 <p class="product-price">${product.precio.toFixed(2).replace(".", ",")} €</p>
                 <div class="card-actions">                    
-                    <button class="btn-add" data-id="${product.id}" data-title="${product.nombre}" data-price="${product.precio}" ${permiteLecheAttr}>Añadir al carrito</button>
-                    <button class="btn-fav ${isFav ? "active" : ""}" aria-label="Añadir a favoritos" data-name="${product.nombre}">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button type="button" class="btn-add" data-id="${product.id}" data-title="${product.nombre}" data-price="${product.precio}" ${permiteLecheAttr}>Añadir al carrito</button>
+                    <button type="button" class="btn-fav ${isFav ? "active" : ""}" aria-label="${isFav ? "Quitar de favoritos" : "Añadir a favoritos"}: ${escapeProductHtml(product.nombre)}" aria-pressed="${isFav}" data-name="${escapeProductHtml(product.nombre)}">
+                        <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
                         </svg>
                     </button>
@@ -1420,6 +1447,7 @@ document.addEventListener("DOMContentLoaded", () => {
         suggestionMessage.textContent =
           "Por favor, selecciona una categoría para tu sugerencia.";
         suggestionMessage.className = "suggestion-message error";
+        suggestionMessage.setAttribute("role", "alert");
         suggestionCategory.setAttribute("aria-invalid", "true");
         suggestionCategory.focus();
         return;
@@ -1429,6 +1457,7 @@ document.addEventListener("DOMContentLoaded", () => {
         suggestionMessage.textContent =
           "Por favor, escribe el contenido de tu sugerencia.";
         suggestionMessage.className = "suggestion-message error";
+        suggestionMessage.setAttribute("role", "alert");
         suggestionText.setAttribute("aria-invalid", "true");
         suggestionText.focus();
         return;
@@ -1453,6 +1482,7 @@ document.addEventListener("DOMContentLoaded", () => {
       suggestionMessage.textContent =
         "¡Muchas gracias por tu idea! La hemos registrado para el equipo de Hugoffee.";
       suggestionMessage.className = "suggestion-message success";
+      suggestionMessage.setAttribute("role", "status");
 
       suggestionForm.reset();
 
@@ -1462,14 +1492,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const privacyBtn = document.getElementById("privacyPolicyBtn");
 
-  if (!document.getElementById("privacyModal")) {
+  if (privacyBtn && !document.getElementById("privacyModal")) {
     const modalOverlay = document.createElement("div");
     modalOverlay.id = "privacyModal";
     modalOverlay.className = "privacy-modal-overlay";
     modalOverlay.innerHTML = `
-      <div class="privacy-modal-content">
-        <button id="closePrivacyModalX" class="privacy-close-x">✕</button>
-        <h3>Política de Privacidad</h3>
+      <div class="privacy-modal-content" role="dialog" aria-modal="true" aria-labelledby="privacyModalHeading" tabindex="-1">
+        <button id="closePrivacyModalX" type="button" aria-label="Cerrar información de privacidad" class="privacy-close-x">✕</button>
+        <h3 id="privacyModalHeading">Política de Privacidad</h3>
         <p>En <strong>Hugoffee</strong> nos tomamos muy en serio la privacidad de tus datos. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestra plataforma web.</p>
         <h4>1. Información que recopilamos</h4>
         <p>Recopilamos datos básicos de registro (nombre, correo electrónico) y datos de tus pedidos e historial de compras para facilitarte una mejor experiencia en nuestra cafetería en Arnedo.</p>
@@ -1491,6 +1521,7 @@ document.addEventListener("DOMContentLoaded", () => {
     privacyBtn.addEventListener("click", (e) => {
       e.preventDefault();
       privacyModal.classList.add("active");
+      privacyModal.querySelector("#closePrivacyModalX").focus();
     });
   }
 

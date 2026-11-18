@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!session) {
                 window.location.href = 'inicioSesion.html';
             } else if (userDropdown) {
-                userDropdown.classList.toggle('active');
+                const expanded = userDropdown.classList.toggle('active');
+                userBtn.setAttribute('aria-expanded', String(expanded));
             }
         });
     }
@@ -133,8 +134,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    document.addEventListener('click', () => {
-        if (userDropdown) userDropdown.classList.remove('active');
+    document.addEventListener('click', (event) => {
+        if (userDropdown && !userDropdown.contains(event.target) && event.target !== userBtn) {
+            userDropdown.classList.remove('active');
+            if (userBtn) userBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && userDropdown && userDropdown.classList.contains('active')) {
+            userDropdown.classList.remove('active');
+            if (userBtn) {
+                userBtn.setAttribute('aria-expanded', 'false');
+                userBtn.focus();
+            }
+        }
     });
 
     const emailInput = document.getElementById('email');
