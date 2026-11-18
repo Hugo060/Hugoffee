@@ -24,6 +24,7 @@
 
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/hugoffeeExtras.css" />
     <link rel="stylesheet" href="/css/modoOscuro.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,7 +36,6 @@
     <script src="/js/main.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
     <script src="/js/seo.js" defer></script>
-    <script src="/js/reseñas.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -51,6 +51,7 @@
         <a href="menu.html" class="active">Menú</a>
         <a href="index.html#nosotros">Nosotros</a>
         <a href="index.html#contacto">Contacto</a>
+        <a href="index.html#preguntas-frecuentes">Preguntas frecuentes</a>
       </nav>
 
       <div class="user-actions">
@@ -272,6 +273,40 @@
         </div>
       </section>
 
+      <section class="advanced-filters" aria-labelledby="advancedFiltersTitle">
+        <div class="advanced-filters-heading">
+          <div>
+            <span class="advanced-filters-eyebrow">PERSONALIZA TU CARTA</span>
+            <h2 id="advancedFiltersTitle">Encuentra tu favorito</h2>
+            <p>Ordena los productos y excluye los alérgenos declarados que prefieras evitar.</p>
+          </div>
+          <button type="button" id="resetAdvancedFilters" class="advanced-filters-reset" disabled>Limpiar filtros</button>
+        </div>
+        <div class="advanced-filters-controls">
+          <div class="advanced-sort-field">
+            <label for="sortProductsSelect">Ordenar por</label>
+            <select id="sortProductsSelect">
+              <option value="default">Orden original</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="rating-desc">Mejor valoración</option>
+              <option value="name-asc">Nombre: A a Z</option>
+            </select>
+          </div>
+          <fieldset class="advanced-allergen-field">
+            <legend>Excluir alérgenos declarados</legend>
+            <div class="advanced-allergen-options">
+              <label><input class="filter-allergen" type="checkbox" value="gluten" /> Gluten</label>
+              <label><input class="filter-allergen" type="checkbox" value="lacteos" /> Lácteos</label>
+              <label><input class="filter-allergen" type="checkbox" value="frutos_secos" /> Frutos secos</label>
+              <label><input class="filter-allergen" type="checkbox" value="huevos" /> Huevos</label>
+            </div>
+          </fieldset>
+        </div>
+        <p class="advanced-filters-disclaimer">Los filtros se basan en los alérgenos indicados en las fichas; no garantizan ausencia de trazas ni contaminación cruzada.</p>
+        <p id="filterResultsCount" class="advanced-filters-count" role="status" aria-live="polite" hidden></p>
+      </section>
+
       <section class="products-section active" id="productsSection">
         <div class="products-grid" id="productsGrid"></div>
       </section>
@@ -305,22 +340,18 @@
       <div class="footer-columns">
         <div class="footer-col brand-col">
           <h4>Hugoffee</h4>
-          <p>
-            Café cercano, identidad serena. Un sistema cálido y contemporáneo
-            pensado para comunicar calidad sin artificios.
-          </p>
+          <p>Café cercano, identidad serena. Un sistema cálido y contemporáneo pensado para comunicar calidad sin artificios.</p>
         </div>
-
         <div class="footer-col">
           <h5>Enlaces</h5>
           <ul>
-            <li><a href="/index.html">Inicio</a></li>
-            <li><a href="/menu.html">Menú</a></li>
-            <li><a href="/index.html#nosotros">Sobre Nosotros</a></li>
-            <li><a href="/index.html#contacto">Contacto</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="menu.html">Menú</a></li>
+            <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="index.html#preguntas-frecuentes">Preguntas frecuentes</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h5>Síguenos</h5>
           <div class="social-links">
@@ -329,7 +360,6 @@
             <a href="#">Twitter</a>
           </div>
         </div>
-
         <div class="footer-col">
           <h5>Contacto</h5>
           <p>Dirección: Paseo Constitución, Arnedo</p>
@@ -337,12 +367,8 @@
           <p>Email: hello@hugoffee.com</p>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>
-          © 2026 Hugoffee - Todos los derechos reservados |
-          <a href="#" id="privacyPolicyBtn">Política de Privacidad</a>
-        </p>
+        <p>© 2026 Hugoffee - Todos los derechos reservados | <a href="avisoLegal.html">Aviso Legal</a> | <a href="privacidad.html">Política de Privacidad</a> | <a href="condiciones.html">Condiciones de Compra</a></p>
       </div>
     </footer>
   </body>

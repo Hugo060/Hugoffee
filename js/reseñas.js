@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const modalContent = document.createElement('div');
     modalContent.id = 'reviewsModalContent';
-    modalContent.style.cssText = 'background: var(--color-base, #ffffff); border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transform: scale(0.95); transition: transform 0.3s ease; overflow: hidden;';
+    modalContent.style.cssText = 'background: var(--color-base, #ffffff); border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transform: scale(0.95); transition: transform 0.3s ease; overflow: hidden; border: 1px solid var(--color-muted);';
     
     modalOverlay.appendChild(modalContent);
     document.body.appendChild(modalOverlay);
@@ -120,17 +120,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <h3 style="margin: 0; font-size: 20px; color: var(--color-primary);">${productName}</h3>
                     <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
                         ${starsHtml}
-                        <span style="font-weight: 700; font-size: 16px;">${summary.average}</span>
+                        <span style="font-weight: 700; font-size: 16px; color: var(--color-primary);">${summary.average}</span>
                         <span style="color: var(--color-muted); font-size: 13px;">(${summary.count} valoraciones)</span>
                     </div>
                 </div>
                 <button id="closeModalBtn" style="background: none; border: none; font-size: 28px; cursor: pointer; color: var(--color-muted); line-height: 1;">&times;</button>
             </div>
 
-            <div style="padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; background: #faf9f7;">
+            <div style="padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; background: var(--color-secondary);">
                 ${reviews.length === 0 ? '<p style="text-align: center; color: var(--color-muted); padding: 20px 0;">No hay reseñas aún. ¡Sé el primero!</p>' : 
                     reviews.map(r => `
-                        <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #eaeaea; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                        <div style="background: var(--color-base); padding: 14px; border-radius: 8px; border: 1px solid var(--color-muted); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
                                 <strong style="color: var(--color-primary); font-size: 14px;">${r.name}</strong>
                                 <span style="font-size: 12px; color: var(--color-muted);">${r.date}</span>
@@ -144,8 +144,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             <form id="addReviewForm" style="padding: 20px; border-top: 1px solid var(--color-secondary); background: var(--color-base); display: flex; flex-direction: column; gap: 12px;">
                 <h4 style="margin: 0; font-size: 16px; color: var(--color-primary);">Añadir tu valoración</h4>
                 <div style="display: flex; gap: 12px;">
-                    <input type="text" id="reviewAuthor" placeholder="Tu nombre" required style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); font-family: inherit;" />
-                    <select id="reviewRating" required style="padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); font-family: inherit; font-weight: 600;">
+                    <input type="text" id="reviewAuthor" placeholder="Tu nombre" required style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); background: var(--color-base); color: var(--color-primary); font-family: inherit;" />
+                    <select id="reviewRating" required style="padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); background: var(--color-base); color: var(--color-primary); font-family: inherit; font-weight: 600;">
                         <option value="5">5 Estrellas</option>
                         <option value="4">4 Estrellas</option>
                         <option value="3">3 Estrellas</option>
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <option value="1">1 Estrella</option>
                     </select>
                 </div>
-                <textarea id="reviewComment" placeholder="Cuéntanos tu experiencia..." rows="2" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); font-family: inherit; resize: vertical;"></textarea>
+                <textarea id="reviewComment" placeholder="Cuéntanos tu experiencia..." rows="2" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--color-muted); background: var(--color-base); color: var(--color-primary); font-family: inherit; resize: vertical;"></textarea>
                 <button type="submit" class="btn-primary" style="padding: 10px; font-size: 15px; border-radius: 6px; border: none; cursor: pointer;">Publicar Reseña</button>
             </form>
         `;
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const gradId = `halfStar-${uniqueId}-${i}`.replace(/[^a-zA-Z0-9-]/g, '');
                 stars += `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="${gradId}"><stop offset="50%" stop-color="#EAB308" /><stop offset="50%" stop-color="transparent" /></linearGradient></defs><polygon fill="url(#${gradId})" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
             } else {
-                stars += `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+                stars += `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
             }
         }
         return `<div style="display: flex; gap: 2px; align-items: center;">${stars}</div>`;

@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cart = JSON.parse(localStorage.getItem('hugoffee_cart')) || JSON.parse(sessionStorage.getItem('hugoffee_cart_guest')) || [];
     }
 
+    if (!cart || cart.length === 0) {
+        window.location.href = 'menu.html';
+        return;
+    }
+
     const unselectedMilkItem = cart.find(item => item.permiteLeche && !item.tipoLeche);
     if (unselectedMilkItem) {
         alert("Hay productos que requieren selección de leche. Serás redirigido al menú/carrito.");
@@ -33,50 +38,197 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    function populateTimeSlots() {
-        if (!horaSelect) return;
-        horaSelect.innerHTML = '<option value="" disabled selected>Selecciona una hora...</option>';
-        for (let h = 8; h <= 21; h++) {
-            const hourStr = String(h).padStart(2, '0');
-            
-            const option00 = document.createElement('option');
-            option00.value = `${hourStr}:00`;
-            option00.textContent = `${hourStr}:00`;
-            horaSelect.appendChild(option00);
+    const fechaPedido = document.getElementById('fechaPedido');
+    const resumenProgramacion = document.getElementById('resumenProgramacion');
+    const resumenEntrega = document.getElementById('resumenEntrega');
+    const horaAyuda = document.getElementById('horaAyuda');
+    const scheduleRadios = document.querySelectorAll('input[name="opcionHorario"]');
+    const dateChips = document.querySelectorAll('.checkout-date-chip');
+    const horarioDia = document.getElementById('horarioDia');
+    const tiempoPreparacion = document.getElementById('tiempoPreparacion');
+    const detallePreparacion = document.getElementById('detallePreparacion');
+    const diasAntelacion = 7;
+    const minutosIntervalo = 15;
+    const aperturaPorDia = [9 * 60, 8 * 60, 8 * 60, 8 * 60, 8 * 60, 8 * 60, 9 * 60];
+    const cierrePorDia = [18 * 60, 20 * 60, 20 * 60, 20 * 60, 20 * 60, 20 * 60, 20 * 60];
+    let productosCatalogo = [];
 
-            if (h < 21) {
-                const option30 = document.createElement('option');
-                option30.value = `${hourStr}:30`;
-                option30.textContent = `${hourStr}:30`;
-                horaSelect.appendChild(option30);
-            }
-        }
+    const money = n => Number(n).toFixed(2).replace('.', ',');
+    const numeroProductos = () => cart.reduce((total, item) => total + Math.max(1, Number(item.quantity) || 1), 0);
+    const esDomicilio = () => document.querySelector('input[name="tipoEntrega"]:checked')?.value === 'domicilio';
+    const formatoHora = minutos => `${String(Math.floor(minutos / 60)).padStart(2, '0')}:${String(minutos % 60).padStart(2, '0')}`;
+
+    function fechaLocal(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
     }
 
-    populateTimeSlots();
+    function parseFechaLocal(value) {
+        const parts = value.split('-').map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
 
-    radiosEntrega.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            if (e.target.value === 'domicilio') {
-                direccionRow.style.display = 'block';
-                direccionInput.setAttribute('required', 'true');
-            } else {
-                direccionRow.style.display = 'none';
-                direccionInput.removeAttribute('required');
-            }
-            renderSummary();
-        });
-    });
+    function fechaLegible(date) {
+        return new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).format(date);
+    }
 
-    tipoProgramacion.addEventListener('change', (e) => {
-        if (e.target.value === 'programar') {
-            horaProgramadaRow.style.display = 'block';
-            horaSelect.setAttribute('required', 'true');
-        } else {
-            horaProgramadaRow.style.display = 'none';
-            horaSelect.removeAttribute('required');
+    function perfilProducto(item) {
+        const producto = productosCatalogo.find(p => p.id === item.id);
+        const id = String(item.id || '').toLowerCase();
+        const texto = `${item.title || ''} ${producto?.nombre || ''}`.toLowerCase();
+        const categoria = producto?.categoria || '';
+        const subcategoria = producto?.subcategoria || '';
+        if (categoria === 'granos' || /granos|bolsa.*café|café.*bolsa/.test(texto)) return 1.5;
+        if (/agua-fria|agua mineral|botella de agua/.test(id + ' ' + texto)) return 0.5;
+        if (/frapp|batido|smoothie|zumo natural/.test(id + ' ' + texto)) return 4.5;
+        if (/tostada|sandwich|sándwich|bocadillo|panini|bagel/.test(id + ' ' + texto)) return 6;
+        if (categoria === 'comida' || /croissant|cruasán|tarta|brownie|bizcocho|galleta|napolitana/.test(texto)) return subcategoria === 'salado' ? 5 : 2;
+        if (/solo|espresso|expresso|americano/.test(id + ' ' + texto)) return 2;
+        if (/latte|capuchino|cappuccino|moca|macchiato|bombón|leche|chai|chocolate/.test(id + ' ' + texto)) return 3.5;
+        return 3;
+    }
+
+    function estimarPreparacion() {
+        const unidades = numeroProductos();
+        const trabajo = cart.reduce((suma, item) => suma + perfilProducto(item) * Math.max(1, Number(item.quantity) || 1), 0);
+        const minutos = Math.ceil((2 + trabajo * 0.85 + Math.max(0, unidades - 1) * 0.35) / 5) * 5;
+        return Math.max(5, minutos);
+    }
+
+    function estimarTotal() {
+        return estimarPreparacion() + (esDomicilio() ? 15 : 0);
+    }
+
+    function horarioDe(date) {
+        const indice = date.getDay();
+        return { apertura: aperturaPorDia[indice], cierre: cierrePorDia[indice] };
+    }
+
+    function actualizarLimites() {
+        const hoy = new Date();
+        const max = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + diasAntelacion);
+        fechaPedido.min = fechaLocal(hoy);
+        fechaPedido.max = fechaLocal(max);
+    }
+
+    function obtenerFechaProgramada() {
+        if (!fechaPedido.value || !horaSelect.value) return null;
+        const [h, m] = horaSelect.value.split(':').map(Number);
+        const date = parseFechaLocal(fechaPedido.value);
+        date.setHours(h, m, 0, 0);
+        return date;
+    }
+
+    function obtenerHorasValidas() {
+        if (!fechaPedido.value) return [];
+        const fecha = parseFechaLocal(fechaPedido.value);
+        const hoy = new Date();
+        const minFecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+        const maxFecha = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + diasAntelacion);
+        if (fecha < minFecha || fecha > maxFecha) return [];
+        const horario = horarioDe(fecha);
+        const minimo = hoy.getTime() + (estimarTotal() + 5) * 60000;
+        const opciones = [];
+        for (let minutos = Math.ceil((horario.apertura + estimarTotal()) / minutosIntervalo) * minutosIntervalo; minutos <= horario.cierre - 15; minutos += minutosIntervalo) {
+            const fechaHora = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), Math.floor(minutos / 60), minutos % 60);
+            if (fechaHora.getTime() >= minimo) opciones.push(formatoHora(minutos));
         }
-    });
+        return opciones;
+    }
+
+    function generarHoras() {
+        const anterior = horaSelect.value;
+        actualizarLimites();
+        horaSelect.replaceChildren();
+        horaSelect.disabled = true;
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = fechaPedido.value ? 'Selecciona una hora' : 'Selecciona primero una fecha';
+        horaSelect.appendChild(placeholder);
+        if (!fechaPedido.value) {
+            horaAyuda.textContent = 'Selecciona primero el día de tu pedido.';
+            horarioDia.textContent = 'Selecciona una fecha';
+            actualizarVistaHorario();
+            return;
+        }
+        const fecha = parseFechaLocal(fechaPedido.value);
+        const horario = horarioDe(fecha);
+        horarioDia.textContent = `${formatoHora(horario.apertura)} – ${formatoHora(horario.cierre)}`;
+        const horas = obtenerHorasValidas();
+        horas.forEach(hora => {
+            const opcion = document.createElement('option');
+            opcion.value = hora;
+            opcion.textContent = hora;
+            horaSelect.appendChild(opcion);
+        });
+        horaSelect.disabled = horas.length === 0;
+        if (horas.includes(anterior)) horaSelect.value = anterior;
+        else horaSelect.value = '';
+        placeholder.textContent = horas.length ? 'Selecciona una hora' : 'Sin horarios disponibles';
+        horaAyuda.textContent = horas.length ? `${horas.length} franjas disponibles en intervalos de 15 minutos.` : 'No hay franjas disponibles para ese día con el tiempo necesario para preparar tu pedido. Elige otra fecha.';
+        actualizarVistaHorario();
+    }
+
+    horaSelect.addEventListener('change', actualizarVistaHorario);
+
+    function actualizarVistaHorario() {
+        const programado = tipoProgramacion.value === 'programar';
+        const duracion = estimarPreparacion();
+        const adicional = esDomicilio() ? 15 : 0;
+        tiempoPreparacion.textContent = `${duracion} min${adicional ? ` + ${adicional} min de reparto` : ''}`;
+        detallePreparacion.textContent = `Estimación orientativa para ${numeroProductos()} ${numeroProductos() === 1 ? 'producto' : 'productos'}. Puede variar según la carga de trabajo de la cafetería.`;
+        const date = obtenerFechaProgramada();
+        const texto = programado
+            ? date ? `Tu pedido está programado para el ${fechaLegible(date)} a las ${horaSelect.value}.` : 'Selecciona una fecha y una hora disponible.'
+            : `Tu pedido estará listo aproximadamente en ${estimarTotal()} minutos${esDomicilio() ? ' para su entrega' : ' para recoger'}.`;
+        resumenProgramacion.lastElementChild.textContent = texto;
+        const envio = esDomicilio() ? 'Envío a domicilio' : 'Recogida en tienda';
+        resumenEntrega.textContent = `${envio} · ${programado ? (date ? `${fechaLegible(date)} · ${horaSelect.value}` : 'Pendiente de elegir horario') : `Estimación: ${estimarTotal()} min`}`;
+        dateChips.forEach(chip => {
+            const target = new Date();
+            target.setDate(target.getDate() + Number(chip.dataset.day));
+            chip.classList.toggle('active', fechaPedido.value === fechaLocal(target));
+        });
+    }
+
+    function cambiarProgramacion(value) {
+        tipoProgramacion.value = value;
+        horaProgramadaRow.hidden = value !== 'programar';
+        fechaPedido.required = value === 'programar';
+        document.querySelectorAll('.checkout-time-choice').forEach(c => c.classList.toggle('is-selected', c.querySelector('input').value === value));
+        if (value === 'programar' && !fechaPedido.value) fechaPedido.value = fechaLocal(new Date());
+        if (value === 'programar') generarHoras();
+        actualizarVistaHorario();
+    }
+
+    actualizarLimites();
+    scheduleRadios.forEach(r => r.addEventListener('change', () => cambiarProgramacion(r.value)));
+    dateChips.forEach(chip => chip.addEventListener('click', () => {
+        const target = new Date();
+        target.setDate(target.getDate() + Number(chip.dataset.day));
+        fechaPedido.value = fechaLocal(target);
+        generarHoras();
+    }));
+    fechaPedido.addEventListener('change', generarHoras);
+    radiosEntrega.forEach(radio => radio.addEventListener('change', (e) => {
+        const domicilio = e.target.value === 'domicilio';
+        direccionRow.style.display = domicilio ? 'block' : 'none';
+        direccionInput.required = domicilio;
+        renderSummary();
+        generarHoras();
+    }));
+    cambiarProgramacion('ahora');
+
+    fetch('/datos/productos.json').then(r => r.ok ? r.json() : Promise.reject()).then(data => {
+        productosCatalogo = Array.isArray(data.productos) ? data.productos : [];
+        generarHoras();
+    }).catch(() => {});
+
+    setInterval(() => {
+        if (tipoProgramacion.value === 'programar') generarHoras();
+    }, 60000);
 
     function getSubtotalProductos() {
         return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -108,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const itemEl = document.createElement('div');
             itemEl.style.display = 'flex';
-            itemEl.style.justify = 'space-between';
+            itemEl.style.justifyContent = 'space-between';
             itemEl.style.marginBottom = '8px';
             itemEl.style.fontSize = '14px';
             itemEl.innerHTML = `
@@ -123,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const suplemento = getSuplementoDomicilio();
             const supEl = document.createElement('div');
             supEl.style.display = 'flex';
-            supEl.style.justify = 'space-between';
+            supEl.style.justifyContent = 'space-between';
             supEl.style.marginBottom = '8px';
             supEl.style.fontSize = '14px';
             supEl.style.color = 'var(--color-accent)';
@@ -134,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             } else {
                 supEl.innerHTML = `
-                    <span>Envío a domicilio (Pedido &gt; 20€)</span>
+                    <span>Envío a domicilio (desde 20 €)</span>
                     <strong>Gratis</strong>
                 `;
             }
@@ -147,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderSummary();
 
-    function showNotification(message) {
+    function showNotification(message, isError = false) {
         const existingOverlay = document.getElementById('toastOverlay');
         if (existingOverlay) existingOverlay.remove();
 
@@ -179,10 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.transition = 'transform 0.3s ease';
 
         modal.innerHTML = `
-            <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
-            <h3 style="margin-bottom: 10px; font-size: 22px; font-weight: 700;">¡Pedido Exitoso!</h3>
-            <p style="font-size: 15px; color: var(--color-muted, #666); margin-bottom: 20px;">${message}</p>
-            <div style="font-size: 13px; font-weight: 600; color: var(--color-accent);">Redirigiendo a tus compras...</div>
+            <h3 style="margin-bottom: 10px; font-size: 22px; font-weight: 700;">${isError ? 'Atención' : '¡Pedido Exitoso!'}</h3>
+            <p style="font-size: 15px; color: var(--color-primary); opacity: 0.85; margin-bottom: 20px;">${message}</p>
+            <div style="font-size: 13px; font-weight: 600; color: var(--color-accent);">${isError ? 'Redirigiendo al menú...' : 'Redirigiendo a tus compras...'}</div>
         `;
 
         overlay.appendChild(modal);
@@ -203,21 +354,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (cart.length === 0) {
-                showNotification('Tu carrito está vacío.');
+            if (!cart || cart.length === 0) {
+                showNotification('Tu carrito está vacío.', true);
+                setTimeout(() => {
+                    window.location.href = 'menu.html';
+                }, 1500);
                 return;
             }
 
             const tipoEntrega = document.querySelector('input[name="tipoEntrega"]:checked').value;
-            let horaElegida = 'Lo antes posible';
+            let horaElegida = `Lo antes posible (aprox. ${estimarTotal()} min)`;
+            let fechaProgramada = null;
+            let fechaHoraProgramada = null;
 
             if (tipoProgramacion.value === 'programar') {
-                const horaVal = horaSelect.value;
-                if (!horaVal) {
-                    showNotification('Por favor, selecciona una hora para programar tu pedido.');
+                actualizarLimites();
+                generarHoras();
+                const seleccion = obtenerFechaProgramada();
+                if (!seleccion || !obtenerHorasValidas().includes(horaSelect.value) ||
+                    fechaPedido.value < fechaPedido.min || fechaPedido.value > fechaPedido.max) {
+                    horaAyuda.textContent = 'Selecciona una fecha y una hora futuras válidas antes de confirmar.';
+                    fechaPedido.focus();
                     return;
                 }
-                horaElegida = horaVal;
+                fechaProgramada = fechaPedido.value;
+                fechaHoraProgramada = `${fechaPedido.value}T${horaSelect.value}:00`;
+                horaElegida = `${fechaLegible(seleccion)} a las ${horaSelect.value}`;
             }
 
             let subtotal = getSubtotalProductos();
@@ -231,6 +393,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 total: total,
                 tipoEntrega: tipoEntrega === 'domicilio' ? 'Envío a domicilio' : 'Recogida en tienda',
                 programacion: horaElegida,
+                fechaProgramada,
+                fechaHoraProgramada,
+                tiempoPreparacionEstimado: estimarPreparacion(),
+                tiempoRepartoEstimado: esDomicilio() ? 15 : 0,
                 envio: {
                     nombre: document.getElementById('nombreEnvio').value,
                     telefono: document.getElementById('telefonoEnvio').value,
@@ -247,8 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             localStorage.removeItem(cartKey);
             localStorage.removeItem('hugoffee_cart');
+            sessionStorage.removeItem('hugoffee_cart_guest');
 
-            showNotification('¡Tu pedido se ha realizado con éxito!');
+            showNotification('Tu pedido se ha guardado en el historial. ¡Gracias por elegir Hugoffee!');
             setTimeout(() => {
                 window.location.href = 'compras.html';
             }, 1800);

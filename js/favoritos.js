@@ -83,9 +83,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ${product.badge ? `<span class="badge">${product.badge}</span>` : '<span class="badge">FAVORITO</span>'}
                 </div>
                 ${productImage}
-                <h4>${title}</h4>
-                <h5>${subtitle}</h5>
-                <h6>${description}</h6>
+                <!-- APLICADOS LOS CAMBIOS DE JERARQUÍA DE ENCABEZADOS -->
+                <h3>${title}</h3>
+                <h4>${subtitle}</h4>
+                <h5>${description}</h5>
                 <div class="card-footer">
                     <p class="product-price">${priceFormatted} €</p>
                     <div class="card-actions">

@@ -86,3 +86,24 @@ body.dark-mode .dropdown-item.logout:hover {
   background-color: #3b1e1e;
   color: #ff8787;
 }
+
+body.dark-mode .product-card h4,
+body.dark-mode .product-card h5,
+body.dark-mode .product-card h6 {
+  color: #EFE6DD !important; 
+}
+
+body.dark-mode .card-rating,
+body.dark-mode .card-rating span {
+  color: #D1C7BD !important; 
+}
+
+body.dark-mode .btn-delete-order {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+body.dark-mode .btn-delete-order:hover {
+  background-color: #3b1e1e;
+  color: #ff8787;
+}

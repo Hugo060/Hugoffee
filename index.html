@@ -25,6 +25,7 @@
 
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/hugoffeeExtras.css" />
     <link rel="stylesheet" href="/css/modoOscuro.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,8 +35,8 @@
     />
     <script src="/js/auth.js" defer></script>
     <script src="/js/main.js" defer></script>
+    <script src="/js/cafeIdeal.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
-    <script src="/js/reseñas.js" defer></script>
     <script src="/js/seo.js" defer></script>
   </head>
   <body>
@@ -54,6 +55,7 @@
         <a href="menu.html">Menú</a>
         <a href="index.html#nosotros">Nosotros</a>
         <a href="index.html#contacto">Contacto</a>
+        <a href="index.html#preguntas-frecuentes">Preguntas frecuentes</a>
       </nav>
 
       <div class="user-actions">
@@ -232,6 +234,41 @@
         </div>
       </section>
 
+      <section class="coffee-month-section" id="cafe-del-mes" aria-labelledby="coffeeMonthHeading" hidden>
+        <div class="coffee-month-shell">
+          <div class="coffee-month-photo">
+            <span class="coffee-month-photo-label">La recomendación de Hugoffee</span>
+            <img id="coffeeMonthImage" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="coffee-month-copy">
+            <span class="coffee-month-eyebrow">☕ NUESTRA ELECCIÓN · NOVIEMBRE</span>
+            <h2 id="coffeeMonthHeading">Café del mes</h2>
+            <p class="coffee-month-name" id="coffeeMonthName"></p>
+            <p class="coffee-month-story">Hay cafés que saben a un momento especial. Este mes elegimos una taza reconfortante, con el aroma de las especias de otoño y ese toque cremoso perfecto para disfrutar con calma.</p>
+            <p class="coffee-month-description" id="coffeeMonthDescription"></p>
+            <div class="coffee-month-bottom">
+              <span class="coffee-month-price" id="coffeeMonthPrice"></span>
+              <button class="coffee-month-button product-details-open" type="button" id="coffeeMonthButton" data-product-id="pumpkin-spice-latte">Quiero probarlo <span aria-hidden="true">→</span></button>
+            </div>
+            <p class="coffee-month-note">Consulta todos los detalles, alérgenos y opiniones antes de pedirlo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="coffee-quiz-section" id="cafe-ideal" aria-labelledby="coffeeQuizHeading">
+        <div class="coffee-quiz-shell">
+          <div class="coffee-quiz-intro">
+            <span class="coffee-quiz-eyebrow">☕ TU MOMENTO HUGOFFEE</span>
+            <h2 id="coffeeQuizHeading">¿Cuál es tu café ideal?</h2>
+            <p>No todos tenemos el mismo gusto. Responde cuatro preguntas y descubre qué bebida de nuestra carta va más contigo.</p>
+            <div class="coffee-quiz-features"><span>✦ 4 preguntas</span><span>✦ Sin registro</span><span>✦ Recomendaciones reales</span></div>
+          </div>
+          <div class="coffee-quiz-panel" id="coffeeQuizApp" aria-live="polite">
+            <div class="coffee-quiz-start"><span class="coffee-quiz-cup" aria-hidden="true">☕</span><h3>Tu taza perfecta te espera</h3><p>Solo tienes que elegir lo que más te apetece.</p><button type="button" class="coffee-quiz-primary" data-quiz-start>Descubrir mi café <span aria-hidden="true">→</span></button></div>
+          </div>
+        </div>
+      </section>
+
       <section class="info-section" id="nosotros">
         <article class="story-box">
           <h3>Café recién molido & Repostería</h3>
@@ -394,6 +431,43 @@
           </form>
         </div>
       </section>
+      <section class="hugoffee-faq" id="preguntas-frecuentes" aria-labelledby="faqTitulo">
+        <div class="hugoffee-faq-head">
+          <span class="hugoffee-faq-eyebrow">¿TIENES ALGUNA DUDA?</span>
+          <h2 id="faqTitulo">Preguntas frecuentes</h2>
+          <p>Todo lo que necesitas saber antes de realizar tu pedido.</p>
+        </div>
+        <div class="hugoffee-faq-list">
+          <details class="hugoffee-faq-item">
+            <summary>¿Cómo puedo hacer un pedido?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">Explora la carta, añade los productos al carrito y selecciona «Tramitar pedido». Para finalizar, inicia sesión e indica cómo y cuándo prefieres recibirlo.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Puedo elegir una hora de recogida o entrega?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">Sí. En la pantalla de compra puedes elegir «Lo antes posible» o programar una fecha y hora de las disponibles. Las franjas tienen en cuenta la preparación estimada del pedido.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Cuál es el horario para programar pedidos?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">El horario configurado en esta demostración es de lunes a viernes de 08:00 a 20:00, sábados de 09:00 a 20:00 y domingos de 09:00 a 18:00. La disponibilidad concreta se muestra al seleccionar la fecha.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Tiene algún coste el envío a domicilio?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">La entrega a domicilio añade 2,00 € cuando el subtotal de productos es inferior a 20,00 €. A partir de ese importe, el suplemento de entrega es de 0,00 €. Verás el total actualizado antes de confirmar.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Puedo consultar los alérgenos o cambiar la leche?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">Puedes revisar los alérgenos en la ficha de cada producto y utilizar los filtros de la carta. En las bebidas que lo permiten, selecciona el tipo de leche antes de terminar el pedido.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Dónde puedo encontrar mi ticket de compra?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">En «Mis compras», abre el pedido que quieras consultar y pulsa «Descargar ticket PDF». El documento incluye productos, cantidades, precios y datos de recogida o entrega.</div>
+          </details>
+          <details class="hugoffee-faq-item">
+            <summary>¿Se realizan pagos reales a través de esta web?<span class="hugoffee-faq-symbol" aria-hidden="true"></span></summary>
+            <div class="hugoffee-faq-answer">No. Hugoffee es un proyecto demostrativo: los pedidos y el historial se guardan localmente en el navegador, sin pasarela de pago ni cobros reales.</div>
+          </details>
+        </div>
+      </section>
     </main>
 
     <div id="cartOverlay" class="cart-overlay"></div>
@@ -424,12 +498,8 @@
       <div class="footer-columns">
         <div class="footer-col brand-col">
           <h4>Hugoffee</h4>
-          <p>
-            Café cercano, identidad serena. Un sistema cálido y contemporáneo
-            pensado para comunicar calidad sin artificios.
-          </p>
+          <p>Café cercano, identidad serena. Un sistema cálido y contemporáneo pensado para comunicar calidad sin artificios.</p>
         </div>
-
         <div class="footer-col">
           <h5>Enlaces</h5>
           <ul>
@@ -437,9 +507,9 @@
             <li><a href="menu.html">Menú</a></li>
             <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
             <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="index.html#preguntas-frecuentes">Preguntas frecuentes</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h5>Síguenos</h5>
           <div class="social-links">
@@ -448,20 +518,15 @@
             <a href="#">Twitter</a>
           </div>
         </div>
-
-        <div class="footer-col">
+        <div class="footer-col" id="contacto">
           <h5>Contacto</h5>
           <p>Dirección: Paseo Constitución, Arnedo</p>
           <p>Teléfono: +34 912 246 678</p>
           <p>Email: hello@hugoffee.com</p>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>
-          © 2026 Hugoffee - Todos los derechos reservados |
-          <a href="#" id="privacyPolicyBtn">Política de Privacidad</a>
-        </p>
+        <p>© 2026 Hugoffee - Todos los derechos reservados | <a href="avisoLegal.html">Aviso Legal</a> | <a href="privacidad.html">Política de Privacidad</a> | <a href="condiciones.html">Condiciones de Compra</a></p>
       </div>
     </footer>
   </body>
