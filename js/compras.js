@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="hugoffee-order-actions">
-                    <button class="btn-ticket-order" type="button" data-id="${order.id}">Descargar ticket PDF</button>
+                    <button class="btn-ticket-order" type="button" data-id="${order.id}" style="padding: 8px 16px; background: var(--color-primary); color: var(--color-base); border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">Descargar ticket PDF</button>
                     <button class="btn-repeat-order" data-id="${order.id}" style="padding: 8px 16px; background: var(--color-primary); color: var(--color-base); border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;">Repetir compra</button>
                     <button class="btn-delete-order" data-id="${order.id}">Eliminar</button>
                 </div>
