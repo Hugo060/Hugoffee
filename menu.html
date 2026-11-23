@@ -36,6 +36,7 @@
     <script src="/js/main.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
     <script src="/js/seo.js" defer></script>
+  <script src="/js/accesibilidad.js" defer></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -183,8 +184,8 @@
         </p>
       </section>
 
-      <section class="category-selector">
-        <button class="main-cat-btn" data-category="comida">
+      <section class="category-selector" aria-label="Categorías de productos">
+        <button type="button" class="main-cat-btn" data-category="comida" aria-pressed="false" aria-expanded="false" aria-controls="subcategories-comida">
           <svg aria-hidden="true" focusable="false"
             width="28"
             height="28"
@@ -204,7 +205,7 @@
           <span>Comida</span>
         </button>
 
-        <button class="main-cat-btn" data-category="bebida">
+        <button type="button" class="main-cat-btn" data-category="bebida" aria-pressed="false" aria-expanded="false" aria-controls="subcategories-bebida">
           <svg aria-hidden="true" focusable="false"
             width="28"
             height="28"
@@ -224,7 +225,7 @@
           <span>Bebida</span>
         </button>
 
-        <button class="main-cat-btn" data-category="granos">
+        <button type="button" class="main-cat-btn" data-category="granos" aria-pressed="false" aria-expanded="false" aria-controls="subcategories-granos">
           <svg aria-hidden="true" focusable="false"
             width="28"
             height="28"
@@ -245,31 +246,31 @@
       </section>
 
       <section class="subcategory-wrapper" id="subcategoryWrapper">
-        <div class="subcategories-group" id="subcategories-comida">
-          <button class="sub-cat-btn active" data-subcategory="todos">
+        <div class="subcategories-group" id="subcategories-comida" role="group" aria-label="Subcategorías de comida">
+          <button type="button" class="sub-cat-btn active" aria-pressed="true" data-subcategory="todos">
             Toda la comida
           </button>
-          <button class="sub-cat-btn" data-subcategory="dulce">Dulce</button>
-          <button class="sub-cat-btn" data-subcategory="salado">Salado</button>
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="dulce">Dulce</button>
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="salado">Salado</button>
         </div>
 
-        <div class="subcategories-group" id="subcategories-bebida">
-          <button class="sub-cat-btn active" data-subcategory="todos">
+        <div class="subcategories-group" id="subcategories-bebida" role="group" aria-label="Subcategorías de bebidas">
+          <button type="button" class="sub-cat-btn active" aria-pressed="true" data-subcategory="todos">
             Todas las bebidas
           </button>
-          <button class="sub-cat-btn" data-subcategory="caliente">
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="caliente">
             Caliente
           </button>
-          <button class="sub-cat-btn" data-subcategory="frio">Frío</button>
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="frio">Frío</button>
         </div>
 
-        <div class="subcategories-group" id="subcategories-granos">
-          <button class="sub-cat-btn active" data-subcategory="todos">
+        <div class="subcategories-group" id="subcategories-granos" role="group" aria-label="Subcategorías de granos de café">
+          <button type="button" class="sub-cat-btn active" aria-pressed="true" data-subcategory="todos">
             Todos los granos
           </button>
-          <button class="sub-cat-btn" data-subcategory="origen">Origen</button>
-          <button class="sub-cat-btn" data-subcategory="mezcla">Mezcla</button>
-          <button class="sub-cat-btn" data-subcategory="descafeinado">
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="origen">Origen</button>
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="mezcla">Mezcla</button>
+          <button type="button" class="sub-cat-btn" aria-pressed="false" data-subcategory="descafeinado">
             Descafeinado
           </button>
         </div>

@@ -44,6 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (slides.length > 0) {
     let currentSlide = 0;
+    let userPaused = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    let interactionPaused = false;
+    const pauseButton = document.getElementById("heroPauseButton");
+    const syncPauseButton = () => {
+      if (!pauseButton) return;
+      pauseButton.textContent = userPaused ? "Reanudar" : "Pausar";
+      pauseButton.setAttribute("aria-pressed", String(userPaused));
+      pauseButton.setAttribute(
+        "aria-label",
+        userPaused
+          ? "Reanudar carrusel de portada"
+          : "Pausar carrusel de portada",
+      );
+    };
 
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -57,24 +73,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    let carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setInterval(() => {
-      if (carouselPaused || document.hidden) return;
+      if (userPaused || interactionPaused || document.hidden) return;
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }, 5000);
     const heroSection = document.querySelector(".hero-section");
     if (heroSection) {
-      heroSection.addEventListener("mouseenter", () => { carouselPaused = true; });
+      heroSection.addEventListener("mouseenter", () => {
+        interactionPaused = true;
+      });
       heroSection.addEventListener("mouseleave", () => {
-        carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        interactionPaused = false;
       });
-      heroSection.addEventListener("focusin", () => { carouselPaused = true; });
+      heroSection.addEventListener("focusin", () => {
+        interactionPaused = true;
+      });
       heroSection.addEventListener("focusout", (event) => {
-        if (!heroSection.contains(event.relatedTarget)) {
-          carouselPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        }
+        if (!heroSection.contains(event.relatedTarget))
+          interactionPaused = false;
       });
+    }
+    if (pauseButton) {
+      pauseButton.addEventListener("click", () => {
+        userPaused = !userPaused;
+        syncPauseButton();
+      });
+      syncPauseButton();
     }
 
     dots.forEach((dot, index) => {
@@ -139,7 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.transform = "scale(0.85)";
       setTimeout(() => {
         overlay.remove();
-        if (previouslyFocused && previouslyFocused.isConnected) previouslyFocused.focus();
+        if (previouslyFocused && previouslyFocused.isConnected)
+          previouslyFocused.focus();
       }, 250);
     };
 
@@ -156,12 +182,19 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModal();
       }
       if (event.key === "Tab") {
-        const controls = [...modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled])')];
+        const controls = [
+          ...modal.querySelectorAll(
+            "button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled])",
+          ),
+        ];
         if (!controls.length) return;
         if (event.shiftKey && document.activeElement === controls[0]) {
           event.preventDefault();
           controls[controls.length - 1].focus();
-        } else if (!event.shiftKey && document.activeElement === controls[controls.length - 1]) {
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === controls[controls.length - 1]
+        ) {
           event.preventDefault();
           controls[0].focus();
         }
@@ -471,7 +504,11 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleCart();
       }
       if (event.key === "Tab") {
-        const controls = [...cartDrawer.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])')].filter(el => !el.hidden && el.getClientRects().length);
+        const controls = [
+          ...cartDrawer.querySelectorAll(
+            "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])",
+          ),
+        ].filter((el) => !el.hidden && el.getClientRects().length);
         if (!controls.length) return;
         const first = controls[0];
         const last = controls[controls.length - 1];
@@ -549,7 +586,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const isFav = favorites.includes(name);
       btn.classList.toggle("active", isFav);
       btn.setAttribute("aria-pressed", String(isFav));
-      btn.setAttribute("aria-label", `${isFav ? "Quitar de favoritos" : "Añadir a favoritos"}: ${name}`);
+      btn.setAttribute(
+        "aria-label",
+        `${isFav ? "Quitar de favoritos" : "Añadir a favoritos"}: ${name}`,
+      );
     });
   }
 
@@ -794,7 +834,11 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDetails();
       }
       if (event.key === "Tab") {
-        const buttons = [...dialog.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])")];
+        const buttons = [
+          ...dialog.querySelectorAll(
+            "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])",
+          ),
+        ];
         if (!buttons.length) return;
         const first = buttons[0];
         const last = buttons[buttons.length - 1];
@@ -824,7 +868,9 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDetails();
         return;
       }
-      const addButton = event.target.closest(".product-detail-purchase .product-detail-add");
+      const addButton = event.target.closest(
+        ".product-detail-purchase .product-detail-add",
+      );
       if (addButton) {
         handleAddToCart(addButton);
         return;
@@ -863,8 +909,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!Number.isInteger(rating) || rating < 1 || rating > 5 || !comment) {
         feedback.textContent =
           "Selecciona una puntuación y escribe tu opinión.";
-        const invalidField = !Number.isInteger(rating) || rating < 1 || rating > 5
-          ? reviewForm.elements.rating : reviewForm.elements.comment;
+        const invalidField =
+          !Number.isInteger(rating) || rating < 1 || rating > 5
+            ? reviewForm.elements.rating
+            : reviewForm.elements.comment;
         invalidField.setAttribute("aria-invalid", "true");
         invalidField.focus();
         return;
@@ -1077,7 +1125,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const dot = document.createElement("button");
         dot.type = "button";
         dot.className = index === 0 ? "dot active" : "dot";
-        dot.setAttribute("aria-label", `Mostrar producto de otoño ${index + 1}`);
+        dot.setAttribute(
+          "aria-label",
+          `Mostrar producto de otoño ${index + 1}`,
+        );
         dot.setAttribute("aria-current", String(index === 0));
         carouselDotsContainer.appendChild(dot);
       });

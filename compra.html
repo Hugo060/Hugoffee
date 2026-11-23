@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Finaliza tu pedido en Hugoffee." />
     <title>Tramitar Pedido - Hugoffee</title>
     <link rel="icon" href="/Imagenes/logo.jpg" type="image/x-icon" />
@@ -11,17 +12,30 @@
     <link rel="stylesheet" href="/css/compraMejorada.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="/js/auth.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
     <script src="/js/compra.js" defer></script>
+    <script src="/js/accesibilidad.js" defer></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <header class="header">
       <div class="logo-container">
-        <a href="index.html" class="logo-link" aria-label="Hugoffee: ir a la página de inicio">
-          <img src="/Imagenes/logo.jpg" id="logo" alt="Logo Hugoffee" class="logo-icon" />
+        <a
+          href="index.html"
+          class="logo-link"
+          aria-label="Hugoffee: ir a la página de inicio"
+        >
+          <img
+            src="/Imagenes/logo.jpg"
+            id="logo"
+            alt="Logo Hugoffee"
+            class="logo-icon"
+          />
           <span class="brand-name">Hugoffee</span>
         </a>
       </div>
@@ -32,94 +46,444 @@
         <a href="index.html#contacto">Contacto</a>
       </nav>
       <div class="user-actions">
-        <button class="theme-toggle-button" id="themeToggleBtn" aria-label="Cambiar modo oscuro/claro"><svg aria-hidden="true" focusable="false" id="moonIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg aria-hidden="true" focusable="false" id="sunIcon" class="theme-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B3621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display: none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+        <button
+          class="theme-toggle-button"
+          id="themeToggleBtn"
+          aria-label="Cambiar modo oscuro/claro"
+        >
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            id="moonIcon"
+            class="theme-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4B3621"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+            ></path></svg
+          ><svg
+            aria-hidden="true"
+            focusable="false"
+            id="sunIcon"
+            class="theme-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4B3621"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="display: none"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
       </div>
     </header>
     <main id="main-content" tabindex="-1" class="menu-page">
       <div class="menu-hero">
         <h1>Finalizar Pedido</h1>
-        <p>Elige cómo y cuándo quieres recibir tu pedido. Revisa el resumen antes de confirmarlo.</p>
+        <p>
+          Elige cómo y cuándo quieres recibir tu pedido. Revisa el resumen antes
+          de confirmarlo.
+        </p>
       </div>
       <div class="checkout-layout">
         <div class="story-box checkout-main-card">
-          <div class="checkout-section-title"><span class="checkout-number">1</span><div><h3>Tu pedido, a tu manera</h3><p>Primero dinos cómo quieres recibirlo.</p></div></div>
-          <form id="checkoutForm" class="suggestion-form" style="margin-top: var(--space-md);">
-            <div class="delivery-options-grid">
+          <div class="checkout-section-title">
+            <span class="checkout-number">1</span>
+            <div>
+              <h2>Tu pedido, a tu manera</h2>
+              <p>Primero dinos cómo quieres recibirlo.</p>
+            </div>
+          </div>
+          <form
+            id="checkoutForm"
+            class="suggestion-form"
+            style="margin-top: var(--space-md)"
+          >
+            <div
+              class="delivery-options-grid"
+              role="radiogroup"
+              aria-label="Tipo de entrega"
+            >
               <label class="checkout-choice">
-                <input type="radio" name="tipoEntrega" value="recoger" checked style="accent-color: var(--color-accent); width: 18px; height: 18px;" />
-                <span>Recoger en tienda <small style="display: block; font-weight: 400; font-size: 12px; color: var(--color-accent);">Gratis</small></span>
+                <input
+                  type="radio"
+                  name="tipoEntrega"
+                  value="recoger"
+                  checked
+                  style="
+                    accent-color: var(--color-accent);
+                    width: 18px;
+                    height: 18px;
+                  "
+                />
+                <span
+                  >Recoger en tienda
+                  <small
+                    style="
+                      display: block;
+                      font-weight: 400;
+                      font-size: 12px;
+                      color: var(--color-accent);
+                    "
+                    >Gratis</small
+                  ></span
+                >
               </label>
               <label class="checkout-choice">
-                <input type="radio" name="tipoEntrega" value="domicilio" style="accent-color: var(--color-accent); width: 18px; height: 18px;" />
-                <span>Llevar a casa <small style="display: block; font-weight: 400; font-size: 12px; color: var(--color-accent);">+2,00 € (Gratis a partir de 20 €)</small></span>
+                <input
+                  type="radio"
+                  name="tipoEntrega"
+                  value="domicilio"
+                  style="
+                    accent-color: var(--color-accent);
+                    width: 18px;
+                    height: 18px;
+                  "
+                />
+                <span
+                  >Llevar a casa
+                  <small
+                    style="
+                      display: block;
+                      font-weight: 400;
+                      font-size: 12px;
+                      color: var(--color-accent);
+                    "
+                    >+2,00 € (Gratis a partir de 20 €)</small
+                  ></span
+                >
               </label>
             </div>
-            <div class="checkout-section-title checkout-subtitle"><span class="checkout-number">2</span><div><h3>Tus datos</h3><p>Para poder avisarte sobre tu pedido.</p></div></div>
+            <div class="checkout-section-title checkout-subtitle">
+              <span class="checkout-number">2</span>
+              <div>
+                <h2>Tus datos</h2>
+                <p>Para poder avisarte sobre tu pedido.</p>
+              </div>
+            </div>
             <div class="form-row">
-              <label class="checkout-inline-field" for="nombreEnvio">Nombre completo (obligatorio)<input type="text" id="nombreEnvio" autocomplete="name" placeholder="Nombre completo" required /></label>
-              <label class="checkout-inline-field" for="telefonoEnvio">Teléfono de contacto (obligatorio)<input type="tel" inputmode="tel" autocomplete="tel" id="telefonoEnvio" placeholder="Teléfono de contacto" required /></label>
+              <label class="checkout-inline-field" for="nombreEnvio"
+                >Nombre completo (obligatorio)<input
+                  type="text"
+                  id="nombreEnvio"
+                  autocomplete="name"
+                  placeholder="Nombre completo"
+                  required
+              /></label>
+              <label class="checkout-inline-field" for="telefonoEnvio"
+                >Teléfono de contacto (obligatorio)<input
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  id="telefonoEnvio"
+                  placeholder="Teléfono de contacto"
+                  required
+              /></label>
             </div>
-            <div class="form-row" id="direccionRow" style="display: none;">
-              <label class="checkout-inline-field" for="direccionEnvio">Dirección de entrega (si eliges domicilio)<input type="text" autocomplete="street-address" id="direccionEnvio" placeholder="Dirección de entrega (ej. Paseo Constitución, Arnedo)" /></label>
+            <div class="form-row" id="direccionRow" style="display: none">
+              <label class="checkout-inline-field" for="direccionEnvio"
+                >Dirección de entrega (si eliges domicilio)<input
+                  type="text"
+                  autocomplete="street-address"
+                  id="direccionEnvio"
+                  placeholder="Dirección de entrega (ej. Paseo Constitución, Arnedo)"
+              /></label>
             </div>
-            <section class="checkout-schedule" id="programacionContainer" aria-labelledby="programacionTitulo">
-              <div class="checkout-section-title checkout-subtitle"><span class="checkout-number">3</span><div><h3 id="programacionTitulo">¿Cuándo lo quieres?</h3><p>Selecciona cuándo te viene mejor.</p></div></div>
-              <div class="checkout-time-options" role="group" aria-label="Programación del pedido">
-                <label class="checkout-time-choice is-selected" id="opcionAhora">
-                  <input type="radio" name="opcionHorario" value="ahora" checked />
-                  <span class="checkout-time-choice-icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-                  <span><strong>Lo antes posible</strong><small>Estimación calculada según tu pedido</small></span>
+            <section
+              class="checkout-schedule"
+              id="programacionContainer"
+              aria-labelledby="programacionTitulo"
+            >
+              <div class="checkout-section-title checkout-subtitle">
+                <span class="checkout-number">3</span>
+                <div>
+                  <h2 id="programacionTitulo">¿Cuándo lo quieres?</h2>
+                  <p>Selecciona cuándo te viene mejor.</p>
+                </div>
+              </div>
+              <div
+                class="checkout-time-options"
+                role="radiogroup"
+                aria-label="Programación del pedido"
+              >
+                <label
+                  class="checkout-time-choice is-selected"
+                  id="opcionAhora"
+                >
+                  <input
+                    type="radio"
+                    name="opcionHorario"
+                    value="ahora"
+                    checked
+                  />
+                  <span class="checkout-time-choice-icon" aria-hidden="true"
+                    ><svg
+                      aria-hidden="true"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v5l3 2" /></svg
+                  ></span>
+                  <span
+                    ><strong>Lo antes posible</strong
+                    ><small>Estimación calculada según tu pedido</small></span
+                  >
                 </label>
                 <label class="checkout-time-choice" id="opcionProgramar">
                   <input type="radio" name="opcionHorario" value="programar" />
-                  <span class="checkout-time-choice-icon" aria-hidden="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></svg></span>
-                  <span><strong>Elegir día y hora</strong><small>Programa tu pedido con antelación</small></span>
+                  <span class="checkout-time-choice-icon" aria-hidden="true"
+                    ><svg
+                      aria-hidden="true"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="16" rx="2" />
+                      <path d="M7 3v4m10-4v4M3 10h18" /></svg
+                  ></span>
+                  <span
+                    ><strong>Elegir día y hora</strong
+                    ><small>Programa tu pedido con antelación</small></span
+                  >
                 </label>
               </div>
-              <label class="sr-only" for="tipoProgramacion">Tipo de programación</label><select id="tipoProgramacion" hidden aria-hidden="true" tabindex="-1"><option value="ahora">Lo antes posible</option><option value="programar">Programar</option></select>
-              <div id="horaProgramadaRow" class="checkout-schedule-details" hidden>
+              <label class="sr-only" for="tipoProgramacion"
+                >Tipo de programación</label
+              ><select
+                id="tipoProgramacion"
+                hidden
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <option value="ahora">Lo antes posible</option>
+                <option value="programar">Programar</option>
+              </select>
+              <div
+                id="horaProgramadaRow"
+                class="checkout-schedule-details"
+                hidden
+              >
                 <p class="checkout-field-label">¿Qué día prefieres?</p>
-                <div class="checkout-date-shortcuts" role="group" aria-label="Fechas rápidas">
-                  <button type="button" class="checkout-date-chip" data-day="0">Hoy</button>
-                  <button type="button" class="checkout-date-chip" data-day="1">Mañana</button>
-                  <button type="button" class="checkout-date-chip" data-day="2">Pasado mañana</button>
+                <div
+                  class="checkout-date-shortcuts"
+                  role="group"
+                  aria-label="Fechas rápidas"
+                >
+                  <button
+                    type="button"
+                    class="checkout-date-chip"
+                    data-day="0"
+                    aria-pressed="false"
+                  >
+                    Hoy
+                  </button>
+                  <button
+                    type="button"
+                    class="checkout-date-chip"
+                    data-day="1"
+                    aria-pressed="false"
+                  >
+                    Mañana
+                  </button>
+                  <button
+                    type="button"
+                    class="checkout-date-chip"
+                    data-day="2"
+                    aria-pressed="false"
+                  >
+                    Pasado mañana
+                  </button>
                 </div>
                 <div class="checkout-date-fields">
-                  <div><label for="fechaPedido">Fecha del pedido</label><input type="date" id="fechaPedido" /></div>
-                  <div class="checkout-schedule-opening"><strong>Horario de atención</strong><span id="horarioDia">Selecciona una fecha</span></div>
+                  <div>
+                    <label for="fechaPedido">Fecha del pedido</label
+                    ><input type="date" id="fechaPedido" />
+                  </div>
+                  <div class="checkout-schedule-opening">
+                    <strong>Horario de atención</strong
+                    ><span id="horarioDia">Selecciona una fecha</span>
+                  </div>
                 </div>
-                <div class="checkout-slots-heading"><label for="horaPedido">Hora de recogida o entrega</label><small>Intervalos de 15 minutos</small></div><div class="checkout-hour-select"><select id="horaPedido" aria-describedby="horaAyuda" disabled><option value="">Selecciona primero una fecha</option></select></div><p id="horaAyuda" class="checkout-time-help" aria-live="polite">Selecciona una fecha para consultar las horas disponibles.</p>
-                <p class="checkout-disclaimer">Horario orientativo de Hugoffee. Las franjas no representan disponibilidad confirmada de un establecimiento real.</p>
+                <div class="checkout-slots-heading">
+                  <label for="horaPedido">Hora de recogida o entrega</label
+                  ><small>Intervalos de 15 minutos</small>
+                </div>
+                <div class="checkout-hour-select">
+                  <select id="horaPedido" aria-describedby="horaAyuda" disabled>
+                    <option value="">Selecciona primero una fecha</option>
+                  </select>
+                </div>
+                <p id="horaAyuda" class="checkout-time-help" aria-live="polite">
+                  Selecciona una fecha para consultar las horas disponibles.
+                </p>
+                <p class="checkout-disclaimer">
+                  Horario orientativo de Hugoffee. Las franjas no representan
+                  disponibilidad confirmada de un establecimiento real.
+                </p>
               </div>
-              <div class="checkout-preparation-info"><div><span>Tiempo estimado de preparación</span><strong id="tiempoPreparacion">Calculando...</strong></div><p id="detallePreparacion">La estimación depende de los productos de tu carrito.</p></div><div class="checkout-schedule-preview" id="resumenProgramacion" aria-live="polite"><span class="checkout-preview-mark" aria-hidden="true"></span><span>Calculando la preparación de tu pedido...</span></div>
+              <div class="checkout-preparation-info">
+                <div>
+                  <span>Tiempo estimado de preparación</span
+                  ><strong id="tiempoPreparacion">Calculando...</strong>
+                </div>
+                <p id="detallePreparacion">
+                  La estimación depende de los productos de tu carrito.
+                </p>
+              </div>
+              <div
+                class="checkout-schedule-preview"
+                id="resumenProgramacion"
+                aria-live="polite"
+              >
+                <span class="checkout-preview-mark" aria-hidden="true"></span
+                ><span>Calculando la preparación de tu pedido...</span>
+              </div>
             </section>
             <div class="form-row">
-              <label class="checkout-inline-field" for="notasEnvio">Notas adicionales (opcional)<textarea id="notasEnvio" rows="2" placeholder="Notas adicionales para el repartidor o la cafetería (opcional)"></textarea></label>
+              <label class="checkout-inline-field" for="notasEnvio"
+                >Notas adicionales (opcional)<textarea
+                  id="notasEnvio"
+                  rows="2"
+                  placeholder="Notas adicionales para el repartidor o la cafetería (opcional)"
+                ></textarea>
+              </label>
             </div>
-            
-            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
-              <div style="display: flex; align-items: flex-start; gap: 8px;">
-                <input type="checkbox" id="aceptoPrivacidad" required style="width: auto; margin-top: 4px; accent-color: var(--color-accent);">
-                <label for="aceptoPrivacidad" style="font-size: 13px; font-weight: normal; margin: 0; color: var(--color-primary);">He leído y acepto la <a href="privacidad.html" target="_blank" style="color: var(--color-accent); text-decoration: underline;">Política de Privacidad</a>.</label>
+
+            <div
+              style="
+                margin-top: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+            >
+              <div style="display: flex; align-items: flex-start; gap: 8px">
+                <input
+                  type="checkbox"
+                  id="aceptoPrivacidad"
+                  required
+                  style="
+                    width: auto;
+                    margin-top: 4px;
+                    accent-color: var(--color-accent);
+                  "
+                />
+                <label
+                  for="aceptoPrivacidad"
+                  style="
+                    font-size: 13px;
+                    font-weight: normal;
+                    margin: 0;
+                    color: var(--color-primary);
+                  "
+                  >He leído y acepto la
+                  <a
+                    href="privacidad.html"
+                    target="_blank"
+                    style="
+                      color: var(--color-accent);
+                      text-decoration: underline;
+                    "
+                    rel="noopener noreferrer"
+                    >Política de Privacidad (abre en una pestaña nueva)</a
+                  >.</label
+                >
               </div>
-              <div style="display: flex; align-items: flex-start; gap: 8px;">
-                <input type="checkbox" id="aceptoCondiciones" required style="width: auto; margin-top: 4px; accent-color: var(--color-accent);">
-                <label for="aceptoCondiciones" style="font-size: 13px; font-weight: normal; margin: 0; color: var(--color-primary);">He leído y acepto los <a href="condiciones.html" target="_blank" style="color: var(--color-accent); text-decoration: underline;">Términos y Condiciones de Venta</a>.</label>
+              <div style="display: flex; align-items: flex-start; gap: 8px">
+                <input
+                  type="checkbox"
+                  id="aceptoCondiciones"
+                  required
+                  style="
+                    width: auto;
+                    margin-top: 4px;
+                    accent-color: var(--color-accent);
+                  "
+                />
+                <label
+                  for="aceptoCondiciones"
+                  style="
+                    font-size: 13px;
+                    font-weight: normal;
+                    margin: 0;
+                    color: var(--color-primary);
+                  "
+                  >He leído y acepto los
+                  <a
+                    href="condiciones.html"
+                    target="_blank"
+                    style="
+                      color: var(--color-accent);
+                      text-decoration: underline;
+                    "
+                    rel="noopener noreferrer"
+                    >Términos y Condiciones de Venta (abre en una pestaña
+                    nueva)</a
+                  >.</label
+                >
               </div>
             </div>
 
-            <button type="submit" class="btn-primary checkout-submit">Confirmar pedido</button>
+            <button type="submit" class="btn-primary checkout-submit">
+              Confirmar pedido
+            </button>
           </form>
         </div>
         <div class="story-box checkout-summary-card">
-          <h3>Resumen del pedido</h3>
-          <p class="checkout-summary-subtitle">Comprueba tu pedido antes de confirmarlo.</p>
-          <div id="checkoutSummaryItems" style="margin: var(--space-md) 0; max-height: 250px; overflow-y: auto;"></div>
+          <h2>Resumen del pedido</h2>
+          <p class="checkout-summary-subtitle">
+            Comprueba tu pedido antes de confirmarlo.
+          </p>
+          <div
+            id="checkoutSummaryItems"
+            style="
+              margin: var(--space-md) 0;
+              max-height: 250px;
+              overflow-y: auto;
+            "
+          ></div>
           <div class="checkout-total-row">
             <span>Total a pagar:</span>
-            <span id="checkoutTotal" style="color: var(--color-accent);">0,00 €</span>
+            <span id="checkoutTotal" style="color: var(--color-accent)"
+              >0,00 €</span
+            >
           </div>
-          <div class="checkout-summary-when" id="resumenEntrega" aria-live="polite">Recogida en tienda · Lo antes posible</div>
+          <div
+            class="checkout-summary-when"
+            id="resumenEntrega"
+            aria-live="polite"
+          >
+            Recogida en tienda · Lo antes posible
+          </div>
         </div>
       </div>
     </main>
@@ -127,7 +491,10 @@
       <div class="footer-columns">
         <div class="footer-col brand-col">
           <h4>Hugoffee</h4>
-          <p>Café cercano, identidad serena. Un sistema cálido y contemporáneo pensado para comunicar calidad sin artificios.</p>
+          <p>
+            Café cercano, identidad serena. Un sistema cálido y contemporáneo
+            pensado para comunicar calidad sin artificios.
+          </p>
         </div>
         <div class="footer-col">
           <h5>Enlaces</h5>
@@ -152,7 +519,12 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Hugoffee - Todos los derechos reservados | <a href="avisoLegal.html">Aviso Legal</a> | <a href="privacidad.html">Política de Privacidad</a> | <a href="condiciones.html">Condiciones de Compra</a></p>
+        <p>
+          © 2026 Hugoffee - Todos los derechos reservados |
+          <a href="avisoLegal.html">Aviso Legal</a> |
+          <a href="privacidad.html">Política de Privacidad</a> |
+          <a href="condiciones.html">Condiciones de Compra</a>
+        </p>
       </div>
     </footer>
   </body>

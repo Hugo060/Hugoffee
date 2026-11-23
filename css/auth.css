@@ -210,3 +210,42 @@ body {
     padding: 24px 16px;
   }
 }
+
+
+.auth-header h1 {
+  margin: 0 0 8px;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.auth-form input:focus-visible,
+.auth-form a:focus-visible,
+.auth-form button:focus-visible,
+.auth-footer a:focus-visible,
+.auth-form .checkbox-container:focus-within {
+  outline: 3px solid #9a5a27;
+  outline-offset: 3px;
+}
+
+.auth-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3d251e;
+}

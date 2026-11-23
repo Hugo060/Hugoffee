@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const existingOverlay = document.getElementById('modalOverlay');
         if (existingOverlay) existingOverlay.remove();
 
+        const previouslyFocused = document.activeElement;
         const overlay = document.createElement('div');
         overlay.id = 'modalOverlay';
         overlay.style.position = 'fixed';
@@ -37,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.transition = 'opacity 0.3s ease';
 
         const modal = document.createElement('div');
+        modal.setAttribute('role', 'alertdialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', 'confirmOrderModalTitle');
+        modal.setAttribute('aria-describedby', 'confirmOrderModalText');
         modal.style.backgroundColor = 'var(--color-base, #fff)';
         modal.style.color = 'var(--color-primary, #4B3621)';
         modal.style.padding = '30px 40px';
@@ -50,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.innerHTML = `
             <div style="font-size: 42px; margin-bottom: 12px;">⚠️</div>
-            <h3 style="margin-bottom: 10px; font-size: 20px; font-weight: 700;">¿Estás seguro?</h3>
-            <p style="font-size: 14px; color: var(--color-primary); opacity: 0.9; margin-bottom: 24px;">${message}</p>
+            <h3 id="confirmOrderModalTitle" style="margin-bottom: 10px; font-size: 20px; font-weight: 700;">¿Estás seguro?</h3>
+            <p id="confirmOrderModalText" style="font-size: 14px; color: var(--color-primary); opacity: 0.9; margin-bottom: 24px;">${message}</p>
             <div style="display: flex; gap: 12px; justify-content: center;">
                 <button id="modalCancelBtn" style="padding: 10px 20px; background: transparent; color: var(--color-primary, #4B3621); border: 1.5px solid var(--color-primary, #4B3621); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;">Cancelar</button>
                 <button id="modalConfirmBtn" style="padding: 10px 20px; background: #c92a2a; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;">Eliminar</button>
@@ -60,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         overlay.appendChild(modal);
         document.body.appendChild(overlay);
+        document.getElementById('modalCancelBtn').focus();
 
         setTimeout(() => {
             overlay.style.opacity = '1';
@@ -72,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 overlay.remove();
                 if (callback) callback();
+                if (previouslyFocused && previouslyFocused.isConnected) previouslyFocused.focus();
+                else if (ordersContainer) {
+                    ordersContainer.setAttribute('tabindex', '-1');
+                    ordersContainer.focus();
+                }
             }, 300);
         };
 
@@ -81,6 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) closeModal();
+        });
+        overlay.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                closeModal();
+            }
+            if (event.key === 'Tab') {
+                const focusables = [document.getElementById('modalCancelBtn'), document.getElementById('modalConfirmBtn')];
+                if (event.shiftKey && document.activeElement === focusables[0]) {
+                    event.preventDefault();
+                    focusables[1].focus();
+                } else if (!event.shiftKey && document.activeElement === focusables[1]) {
+                    event.preventDefault();
+                    focusables[0].focus();
+                }
+            }
         });
     }
 
@@ -258,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.btn-repeat-order').forEach(button => {
             button.addEventListener('click', (e) => {
                 const orderId = e.target.getAttribute('data-id');
-                const orderToRepeat = orders.find(o => o.id === orderId);
+                const orderToRepeat = orders.find(o => String(o.id) === String(orderId));
                 if (!orderToRepeat) return;
 
                 localStorage.setItem(cartKey, JSON.stringify(orderToRepeat.items));
@@ -270,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (e) => {
                 const orderId = e.target.getAttribute('data-id');
                 showConfirmModal('¿Estás seguro de que deseas eliminar este pedido del historial?', () => {
-                    orders = orders.filter(o => o.id !== orderId);
+                    orders = orders.filter(o => String(o.id) !== String(orderId));
                     localStorage.setItem(ordersKey, JSON.stringify(orders));
                     renderOrders();
                 });

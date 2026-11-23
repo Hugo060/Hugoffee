@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /usuarios.json
+Disallow: /datos/usuarios.json

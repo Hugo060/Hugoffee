@@ -3,16 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
     <title>Registro - Hugoffee</title>
     <link rel="icon" id="logo" href="/Imagenes/logo.jpg" type="image/x-icon" />
-    <link rel="stylesheet" href="../css/auth.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
     <link rel="stylesheet" href="/css/modoOscuro.css" />
   </head>
   <body>
-    <div class="auth-container">
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <main class="auth-container" id="main-content" tabindex="-1">
       <div class="auth-card">
         <div class="auth-header">
-          <h2>Crea tu cuenta</h2>
+          <h1>Crea tu cuenta</h1>
           <p>Únete a Hugoffee y disfruta de nuestros productos</p>
         </div>
         <form id="registerForm" class="auth-form">
@@ -52,7 +54,7 @@
             <label for="aceptoPrivacidad" style="font-weight: normal"
               >He leído y acepto la
               <a href="privacidad.html" target="_blank"
-                >Política de Privacidad</a
+                 rel="noopener noreferrer">Política de Privacidad (abre en una pestaña nueva)</a
               >.</label
             >
           </div>
@@ -65,7 +67,7 @@
           </p>
         </div>
       </div>
-    </div>
-    <script src="../js/auth.js"></script>
+    </main>
+    <script src="/js/auth.js"></script>
   </body>
 </html>

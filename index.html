@@ -38,6 +38,7 @@
     <script src="/js/cafeIdeal.js" defer></script>
     <script src="/js/modoOscuro.js" defer></script>
     <script src="/js/seo.js" defer></script>
+  <script src="/js/accesibilidad.js" defer></script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -198,10 +199,11 @@
           </div>
         </div>
 
-        <div class="hero-carousel-dots" role="group" aria-label="Elegir imagen de portada">
-          <button type="button" class="hero-dot active" aria-label="Ver imagen 1" aria-current="true"></button>
-          <button type="button" class="hero-dot" aria-label="Ver imagen 2" aria-current="false"></button>
-          <button type="button" class="hero-dot" aria-label="Ver imagen 3" aria-current="false"></button>
+        <div class="hero-carousel-dots" role="group" aria-label="Controles de las imágenes de portada">
+          <button type="button" class="hero-dot active" aria-label="Mostrar primera imagen de portada" aria-current="true"></button>
+          <button type="button" class="hero-dot" aria-label="Mostrar segunda imagen de portada" aria-current="false"></button>
+          <button type="button" class="hero-dot" aria-label="Mostrar tercera imagen de portada" aria-current="false"></button>
+          <button type="button" class="hero-pause-button" id="heroPauseButton" aria-pressed="false">Pausar</button>
         </div>
       </section>
 
@@ -274,13 +276,13 @@
 
       <section class="info-section" id="nosotros">
         <article class="story-box">
-          <h3>Café recién molido & Repostería</h3>
+          <h2 class="story-heading">Café recién molido & Repostería</h2>
           <p>
             Un espacio acogedor creado para disfrutar del café de especialidad y
             comida hecha al momento con calma y dedicación artesanal.
           </p>
 
-          <h4>Nuestra propuesta:</h4>
+          <h3 class="story-subheading">Nuestra propuesta:</h3>
           <ul>
             <li>
               <strong>Café de especialidad:</strong> Variedades seleccionadas,
@@ -354,7 +356,7 @@
               >
                 <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
               </svg>
-              Cómo llegar (Google Maps)
+              Cómo llegar (Google Maps) (abre en una pestaña nueva)
             </a>
           </div>
         </section>
