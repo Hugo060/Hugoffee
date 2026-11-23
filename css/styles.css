@@ -3425,15 +3425,61 @@ body.dark-mode .product-image-container.image-error::after {
 }
 
 .hero-pause-button {
-  padding: 7px 12px;
-  border: 1.5px solid var(--color-primary);
-  border-radius: 8px;
-  background: var(--color-base);
-  color: var(--color-primary);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #4b3621;
+  border-radius: 50%;
+  background: #4b3621;
+  color: #ffffff;
+  font-size: 0;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(46, 33, 21, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-pause-button::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 13px;
+  border-radius: 1px;
+  background: #ffffff;
+  box-shadow: 7px 0 0 #ffffff;
+  transform: translateX(-3.5px);
+}
+
+.hero-pause-button[aria-pressed="true"]::before {
+  width: 0;
+  height: 0;
+  background: transparent;
+  box-shadow: none;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #ffffff;
+  border-radius: 0;
+  transform: translateX(2px);
+}
+
+.hero-pause-button:hover {
+  background: #2e2115;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .hero-pause-button {
+    right: 12px;
+    bottom: 12px;
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .hero-pause-button:focus-visible,
